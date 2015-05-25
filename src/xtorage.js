@@ -6,9 +6,13 @@ var Xtorage = (function () {
         this.storage = st;
         this.unique = unique;
     }
-    Xtorage.prototype.add = function (key, info) {
+    Xtorage.prototype.toStringifiedJSON = function (obj) {
+        return '';
     };
-    Xtorage.prototype.addArray = function (key, info) {
+    Xtorage.prototype.fromStringifiedJSON = function (str) {
+        return {};
+    };
+    Xtorage.prototype.add = function (key, info) {
     };
     Xtorage.prototype.addInFirstPosition = function (key, info) {
     };

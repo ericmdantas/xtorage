@@ -1,17 +1,21 @@
 "use strict";
 
-interface Adder {
-    add(key: String, info: Object);
-    addArray(key: String, info: Array<any>);
-    addInFirstPosition(key: String, info: Object);
-    addInLastPosition(key: String, info: Object);
+interface IParse {
+    toStringifiedJSON(ob : Object | Array<any>):String
+    fromStringifiedJSON(str: String):Object | Array<any>
 }
 
-interface Getter {
-    get(key: String):Object;
+interface IAdd {
+    add(key: String, info: Object | Array<any>);
+    addInFirstPosition(key: String, info: Object | Array<any>);
+    addInLastPosition(key: String, info: Object | Array<any>);
 }
 
-interface Remover {
+interface IGet {
+    get(key: String):any;
+}
+
+interface IRemove {
     remove(key: String);
     removeFirst(key: String);
     removeLast(key: String);
@@ -19,7 +23,7 @@ interface Remover {
 }
 
 
-export class Xtorage implements Adder, Getter, Remover {
+export class Xtorage implements IAdd, IGet, IRemove, IParse {
     storage: String;
     unique: Boolean;
 
@@ -28,11 +32,15 @@ export class Xtorage implements Adder, Getter, Remover {
         this.unique = unique;
     }
 
-    add(key: String, info: Object) {
-
+    toStringifiedJSON(obj: Object | Array<any>):String {
+        return '';
     }
 
-    addArray(key: String, info: Object) {
+    fromStringifiedJSON(str: String):Object | Array<any> {
+        return {};
+    }
+
+    add(key: String, info: Object | Array<any>) {
 
     }
 
@@ -45,7 +53,7 @@ export class Xtorage implements Adder, Getter, Remover {
     }
 
 
-    get(key: String) {
+    get(key: String):any {
         return {};
     }
 
