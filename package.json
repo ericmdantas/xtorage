@@ -1,8 +1,8 @@
 {
-  "name": "ng2-xtorage",
+  "name": "xtorage",
   "version": "0.0.0",
-  "description": "ng-xtorage for angular2",
-  "main": "dist/ng2-xtorage.min.js",
+  "description": "xtorage",
+  "main": "dist/xtorage.min.js",
   "directories": {
     "test": "test"
   },
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ericmdantas/ng2-xtorage.git"
+    "url": "https://github.com/ericmdantas/xtorage.git"
   },
   "author": "Eric Mendes Dantas <ericdantas0@gmail.com> (https://github.com/ericmdantas)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ericmdantas/ng2-xtorage/issues"
+    "url": "https://github.com/ericmdantas/xtorage/issues"
   },
-  "homepage": "https://github.com/ericmdantas/ng2-xtorage"
+  "homepage": "https://github.com/ericmdantas/xtorage"
 }
