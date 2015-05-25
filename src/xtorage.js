@@ -1,34 +1,51 @@
 "use strict";
-var Xtorage = (function () {
-    function Xtorage(st, unique) {
-        if (st === void 0) { st = 'localStorage'; }
-        if (unique === void 0) { unique = false; }
+export class Xtorage {
+    constructor(st = 'localStorage', unique = false) {
         this.storage = st;
         this.unique = unique;
     }
-    Xtorage.prototype.toStringifiedJSON = function (obj) {
-        return '';
-    };
-    Xtorage.prototype.fromStringifiedJSON = function (str) {
-        return {};
-    };
-    Xtorage.prototype.add = function (key, info) {
-    };
-    Xtorage.prototype.addInFirstPosition = function (key, info) {
-    };
-    Xtorage.prototype.addInLastPosition = function (key, info) {
-    };
-    Xtorage.prototype.get = function (key) {
-        return {};
-    };
-    Xtorage.prototype.remove = function (key) {
-    };
-    Xtorage.prototype.removeFirst = function (key) {
-    };
-    Xtorage.prototype.removeLast = function (key) {
-    };
-    Xtorage.prototype.removeAll = function () {
-    };
-    return Xtorage;
-})();
-exports.Xtorage = Xtorage;
+    _toStringifiedJSON(obj) {
+        return JSON.stringify(obj);
+    }
+    _fromStringifiedJSON(str) {
+        return JSON.parse(str);
+    }
+    save(key, info, opt) {
+        var _storage = opt.storage || this.storage;
+        window[_storage].setItem(key, this._toStringifiedJSON(info));
+    }
+    saveInFirstPosition(key, info, opt) {
+        var _info = this.get(key);
+    }
+    saveInLastPosition(key, info, opt) {
+        var _storage = opt.storage || this.storage;
+    }
+    get(key, opt) {
+        var _storage = opt.storage || this.storage;
+        return window[_storage].getItem(key);
+    }
+    remove(key, opt) {
+        var _storage = opt.storage || this.storage;
+        window[_storage].removeItem(key);
+    }
+    removeFirst(key, opt) {
+        var _info = this.get(key, opt);
+        var _infoParsed = this._fromStringifiedJSON(_info) || [];
+        if (!_infoParsed.length)
+            return;
+        _info.shift();
+        this.save(key, _info, opt);
+    }
+    removeLast(key, opt) {
+        var _info = this.get(key, opt);
+        var _infoParsed = this._fromStringifiedJSON(_info) || [];
+        if (!_infoParsed.length)
+            return;
+        _info.pop();
+        this.save(key, _info, opt);
+    }
+    removeAll(opt) {
+        var _storage = opt.storage || this.storage;
+        window[_storage].clear();
+    }
+}

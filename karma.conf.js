@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Sun May 17 2015 22:36:25 GMT-0300 (Hora oficial do Brasil)
+// Generated on Mon May 25 2015 12:48:29 GMT-0300 (Hora oficial do Brasil)
 
 module.exports = function(config) {
   config.set({
@@ -15,8 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'dist/*.min.js',
-
+      'src/xtorage.js',
       'test/*_test.js'
     ],
 
@@ -29,19 +28,13 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/storage/*.js': ['coverage']
     },
 
-    coverageReporter:
-    {
-      type: 'lcov',
-      dir: 'unit_coverage'
-    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress'],
 
 
     // web server port
@@ -62,8 +55,8 @@ module.exports = function(config) {
 
 
     // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcheri
-    browsers: ['Chrome', 'IE', 'PhantomJS', 'Safari', 'Firefox', 'ChromeCanary', 'FirefoxNightly'],
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: [/*'Chrome', 'IE', 'Opera', 'Safari', 'Firefox', 'ChromeCanary', */'PhantomJS'],
 
 
     // Continuous Integration mode

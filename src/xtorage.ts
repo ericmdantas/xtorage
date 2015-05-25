@@ -1,76 +1,98 @@
 "use strict";
 
 interface IParse {
-    toStringifiedJSON(ob : Object | Array<any>):String
-    fromStringifiedJSON(str: String):Object | Array<any>
+    _toStringifiedJSON(ob : Object | Array<any>):string
+    _fromStringifiedJSON(str:string):Object | Array<any>
 }
 
 interface IAdd {
-    add(key: String, info: Object | Array<any>);
-    addInFirstPosition(key: String, info: Object | Array<any>);
-    addInLastPosition(key: String, info: Object | Array<any>);
+    save(key:string, info: any, opts?:{storage:string});
+    saveInFirstPosition(key:string, info: any, opts?:{storage:string});
+    saveInLastPosition(key:string, info: any, opts?:{storage:string});
 }
 
 interface IGet {
-    get(key: String):any;
+    get(key:string, opts?:{storage:string}):any;
 }
 
 interface IRemove {
-    remove(key: String);
-    removeFirst(key: String);
-    removeLast(key: String);
+    remove(key:string, opts?:{storage:string});
+    removeFirst(key:string, opts?:{storage:string});
+    removeLast(key:string, opts?:{storage:string});
     removeAll();
 }
 
 
 export class Xtorage implements IAdd, IGet, IRemove, IParse {
-    storage: String;
-    unique: Boolean;
+    storage:string;
+    unique:boolean;
 
-    constructor(st:String = 'localStorage', unique:Boolean = false) {
+    constructor(st:string = 'localStorage', unique:boolean = false) {
         this.storage = st;
         this.unique = unique;
     }
 
-    toStringifiedJSON(obj: Object | Array<any>):String {
-        return '';
+    _toStringifiedJSON(obj: Object | Array<any>):string {
+        return JSON.stringify(obj);
     }
 
-    fromStringifiedJSON(str: String):Object | Array<any> {
-        return {};
+    _fromStringifiedJSON(str:string):Object | Array<any> {
+        return JSON.parse(str);
     }
 
-    add(key: String, info: Object | Array<any>) {
+    save(key:string, info: any, opt?:{storage:string}) {
+        var _storage = opt.storage || this.storage;
 
+        window[_storage].setItem(key, this._toStringifiedJSON(info));
     }
 
-    addInFirstPosition(key: String, info: Object) {
-
+    saveInFirstPosition(key:string, info: any, opt?:{storage:string}) {
+        var _info = this.get(key)
     }
 
-    addInLastPosition(key: String, info: Object) {
-
-    }
-
-
-    get(key: String):any {
-        return {};
+    saveInLastPosition(key:string, info: any, opt?:{storage:string}) {
+        var _storage = opt.storage || this.storage;
     }
 
 
-    remove(key: String) {
+    get(key:string, opt?:{storage:string}):any {
+        var _storage = opt.storage || this.storage;
 
+        return window[_storage].getItem(key);
     }
 
-    removeFirst(key: String) {
 
+    remove(key:string, opt?:{storage:string}) {
+        var _storage = opt.storage || this.storage;
+
+        window[_storage].removeItem(key);
     }
 
-    removeLast(key: String) {
+    removeFirst(key:string, opt?:{storage:string}) {
+        var _info = this.get(key, opt);
+        var _infoParsed = this._fromStringifiedJSON(_info) || [];
 
+        if (!_infoParsed.length) return;
+
+        _info.shift();
+
+        this.save(key, _info, opt);
     }
 
-    removeAll() {
+    removeLast(key:string, opt?:{storage:string}) {
+        var _info = this.get(key, opt);
+        var _infoParsed = this._fromStringifiedJSON(_info) || [];
 
+        if (!_infoParsed.length) return;
+
+        _info.pop();
+
+        this.save(key, _info, opt);
+    }
+
+    removeAll(opt?:{storage:string}) {
+        var _storage = opt.storage || this.storage;
+
+        window[_storage].clear();
     }
 }
