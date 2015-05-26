@@ -47,11 +47,23 @@ export class Xtorage implements IAdd, IGet, IRemove, IParse {
     }
 
     saveInFirstPosition(key:string, info: any, opt?:{storage:string}) {
-        var _info = this.get(key)
+        var _info = this.get(key);
+        var _infoParsed = this._fromStringifiedJSON(_info);
+
+        if (!_infoParsed.length) return;
+
+        _infoParsed.unshift(info);
+
+        this.save(key, _infoParsed, opt);
     }
 
     saveInLastPosition(key:string, info: any, opt?:{storage:string}) {
-        var _storage = opt.storage || this.storage;
+        var _info = this.get(info);
+        var _infoParsed = this._fromStringifiedJSON(_info);
+
+        _infoParsed.push(info);
+
+        this.save(key, _infoParsed, opt);
     }
 
 
