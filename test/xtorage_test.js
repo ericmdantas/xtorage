@@ -10,9 +10,7 @@ describe('xtorage', function() {
     {
         var _x = new xtorage.Xtorage();
 
-        dump(_x)
-
         expect(true).toBeTruthy();
-        _x.get('a', {});
+        _x.get('a');
     })
 })

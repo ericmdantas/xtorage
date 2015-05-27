@@ -2,8 +2,9 @@
 
 module xtorage {
     interface IParse {
-        _toStringifiedJSON(ob : Object | Array<any>):string
+        _toStringifiedJSON(ob:Object | Array<any>):string
         _fromStringifiedJSON(str:string):Object | Array<any>
+        _parseOptions(opt:Object):Object
     }
 
     interface IAdd {
@@ -33,7 +34,7 @@ module xtorage {
             this.unique = unique;
         }
 
-        _toStringifiedJSON(obj: Object | Array<any>):string {
+        _toStringifiedJSON(obj:Object | Array<any>):string {
             return JSON.stringify(obj);
         }
 
@@ -41,10 +42,14 @@ module xtorage {
             return JSON.parse(str);
         }
 
-        save(key:string, info: any, opt?:{storage:string}) {
-            var _storage = opt.storage || this.storage;
+        _parseOptions(opt:{storage: string} = {storage: 'localStorage'}) {
+            return opt;
+        }
 
-            window[_storage].setItem(key, this._toStringifiedJSON(info));
+        save(key:string, info: any, opt?:{storage:string}) {
+            var _opt = this._parseOptions(opt);
+
+            window[_opt.storage].setItem(key, this._toStringifiedJSON(info));
         }
 
         saveInFirstPosition(key:string, info: any, opt?:{storage:string}) {
@@ -69,16 +74,16 @@ module xtorage {
 
 
         get(key:string, opt?:{storage:string}):any {
-            var _storage = opt.storage || this.storage;
+            var _opt = this._parseOptions(opt);
 
-            return window[_storage].getItem(key);
+            return window[_opt.storage].getItem(key);
         }
 
 
         remove(key:string, opt?:{storage:string}) {
-            var _storage = opt.storage || this.storage;
+            var _opt = this._parseOptions(opt);
 
-            window[_storage].removeItem(key);
+            window[_opt.storage].removeItem(key);
         }
 
         removeFirst(key:string, opt?:{storage:string}) {
@@ -104,9 +109,9 @@ module xtorage {
         }
 
         removeAll(opt?:{storage:string}) {
-            var _storage = opt.storage || this.storage;
+            var _opt = this._parseOptions(opt);
 
-            window[_storage].clear();
+            window[_opt.storage].clear();
         }
     }
 }

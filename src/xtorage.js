@@ -14,9 +14,13 @@ var xtorage;
         Xtorage.prototype._fromStringifiedJSON = function (str) {
             return JSON.parse(str);
         };
+        Xtorage.prototype._parseOptions = function (opt) {
+            if (opt === void 0) { opt = { storage: 'localStorage' }; }
+            return opt;
+        };
         Xtorage.prototype.save = function (key, info, opt) {
-            var _storage = opt.storage || this.storage;
-            window[_storage].setItem(key, this._toStringifiedJSON(info));
+            var _opt = this._parseOptions(opt);
+            window[_opt.storage].setItem(key, this._toStringifiedJSON(info));
         };
         Xtorage.prototype.saveInFirstPosition = function (key, info, opt) {
             var _info = this.get(key);
@@ -33,12 +37,12 @@ var xtorage;
             this.save(key, _infoParsed, opt);
         };
         Xtorage.prototype.get = function (key, opt) {
-            var _storage = opt.storage || this.storage;
-            return window[_storage].getItem(key);
+            var _opt = this._parseOptions(opt);
+            return window[_opt.storage].getItem(key);
         };
         Xtorage.prototype.remove = function (key, opt) {
-            var _storage = opt.storage || this.storage;
-            window[_storage].removeItem(key);
+            var _opt = this._parseOptions(opt);
+            window[_opt.storage].removeItem(key);
         };
         Xtorage.prototype.removeFirst = function (key, opt) {
             var _info = this.get(key, opt);
@@ -57,8 +61,8 @@ var xtorage;
             this.save(key, _info, opt);
         };
         Xtorage.prototype.removeAll = function (opt) {
-            var _storage = opt.storage || this.storage;
-            window[_storage].clear();
+            var _opt = this._parseOptions(opt);
+            window[_opt.storage].clear();
         };
         return Xtorage;
     })();
