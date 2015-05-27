@@ -1,23 +1,24 @@
 "use strict";
 
 module xtorage {
-    interface IParse {
-        _toStringifiedJSON(ob:Object | Array<any>):string
-        _fromStringifiedJSON(str:string):Object | Array<any>
+
+    export interface IParse {
+        _toStringifiedJSON(any):any
+        _fromStringifiedJSON(any):any
         _parseOptions(opt:Object):Object
     }
 
-    interface IAdd {
+    export interface IAdd {
         save(key:string, info: any, opts?:{storage:string});
         saveInFirstPosition(key:string, info: any, opts?:{storage:string});
         saveInLastPosition(key:string, info: any, opts?:{storage:string});
     }
 
-    interface IGet {
+    export interface IGet {
         get(key:string, opts?:{storage:string}):any;
     }
 
-    interface IRemove {
+    export interface IRemove {
         remove(key:string, opts?:{storage:string});
         removeFirst(key:string, opts?:{storage:string});
         removeLast(key:string, opts?:{storage:string});
@@ -34,12 +35,20 @@ module xtorage {
             this.unique = unique;
         }
 
-        _toStringifiedJSON(obj:Object | Array<any>):string {
-            return JSON.stringify(obj);
+        _toStringifiedJSON(info:any):any {
+            if (typeof info !== "object")
+                return info;
+
+            return JSON.stringify(info);
         }
 
-        _fromStringifiedJSON(str:string):Object | Array<any> {
-            return JSON.parse(str);
+        _fromStringifiedJSON(info:any):any {
+            try {
+                return JSON.parse(info);
+            }
+            catch(e) {
+                return info;
+            }
         }
 
         _parseOptions(opt:{storage: string} = {storage: 'localStorage'}) {
@@ -76,7 +85,9 @@ module xtorage {
         get(key:string, opt?:{storage:string}):any {
             var _opt = this._parseOptions(opt);
 
-            return window[_opt.storage].getItem(key);
+            var _info = window[_opt.storage].getItem(key);
+
+            return this._fromStringifiedJSON(_info);
         }
 
 

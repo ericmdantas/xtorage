@@ -8,11 +8,18 @@ var xtorage;
             this.storage = st;
             this.unique = unique;
         }
-        Xtorage.prototype._toStringifiedJSON = function (obj) {
-            return JSON.stringify(obj);
+        Xtorage.prototype._toStringifiedJSON = function (info) {
+            if (typeof info !== "object")
+                return info;
+            return JSON.stringify(info);
         };
-        Xtorage.prototype._fromStringifiedJSON = function (str) {
-            return JSON.parse(str);
+        Xtorage.prototype._fromStringifiedJSON = function (info) {
+            try {
+                return JSON.parse(info);
+            }
+            catch (e) {
+                return info;
+            }
         };
         Xtorage.prototype._parseOptions = function (opt) {
             if (opt === void 0) { opt = { storage: 'localStorage' }; }
@@ -38,7 +45,8 @@ var xtorage;
         };
         Xtorage.prototype.get = function (key, opt) {
             var _opt = this._parseOptions(opt);
-            return window[_opt.storage].getItem(key);
+            var _info = window[_opt.storage].getItem(key);
+            return this._fromStringifiedJSON(_info);
         };
         Xtorage.prototype.remove = function (key, opt) {
             var _opt = this._parseOptions(opt);
