@@ -1,6 +1,7 @@
 .idea
 dist/
 src/*.js
+src/*.map
 node_modules
 test/unit_coverage
 *.log
