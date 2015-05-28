@@ -1,4 +1,6 @@
 .idea
+dist/
+src/*.js
 node_modules
 test/unit_coverage
 *.log
