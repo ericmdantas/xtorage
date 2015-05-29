@@ -345,6 +345,364 @@ describe('xtorage', function() {
         })
     })
 
+    describe('getFirst', function() {
+        describe('default', function()
+        {
+            it('should return undefined, value from storage is not an array', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = 'x';
+                var _expectedResult = undefined;
+
+                var _x = new xtorage.Xtorage();
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getFirst(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return undefined, empty array', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [];
+                var _expectedResult = undefined;
+
+                var _x = new xtorage.Xtorage();
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getFirst(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return 1', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [1];
+                var _expectedResult = 1;
+
+                var _x = new xtorage.Xtorage();
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getFirst(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return the complex info', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
+                var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
+
+                var _x = new xtorage.Xtorage();
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getFirst(_key)).toEqual(_expectedResult);
+            })
+        })
+
+        describe('localStorage', function()
+        {
+            it('should return undefined, value from storage is not an array', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = 'x';
+                var _expectedResult = undefined;
+
+                var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getFirst(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return undefined, empty array', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [];
+                var _expectedResult = undefined;
+
+                var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getFirst(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return 1', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [1];
+                var _expectedResult = 1;
+
+                var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getFirst(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return the complex info', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
+                var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
+
+                var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getFirst(_key)).toEqual(_expectedResult);
+            })
+        })
+
+        describe('sessionStorage', function()
+        {
+            it('should return undefined, value from storage is not an array', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = 'x';
+                var _expectedResult = undefined;
+
+                var _x = new xtorage.Xtorage(SESSION_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getFirst(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return undefined, empty array', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [];
+                var _expectedResult = undefined;
+
+                var _x = new xtorage.Xtorage(SESSION_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getFirst(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return 1', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [1];
+                var _expectedResult = 1;
+
+                var _x = new xtorage.Xtorage(SESSION_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getFirst(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return the complex info', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
+                var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
+
+                var _x = new xtorage.Xtorage(SESSION_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getFirst(_key)).toEqual(_expectedResult);
+            })
+        })
+    })
+
+    describe('getLast', function() {
+        describe('default', function()
+        {
+            it('should return undefined, value from storage is not an array', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = 'x';
+                var _expectedResult = undefined;
+
+                var _x = new xtorage.Xtorage();
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getLast(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return undefined, empty array', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [];
+                var _expectedResult = undefined;
+
+                var _x = new xtorage.Xtorage();
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getLast(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return 1', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [1];
+                var _expectedResult = 1;
+
+                var _x = new xtorage.Xtorage();
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getLast(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return the complex info', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
+                var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
+
+                var _x = new xtorage.Xtorage();
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getLast(_key)).toEqual(_expectedResult);
+            })
+        })
+
+        describe('localStorage', function()
+        {
+            it('should return undefined, value from storage is not an array', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = 'x';
+                var _expectedResult = undefined;
+
+                var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getLast(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return undefined, empty array', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [];
+                var _expectedResult = undefined;
+
+                var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getLast(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return 1', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [1];
+                var _expectedResult = 1;
+
+                var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getLast(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return the complex info', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
+                var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
+
+                var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getLast(_key)).toEqual(_expectedResult);
+            })
+        })
+
+        describe('sessionStorage', function()
+        {
+            it('should return undefined, value from storage is not an array', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = 'x';
+                var _expectedResult = undefined;
+
+                var _x = new xtorage.Xtorage(SESSION_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getLast(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return undefined, empty array', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [];
+                var _expectedResult = undefined;
+
+                var _x = new xtorage.Xtorage(SESSION_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getLast(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return 1', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [1];
+                var _expectedResult = 1;
+
+                var _x = new xtorage.Xtorage(SESSION_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getLast(_key)).toEqual(_expectedResult);
+            })
+
+            it('should return the complex info', function()
+            {
+                var _key = 'k';
+                var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
+                var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
+
+                var _x = new xtorage.Xtorage(SESSION_STORAGE);
+
+                _x.save(_key, _infoInStorage);
+
+                expect(_x.get(_key)).toEqual(_infoInStorage);
+                expect(_x.getLast(_key)).toEqual(_expectedResult);
+            })
+        })
+    })
+
     describe('remove', function() {
         describe('default', function()
         {
@@ -509,7 +867,7 @@ describe('xtorage', function() {
                 expect(_x.get(_key)).toBe(_info);
             })
 
-            it('should remove the info in the storage - single info in array', function()
+            it('should remove the info from the storage - single info in array', function()
             {
                 var _key = 'k';
                 var _info = [true];
@@ -575,7 +933,7 @@ describe('xtorage', function() {
                 expect(_x.get(_key)).toBe(_info);
             })
 
-            it('should remove the info in the storage - single info in array', function()
+            it('should remove the info from the storage - single info in array', function()
             {
                 var _key = 'k';
                 var _info = [true];
@@ -641,7 +999,7 @@ describe('xtorage', function() {
                 expect(_x.get(_key)).toBe(_info);
             })
 
-            it('should remove the info in the storage - single item in array', function()
+            it('should remove the info from the storage - single item in array', function()
             {
                 var _key = 'k';
                 var _info = [true];
@@ -685,6 +1043,206 @@ describe('xtorage', function() {
                 expect(_x.get(_key)).toEqual(_info);
 
                 _x.removeFirst(_key);
+
+                expect(_x.get(_key)).toEqual(_expectedResult);
+            })
+        })
+    })
+
+    describe('removeLast', function() {
+        describe('default', function()
+        {
+            it('should not remove the info in the storage - it\'s not an array', function()
+            {
+                var _key = 'k';
+                var _info = 'x';
+
+                var _x = new xtorage.Xtorage();
+                _x.save(_key, _info);
+
+                expect(_x.get(_key)).toBe(_info);
+
+                _x.removeLast(_key + 'something');
+
+                expect(_x.get(_key)).toBe(_info);
+            })
+
+            it('should remove the info from the storage - single info in array', function()
+            {
+                var _key = 'k';
+                var _info = [true];
+                var _expectedResult = [];
+
+                var _x = new xtorage.Xtorage();
+                _x.save(_key, _info);
+
+                expect(_x.get(_key)).toEqual(_info);
+
+                _x.removeLast(_key);
+
+                expect(_x.get(_key)).toEqual(_expectedResult);
+            })
+
+            it('should remove the info in the storage - complex array', function()
+            {
+                var _key = 'k';
+                var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
+                var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
+
+                var _x = new xtorage.Xtorage();
+                _x.save(_key, _info);
+
+                expect(_x.get(_key)).toEqual(_info);
+
+                _x.removeLast(_key);
+
+                expect(_x.get(_key)).toEqual(_expectedResult);
+            })
+
+            it('should remove the info in the storage - multiple items in array', function()
+            {
+                var _key = 'k';
+                var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 3, true, false];
+                var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 3, true];
+
+                var _x = new xtorage.Xtorage();
+                _x.save(_key, _info);
+
+                expect(_x.get(_key)).toEqual(_info);
+
+                _x.removeLast(_key);
+
+                expect(_x.get(_key)).toEqual(_expectedResult);
+            })
+        })
+
+        describe('localStorage', function()
+        {
+            it('should not remove the info in the storage', function()
+            {
+                var _key = 'k';
+                var _info = 'x';
+
+                var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                _x.save(_key, _info);
+
+                expect(_x.get(_key)).toBe(_info);
+
+                _x.removeLast(_key + 'something');
+
+                expect(_x.get(_key)).toBe(_info);
+            })
+
+            it('should remove the info from the storage - single info in array', function()
+            {
+                var _key = 'k';
+                var _info = [true];
+                var _expectedResult = [];
+
+                var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                _x.save(_key, _info);
+
+                expect(_x.get(_key)).toEqual(_info);
+
+                _x.removeLast(_key);
+
+                expect(_x.get(_key)).toEqual(_expectedResult);
+            })
+
+            it('should remove the info in the storage - multiple items in array', function()
+            {
+                var _key = 'k';
+                var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
+                var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false];
+
+                var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                _x.save(_key, _info);
+
+                expect(_x.get(_key)).toEqual(_info);
+
+                _x.removeLast(_key);
+
+                expect(_x.get(_key)).toEqual(_expectedResult);
+            })
+
+            it('should remove the info in the storage - complex array', function()
+            {
+                var _key = 'k';
+                var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
+                var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
+
+                var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                _x.save(_key, _info);
+
+                expect(_x.get(_key)).toEqual(_info);
+
+                _x.removeLast(_key);
+
+                expect(_x.get(_key)).toEqual(_expectedResult);
+            })
+        })
+
+        describe('sessionStorage', function()
+        {
+            it('should not remove the info in the storage', function()
+            {
+                var _key = 'k';
+                var _info = 'x';
+
+                var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                _x.save(_key, _info);
+
+                expect(_x.get(_key)).toBe(_info);
+
+                _x.removeLast(_key + 'something');
+
+                expect(_x.get(_key)).toBe(_info);
+            })
+
+            it('should remove the info from the storage - single item in array', function()
+            {
+                var _key = 'k';
+                var _info = [true];
+                var _expectedResult = [];
+
+                var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                _x.save(_key, _info);
+
+                expect(_x.get(_key)).toEqual(_info);
+
+                _x.removeLast(_key);
+
+                expect(_x.get(_key)).toEqual(_expectedResult);
+            })
+
+            it('should remove the info in the storage - multiple items in array', function()
+            {
+                var _key = 'k';
+                var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
+                var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false];
+
+                var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                _x.save(_key, _info);
+
+                expect(_x.get(_key)).toEqual(_info);
+
+                _x.removeLast(_key);
+
+                expect(_x.get(_key)).toEqual(_expectedResult);
+            })
+
+            it('should remove the info in the storage - complex array', function()
+            {
+                var _key = 'k';
+                var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
+                var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
+
+                var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                _x.save(_key, _info);
+
+                expect(_x.get(_key)).toEqual(_info);
+
+                _x.removeLast(_key);
 
                 expect(_x.get(_key)).toEqual(_expectedResult);
             })
@@ -949,6 +1507,24 @@ describe('xtorage', function() {
                  expect(_x.get(_key)).toEqual(_expectedResult);
              })
 
+             it('should save correctly - empty array', function()
+             {
+                 var _key = 'k';
+                 var _infoInStorage = [];
+                 var _newInfo = 0;
+                 var _expectedResult = [_newInfo];
+
+                 var _x = new xtorage.Xtorage();
+
+                 _x.save(_key, _infoInStorage);
+
+                 expect(_x.get(_key)).toEqual(_infoInStorage);
+
+                 _x.saveInLastPosition(_key, _newInfo);
+
+                 expect(_x.get(_key)).toEqual(_expectedResult);
+             })
+
              it('should save correctly - simple array', function()
              {
                  var _key = 'k';
@@ -1014,6 +1590,24 @@ describe('xtorage', function() {
                  var _expectedResult = 'a';
 
                  var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+
+                 _x.save(_key, _infoInStorage);
+
+                 expect(_x.get(_key)).toEqual(_infoInStorage);
+
+                 _x.saveInLastPosition(_key, _newInfo);
+
+                 expect(_x.get(_key)).toEqual(_expectedResult);
+             })
+
+             it('should save correctly - empty array', function()
+             {
+                 var _key = 'k';
+                 var _infoInStorage = [];
+                 var _newInfo = 0;
+                 var _expectedResult = [_newInfo];
+
+                 var _x = new xtorage.Xtorage();
 
                  _x.save(_key, _infoInStorage);
 
@@ -1095,6 +1689,24 @@ describe('xtorage', function() {
                  expect(_x.get(_key)).toEqual(_infoInStorage);
 
                  _x.saveInFirstPosition(_key, _newInfo);
+
+                 expect(_x.get(_key)).toEqual(_expectedResult);
+             })
+
+             it('should save correctly - empty array', function()
+             {
+                 var _key = 'k';
+                 var _infoInStorage = [];
+                 var _newInfo = 0;
+                 var _expectedResult = [_newInfo];
+
+                 var _x = new xtorage.Xtorage();
+
+                 _x.save(_key, _infoInStorage);
+
+                 expect(_x.get(_key)).toEqual(_infoInStorage);
+
+                 _x.saveInLastPosition(_key, _newInfo);
 
                  expect(_x.get(_key)).toEqual(_expectedResult);
              })
@@ -1176,6 +1788,24 @@ describe('xtorage', function() {
                  expect(_x.get(_key)).toEqual(_expectedResult);
              })
 
+             it('should save correctly - empty array', function()
+             {
+                 var _key = 'k';
+                 var _infoInStorage = [];
+                 var _newInfo = 0;
+                 var _expectedResult = [_newInfo];
+
+                 var _x = new xtorage.Xtorage();
+
+                 _x.save(_key, _infoInStorage);
+
+                 expect(_x.get(_key)).toEqual(_infoInStorage);
+
+                 _x.saveInFirstPosition(_key, _newInfo);
+
+                 expect(_x.get(_key)).toEqual(_expectedResult);
+             })
+
              it('should save correctly - simple array', function()
              {
                  var _key = 'k';
@@ -1251,6 +1881,24 @@ describe('xtorage', function() {
                  expect(_x.get(_key)).toEqual(_expectedResult);
              })
 
+             it('should save correctly - empty array', function()
+             {
+                 var _key = 'k';
+                 var _infoInStorage = [];
+                 var _newInfo = 0;
+                 var _expectedResult = [_newInfo];
+
+                 var _x = new xtorage.Xtorage();
+
+                 _x.save(_key, _infoInStorage);
+
+                 expect(_x.get(_key)).toEqual(_infoInStorage);
+
+                 _x.saveInFirstPosition(_key, _newInfo);
+
+                 expect(_x.get(_key)).toEqual(_expectedResult);
+             })
+
              it('should save correctly - simple array', function()
              {
                  var _key = 'k';
@@ -1316,6 +1964,24 @@ describe('xtorage', function() {
                  var _expectedResult = 'a';
 
                  var _x = new xtorage.Xtorage(SESSION_STORAGE);
+
+                 _x.save(_key, _infoInStorage);
+
+                 expect(_x.get(_key)).toEqual(_infoInStorage);
+
+                 _x.saveInFirstPosition(_key, _newInfo);
+
+                 expect(_x.get(_key)).toEqual(_expectedResult);
+             })
+
+             it('should save correctly - empty array', function()
+             {
+                 var _key = 'k';
+                 var _infoInStorage = [];
+                 var _newInfo = 0;
+                 var _expectedResult = [_newInfo];
+
+                 var _x = new xtorage.Xtorage();
 
                  _x.save(_key, _infoInStorage);
 
