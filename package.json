@@ -2,10 +2,9 @@
   "name": "xtorage",
   "version": "0.0.0",
   "description": "xtorage",
-  "main": "dist/xtorage.min.js",
+  "main": "dist/es5/xtorage.min.js",
   "scripts": {
-    "test": "mocha test/**_test.js --check-leaks --reporter min",
-    "tw": "mocha test/**_test.js --check-leaks --reporter min --watch"
+    "test": "gulp test"
   },
   "directories": {
     "test": "test"
@@ -22,6 +21,8 @@
   "homepage": "https://github.com/ericmdantas/xtorage",
   "devDependencies": {
     "chai": "^2.3.0",
+    "gulp": "^3.8.11",
+    "gulp-typescript": "^2.7.5",
     "jasmine-core": "^2.3.4",
     "karma": "^0.12.32",
     "karma-chrome-launcher": "^0.1.12",
