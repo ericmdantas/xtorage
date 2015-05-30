@@ -2,31 +2,37 @@
 
 module xtorage {
 
-    export interface IParse {
-        _toStringifiedJSON(any):any
-        _fromStringifiedJSON(any):any
-        _parseOptions(opt:Object):Object
+    export interface StorageOptions {
+        storage: string;
     }
 
-    export interface IAdd {
-        save(key:string, info: any, opts?:{storage:string});
-        saveInFirstPosition(key:string, info: any, opts?:{storage:string});
-        saveInLastPosition(key:string, info: any, opts?:{storage:string});
+    export interface IParseStorage {
+        _toStringifiedJSON(info:any):any
+        _fromStringifiedJSON(info:any):any
+        _parseOptions(opts:Object):StorageOptions
     }
 
-    export interface IGet {
-        get(key:string, opts?:{storage:string}):any;
+    export interface IAddStorage {
+        save(key:string, info: any, opts?:StorageOptions);
+        saveInFirstPosition(key:string, info: any, opts?:StorageOptions);
+        saveInLastPosition(key:string, info: any, opts?:StorageOptions);
     }
 
-    export interface IRemove {
-        remove(key:string, opts?:{storage:string});
-        removeFirst(key:string, opts?:{storage:string});
-        removeLast(key:string, opts?:{storage:string});
-        removeAll();
+    export interface IGetStorage {
+        get(key:string, opts?:StorageOptions):any
+        getFirst(key:string, opts?:StorageOptions):any
+        getLast(key:string, opts?:StorageOptions):any
+    }
+
+    export interface IRemoveStorage {
+        remove(key:string, opts?:StorageOptions);
+        removeFirst(key:string, opts?:StorageOptions);
+        removeLast(key:string, opts?:StorageOptions);
+        removeAll(opts?:StorageOptions);
     }
 
 
-    export class Xtorage implements IAdd, IGet, IRemove, IParse {
+    export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParseStorage {
         storage:string;
         unique:boolean;
 
@@ -51,76 +57,87 @@ module xtorage {
             }
         }
 
-        _parseOptions(opt:{storage: string} = {storage: 'localStorage'}) {
+        _parseOptions(opt:StorageOptions = {storage: 'localStorage'}):StorageOptions {
             return opt;
         }
 
-        save(key:string, info: any, opt?:{storage:string}) {
-            var _opt = this._parseOptions(opt);
+        save(key:string, info: any, opt?:StorageOptions) {
+            const _opt = this._parseOptions(opt);
 
             window[_opt.storage].setItem(key, this._toStringifiedJSON(info));
         }
 
-        saveInFirstPosition(key:string, info: any, opt?:{storage:string}) {
-            var _info = this.get(key);
-            var _infoParsed = this._fromStringifiedJSON(_info) || [];
+        _saveInArray(key:string, info:any, method:string, opt?:StorageOptions) {
+            const _info = this.get(key, opt);
 
-            if (!_infoParsed.length) return;
+            if (!(_info instanceof Array)) return;
 
-            _infoParsed.unshift(info);
+            _info[method](info);
 
-            this.save(key, _infoParsed, opt);
+            this.save(key, _info, opt);
         }
 
-        saveInLastPosition(key:string, info: any, opt?:{storage:string}) {
-            var _info = this.get(info);
-            var _infoParsed = this._fromStringifiedJSON(_info) || [];
+        saveInFirstPosition(key:string, info: any, opt?:StorageOptions) {
+            this._saveInArray(key, info, "unshift", opt);
+        }
 
-            _infoParsed.push(info);
-
-            this.save(key, _infoParsed, opt);
+        saveInLastPosition(key:string, info: any, opt?:StorageOptions) {
+            this._saveInArray(key, info, "push", opt);
         }
 
 
-        get(key:string, opt?:{storage:string}):any {
-            var _opt = this._parseOptions(opt);
-
-            var _info = window[_opt.storage].getItem(key);
+        get(key:string, opt?:StorageOptions):any {
+            const _opt = this._parseOptions(opt);
+            const _info = window[_opt.storage].getItem(key);
 
             return this._fromStringifiedJSON(_info);
         }
 
+        _getFromArray(key, position:number|string, opt?:StorageOptions) {
+            const _info = this.get(key, opt);
+            let _position;
 
-        remove(key:string, opt?:{storage:string}) {
-            var _opt = this._parseOptions(opt);
+            if (!(_info instanceof Array) || !_info.length) return;
+
+            _position = typeof position === "number" ? position : _info.length - 1;
+
+            return _info[_position];
+        }
+
+        getFirst(key:string, opt?:StorageOptions):any {
+            return this._getFromArray(key, 0, opt);
+        }
+
+        getLast(key:string, opt?:StorageOptions):any {
+            return this._getFromArray(key, "last", opt);
+        }
+
+        remove(key:string, opt?:StorageOptions) {
+            const _opt = this._parseOptions(opt);
 
             window[_opt.storage].removeItem(key);
         }
 
-        removeFirst(key:string, opt?:{storage:string}) {
-            var _info = this.get(key, opt);
-            var _infoParsed = this._fromStringifiedJSON(_info) || [];
+        _removeFromArray(key:string, method:string,opt?:StorageOptions) {
+            let _info = this.get(key, opt);
 
-            if (!_infoParsed.length) return;
+            if (!(_info instanceof Array)) return;
 
-            _info.shift();
-
-            this.save(key, _info, opt);
-        }
-
-        removeLast(key:string, opt?:{storage:string}) {
-            var _info = this.get(key, opt);
-            var _infoParsed = this._fromStringifiedJSON(_info) || [];
-
-            if (!_infoParsed.length) return;
-
-            _info.pop();
+            _info[method]();
 
             this.save(key, _info, opt);
         }
 
-        removeAll(opt?:{storage:string}) {
-            var _opt = this._parseOptions(opt);
+        removeFirst(key:string, opt?:StorageOptions) {
+            this._removeFromArray(key, "shift", opt);
+        }
+
+        removeLast(key:string, opt?:StorageOptions) {
+            this._removeFromArray(key, "pop", opt);
+        }
+
+        removeAll(opt?:StorageOptions) {
+            const _opt = this._parseOptions(opt);
 
             window[_opt.storage].clear();
         }
