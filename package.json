@@ -22,6 +22,7 @@
   "devDependencies": {
     "chai": "^2.3.0",
     "gulp": "^3.8.11",
+    "gulp-coveralls": "^0.1.4",
     "gulp-typescript": "^2.7.5",
     "jasmine-core": "^2.3.4",
     "karma": "^0.12.32",

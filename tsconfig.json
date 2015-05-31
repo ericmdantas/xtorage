@@ -5,6 +5,7 @@
     "watch": true
   },
   "files": [
+    "./gulpfile.ts",
     "./src/xtorage.ts"
   ]
 }
