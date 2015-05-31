@@ -1,7 +1,7 @@
 {
   "name": "xtorage",
   "version": "0.0.0",
-  "description": "xtorage",
+  "description": "Web Storage made simple and more powerful.",
   "main": "dist/es5/xtorage.min.js",
   "scripts": {
     "test": "gulp test"
@@ -18,6 +18,18 @@
   "bugs": {
     "url": "https://github.com/ericmdantas/xtorage/issues"
   },
+  "keywords": [
+    "storage",
+    "web",
+    "xtorage",
+    "angular2",
+    "angular-xtorage",
+    "angular2-xtorage",
+    "sessionStorage",
+    "localStorage",
+    "angular-storage",
+    "angular2-storage"
+  ],
   "homepage": "https://github.com/ericmdantas/xtorage",
   "devDependencies": {
     "chai": "^2.3.0",
