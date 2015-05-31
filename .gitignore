@@ -1,5 +1,4 @@
 .idea
-dist/
 src/*.js
 src/*.map
 node_modules

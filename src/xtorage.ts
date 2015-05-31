@@ -62,13 +62,13 @@ module xtorage {
         }
 
         save(key:string, info: any, opt?:StorageOptions) {
-            const _opt = this._parseOptions(opt);
+            var _opt = this._parseOptions(opt);
 
             window[_opt.storage].setItem(key, this._toStringifiedJSON(info));
         }
 
         _saveInArray(key:string, info:any, method:string, opt?:StorageOptions) {
-            const _info = this.get(key, opt);
+            var _info = this.get(key, opt);
 
             if (!(_info instanceof Array)) return;
 
@@ -87,15 +87,15 @@ module xtorage {
 
 
         get(key:string, opt?:StorageOptions):any {
-            const _opt = this._parseOptions(opt);
-            const _info = window[_opt.storage].getItem(key);
+            var _opt = this._parseOptions(opt);
+            var _info = window[_opt.storage].getItem(key);
 
             return this._fromStringifiedJSON(_info);
         }
 
         _getFromArray(key, position:number|string, opt?:StorageOptions) {
-            const _info = this.get(key, opt);
-            let _position;
+            var _info = this.get(key, opt);
+            var _position;
 
             if (!(_info instanceof Array) || !_info.length) return;
 
@@ -113,13 +113,13 @@ module xtorage {
         }
 
         remove(key:string, opt?:StorageOptions) {
-            const _opt = this._parseOptions(opt);
+            var _opt = this._parseOptions(opt);
 
             window[_opt.storage].removeItem(key);
         }
 
         _removeFromArray(key:string, method:string,opt?:StorageOptions) {
-            let _info = this.get(key, opt);
+            var _info = this.get(key, opt);
 
             if (!(_info instanceof Array)) return;
 
@@ -137,7 +137,7 @@ module xtorage {
         }
 
         removeAll(opt?:StorageOptions) {
-            const _opt = this._parseOptions(opt);
+            var _opt = this._parseOptions(opt);
 
             window[_opt.storage].clear();
         }

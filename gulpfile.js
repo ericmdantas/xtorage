@@ -13,18 +13,59 @@ const PATH_AMD_DIST_FOLDER = 'dist/amd/';
 const PATH_SYSTEM_DIST_FOLDER = 'dist/system/';
 const FILE_COVERAGE = 'coverage/**/*.lcov';
 
-gulp.task('build', ['test'], function() {
+var _buildTsc = function(opts) {
     gulp
         .src(PATH_TS)
-        .pipe(tsc({
-            declarationFiles: true,
-            target: "es6"
-        }))
+        .pipe(tsc(opts.tsc))
         .js
-        .pipe(gulp.dest(PATH_ES6_DIST_FOLDER));
+        .pipe(gulp.dest(opts.dest))
+}
+
+gulp.task('transpile-local', function() {
+    _buildTsc({
+        tsc: {
+            declarationFiles: true,
+            declaration: true,
+            target: "es5"
+        },
+        dest: "."});
+})
+
+gulp.task('build', ['transpile-local', 'test'], function() {
+    _buildTsc({
+        tsc: {
+            declarationFiles: true,
+            module: "commonjs",
+            target: "es6"
+        },
+        dest: PATH_ES6_DIST_FOLDER});
+
+    _buildTsc({
+        tsc: {
+            declarationFiles: true,
+            module: "commonjs",
+            target: "es5"
+        },
+        dest: PATH_ES5_DIST_FOLDER});
+
+    _buildTsc({
+        tsc: {
+            declarationFiles: true,
+            target: "es5",
+            module: "amd"
+        },
+        dest: PATH_AMD_DIST_FOLDER});
+
+    _buildTsc({
+        tsc: {
+            declarationFiles: true,
+            target: "es5",
+            module: "commonjs"
+        },
+        dest: PATH_COMMONJS_DIST_FOLDER});
 });
 
-gulp.task('test', function(done) {
+gulp.task('test', ['transpile-local'], function(done) {
     return karma.start({
             configFile: __dirname + '/karma.conf.js',
             browsers: ['PhantomJS'],
