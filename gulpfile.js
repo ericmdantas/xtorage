@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const tsc = require('gulp-typescript');
 const coveralls = require('gulp-coveralls');
 const karma = require('karma').server;
+const assign = Object.assign;
 
 const PATH_TS = 'src/xtorage.ts';
 const PATH_ES5_DIST_FOLDER = 'dist/es5/';
@@ -14,11 +15,14 @@ const PATH_SYSTEM_DIST_FOLDER = 'dist/system/';
 const FILE_COVERAGE = 'coverage/**/*.lcov';
 
 var _buildTsc = function(opts) {
+
+    var _opts = assign({typescrit: require('typescript')}, opts);
+
     gulp
         .src(PATH_TS)
-        .pipe(tsc(opts.tsc))
+        .pipe(tsc(_opts))
         .js
-        .pipe(gulp.dest(opts.dest))
+        .pipe(gulp.dest(_opts.dest))
 }
 
 gulp.task('transpile-local', function() {
