@@ -13,9 +13,9 @@ module xtorage {
     }
 
     export interface IAddStorage {
-        save(key:string, info: any, opts?:StorageOptions);
-        saveInFirstPosition(key:string, info: any, opts?:StorageOptions);
-        saveInLastPosition(key:string, info: any, opts?:StorageOptions);
+        save(key:string, info: any, opts?:StorageOptions):void;
+        saveInFirstPosition(key:string, info: any, opts?:StorageOptions):void;
+        saveInLastPosition(key:string, info: any, opts?:StorageOptions):void;
     }
 
     export interface IGetStorage {
@@ -25,10 +25,10 @@ module xtorage {
     }
 
     export interface IRemoveStorage {
-        remove(key:string, opts?:StorageOptions);
-        removeFirst(key:string, opts?:StorageOptions);
-        removeLast(key:string, opts?:StorageOptions);
-        removeAll(opts?:StorageOptions);
+        remove(key:string, opts?:StorageOptions):void;
+        removeFirst(key:string, opts?:StorageOptions):void;
+        removeLast(key:string, opts?:StorageOptions):void;
+        removeAll(opts?:StorageOptions):void;
     }
 
 
@@ -61,13 +61,13 @@ module xtorage {
             return opt;
         }
 
-        save(key:string, info: any, opt?:StorageOptions) {
+        save(key:string, info: any, opt?:StorageOptions):void {
             var _opt = this._parseOptions(opt);
 
             window[_opt.storage].setItem(key, this._toStringifiedJSON(info));
         }
 
-        _saveInArray(key:string, info:any, method:string, opt?:StorageOptions) {
+        _saveInArray(key:string, info:any, method:string, opt?:StorageOptions):void {
             var _info = this.get(key, opt);
 
             if (!(_info instanceof Array)) return;
@@ -77,11 +77,11 @@ module xtorage {
             this.save(key, _info, opt);
         }
 
-        saveInFirstPosition(key:string, info: any, opt?:StorageOptions) {
+        saveInFirstPosition(key:string, info: any, opt?:StorageOptions):void {
             this._saveInArray(key, info, "unshift", opt);
         }
 
-        saveInLastPosition(key:string, info: any, opt?:StorageOptions) {
+        saveInLastPosition(key:string, info: any, opt?:StorageOptions):void {
             this._saveInArray(key, info, "push", opt);
         }
 
@@ -93,7 +93,7 @@ module xtorage {
             return this._fromStringifiedJSON(_info);
         }
 
-        _getFromArray(key, position:number|string, opt?:StorageOptions) {
+        _getFromArray(key, position:number|string, opt?:StorageOptions):void {
             var _info = this.get(key, opt);
             var _position;
 
@@ -112,13 +112,13 @@ module xtorage {
             return this._getFromArray(key, "last", opt);
         }
 
-        remove(key:string, opt?:StorageOptions) {
+        remove(key:string, opt?:StorageOptions):void {
             var _opt = this._parseOptions(opt);
 
             window[_opt.storage].removeItem(key);
         }
 
-        _removeFromArray(key:string, method:string,opt?:StorageOptions) {
+        _removeFromArray(key:string, method:string,opt?:StorageOptions):void {
             var _info = this.get(key, opt);
 
             if (!(_info instanceof Array)) return;
@@ -128,15 +128,15 @@ module xtorage {
             this.save(key, _info, opt);
         }
 
-        removeFirst(key:string, opt?:StorageOptions) {
+        removeFirst(key:string, opt?:StorageOptions):void {
             this._removeFromArray(key, "shift", opt);
         }
 
-        removeLast(key:string, opt?:StorageOptions) {
+        removeLast(key:string, opt?:StorageOptions):void {
             this._removeFromArray(key, "pop", opt);
         }
 
-        removeAll(opt?:StorageOptions) {
+        removeAll(opt?:StorageOptions):void {
             var _opt = this._parseOptions(opt);
 
             window[_opt.storage].clear();

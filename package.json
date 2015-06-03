@@ -4,7 +4,8 @@
   "description": "Web Storage made simple and more powerful.",
   "main": "dist/es5/xtorage.min.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "build": "gulp build"
   },
   "directories": {
     "test": "test"
