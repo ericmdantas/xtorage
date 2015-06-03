@@ -1,3 +1,5 @@
+/// <reference path="../typings/tsd.d.ts"/>
+
 "use strict";
 
 describe('xtorage', () => {
@@ -10,7 +12,7 @@ describe('xtorage', () => {
     afterEach(() => {
         window.localStorage.clear();
         window.sessionStorage.clear();
-    })
+    });
 
     describe('_parseOptions', () =>
     {
@@ -19,22 +21,22 @@ describe('xtorage', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._parseOptions()).toEqual({storage: 'localStorage'});
-        })
+        });
 
         it('should return the object with the storage as sessionStorage', () =>
         {
             var _x = new xtorage.Xtorage();
 
             expect(_x._parseOptions({storage: 'localStorage'})).toEqual({storage: 'localStorage'});
-        })
+        });
 
         it('should return the object with the storage as sessionStorage', () =>
         {
             var _x = new xtorage.Xtorage();
 
             expect(_x._parseOptions({storage: 'sessionStorage'})).toEqual({storage: 'sessionStorage'});
-        })
-    })
+        });
+    });
 
     describe('_toStringifiedJSON', () =>
     {
@@ -42,38 +44,38 @@ describe('xtorage', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._toStringifiedJSON("a")).toEqual("a");
-        })
+        });
 
         it('should return a number', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._toStringifiedJSON(1)).toEqual(1);
-        })
+        });
 
         it('should return a boolean', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._toStringifiedJSON(true)).toEqual(true);
-        })
+        });
 
         it('should return a stringified object', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._toStringifiedJSON({})).toEqual("{}");
-        })
+        });
 
         it('should return a stringified object', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._toStringifiedJSON({a: true})).toEqual('{"a":true}');
-        })
+        });
 
         it('should return a stringified array', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._toStringifiedJSON([{a: true}])).toEqual('[{"a":true}]');
-        })
-    })
+        });
+    });
 
     describe('_fromStringifiedJSON', () =>
     {
@@ -81,44 +83,44 @@ describe('xtorage', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._fromStringifiedJSON('a')).toEqual('a');
-        })
+        });
 
         it('should return the same number', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._fromStringifiedJSON(1)).toEqual(1);
-        })
+        });
 
         it('should return the same boolean', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._fromStringifiedJSON(true)).toEqual(true);
-        })
+        });
 
         it('should return an empty object', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._fromStringifiedJSON('{}')).toEqual({});
-        })
+        });
 
         it('should return an empty array', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._fromStringifiedJSON('[]')).toEqual([]);
-        })
+        });
 
         it('should return an empty with an empty object', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._fromStringifiedJSON('[{}]')).toEqual([{}]);
-        })
+        });
 
         it('should return the array with the objects in it', () => {
             var _x = new xtorage.Xtorage();
 
             expect(_x._fromStringifiedJSON('[{"a":1, "b": true, "c": "d"}]')).toEqual([{a: 1, b: true, c: "d"}]);
-        })
-    })
+        });
+    });
 
     describe('get', () =>
     {
@@ -132,7 +134,7 @@ describe('xtorage', () => {
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
-            })
+            });
 
             it('should return a simple string from the storage', () => {
                 var _x = new xtorage.Xtorage();
@@ -142,7 +144,7 @@ describe('xtorage', () => {
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
-            })
+            });
 
             it('should return a number from the storage', () => {
                 var _x = new xtorage.Xtorage();
@@ -152,7 +154,7 @@ describe('xtorage', () => {
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
-            })
+            });
 
             it('should return a boolean', () => {
                 var _x = new xtorage.Xtorage();
@@ -162,7 +164,7 @@ describe('xtorage', () => {
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
-            })
+            });
 
             it('should return an object from the storage', () => {
                 var _x = new xtorage.Xtorage();
@@ -172,7 +174,7 @@ describe('xtorage', () => {
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
-            })
+            });
 
             it('should return an array from the storage', () => {
                 var _x = new xtorage.Xtorage();
@@ -182,7 +184,7 @@ describe('xtorage', () => {
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
-            })
+            });
 
             it('should return an array with an object from the storage', () => {
                 var _x = new xtorage.Xtorage();
@@ -192,8 +194,8 @@ describe('xtorage', () => {
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
-            })
-        })
+            });
+        });
 
         describe('localStorage', () =>
         {
@@ -207,7 +209,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should return a simple string from the storage', () => {
                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
@@ -217,7 +219,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should return a number from the storage', () => {
                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
@@ -227,7 +229,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should return a boolean', () => {
                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
@@ -237,7 +239,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should return an object from the storage', () => {
                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
@@ -247,7 +249,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should return an array from the storage', () => {
                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
@@ -257,7 +259,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should return an array with an object from the storage', () => {
                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
@@ -267,8 +269,8 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
-            })
+                });
+            });
 
             describe('method param', () =>
             {
@@ -281,7 +283,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should return a simple string from the storage', () => {
                     var _x = new xtorage.Xtorage();
@@ -292,7 +294,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should return a number from the storage', () => {
                     var _x = new xtorage.Xtorage();
@@ -303,7 +305,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should return a boolean', () => {
                     var _x = new xtorage.Xtorage();
@@ -314,7 +316,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should return an object from the storage', () => {
                     var _x = new xtorage.Xtorage();
@@ -325,7 +327,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should return an array from the storage', () => {
                     var _x = new xtorage.Xtorage();
@@ -336,7 +338,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should return an array with an object from the storage', () => {
                     var _x = new xtorage.Xtorage();
@@ -347,9 +349,9 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
-                })
-            })
-        })
+                });
+            });
+        });
 
         describe('sessionStorage', () =>
         {
@@ -363,7 +365,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should return a simple string from the storage', () => {
                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
@@ -373,7 +375,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should return a number from the storage', () => {
                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
@@ -383,7 +385,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should return a boolean', () => {
                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
@@ -393,7 +395,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should return an object from the storage', () => {
                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
@@ -403,7 +405,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should return an array from the storage', () => {
                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
@@ -413,7 +415,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should return an array with an object from the storage', () => {
                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
@@ -423,8 +425,8 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
-            })
+                });
+            });
 
             describe('method param', () =>
             {
@@ -437,7 +439,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should return a simple string from the storage', () => {
                     var _x = new xtorage.Xtorage();
@@ -448,7 +450,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should return a number from the storage', () => {
                     var _x = new xtorage.Xtorage();
@@ -459,7 +461,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key,  OBJECT_SESSION_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should return a boolean', () => {
                     var _x = new xtorage.Xtorage();
@@ -470,7 +472,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should return an object from the storage', () => {
                     var _x = new xtorage.Xtorage();
@@ -481,7 +483,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should return an array from the storage', () => {
                     var _x = new xtorage.Xtorage();
@@ -492,7 +494,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should return an array with an object from the storage', () => {
                     var _x = new xtorage.Xtorage();
@@ -503,10 +505,10 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
-                })
-            })
-        })
-    })
+                });
+            });
+        });
+    });
 
     describe('getFirst', () => {
         describe('default', () =>
@@ -523,7 +525,7 @@ describe('xtorage', () => {
 
                 expect(_x.get(_key)).toEqual(_infoInStorage);
                 expect(_x.getFirst(_key)).toEqual(_expectedResult);
-            })
+            });
 
             it('should return undefined, empty array', () =>
             {
@@ -537,7 +539,7 @@ describe('xtorage', () => {
 
                 expect(_x.get(_key)).toEqual(_infoInStorage);
                 expect(_x.getFirst(_key)).toEqual(_expectedResult);
-            })
+            });
 
             it('should return 1', () =>
             {
@@ -551,7 +553,7 @@ describe('xtorage', () => {
 
                 expect(_x.get(_key)).toEqual(_infoInStorage);
                 expect(_x.getFirst(_key)).toEqual(_expectedResult);
-            })
+            });
 
             it('should return the complex info', () =>
             {
@@ -565,8 +567,8 @@ describe('xtorage', () => {
 
                 expect(_x.get(_key)).toEqual(_infoInStorage);
                 expect(_x.getFirst(_key)).toEqual(_expectedResult);
-            })
-        })
+            });
+        });
 
         describe('localStorage', () =>
         {
@@ -584,7 +586,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should return undefined, empty array', () =>
                 {
@@ -598,7 +600,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should return 1', () =>
                 {
@@ -612,7 +614,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should return the complex info', () =>
                 {
@@ -626,8 +628,8 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key)).toEqual(_expectedResult);
-                })
-            })
+                });
+            });
 
             describe('method param', () =>
             {
@@ -644,7 +646,7 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getFirst(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
-                })
+                });
 
                 it('should return undefined, empty array', () =>
                 {
@@ -659,7 +661,7 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getFirst(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
-                })
+                });
 
                 it('should return 1', () =>
                 {
@@ -674,7 +676,7 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getFirst(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
-                })
+                });
 
                 it('should return the complex info', () =>
                 {
@@ -689,9 +691,9 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getFirst(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
-                })
-            })
-        })
+                });
+            });
+        });
 
         describe('sessionStorage', () =>
         {
@@ -709,7 +711,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should return undefined, empty array', () =>
                 {
@@ -723,7 +725,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should return 1', () =>
                 {
@@ -737,7 +739,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should return the complex info', () =>
                 {
@@ -751,8 +753,8 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key)).toEqual(_expectedResult);
-                })
-            })
+                });
+            });
 
             describe('method param', () =>
             {
@@ -769,7 +771,7 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getFirst(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
-                })
+                });
 
                 it('should return undefined, empty array', () =>
                 {
@@ -784,7 +786,7 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getFirst(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
-                })
+                });
 
                 it('should return 1', () =>
                 {
@@ -799,7 +801,7 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getFirst(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
-                })
+                });
 
                 it('should return the complex info', () =>
                 {
@@ -814,10 +816,10 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getFirst(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getFirst(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
-                })
-            })
-        })
-    })
+                });
+            });
+        });
+    });
 
     describe('getLast', () => {
         describe('default', () =>
@@ -834,7 +836,7 @@ describe('xtorage', () => {
 
                 expect(_x.get(_key)).toEqual(_infoInStorage);
                 expect(_x.getLast(_key)).toEqual(_expectedResult);
-            })
+            });
 
             it('should return undefined, empty array', () =>
             {
@@ -848,7 +850,7 @@ describe('xtorage', () => {
 
                 expect(_x.get(_key)).toEqual(_infoInStorage);
                 expect(_x.getLast(_key)).toEqual(_expectedResult);
-            })
+            });
 
             it('should return 1', () =>
             {
@@ -862,7 +864,7 @@ describe('xtorage', () => {
 
                 expect(_x.get(_key)).toEqual(_infoInStorage);
                 expect(_x.getLast(_key)).toEqual(_expectedResult);
-            })
+            });
 
             it('should return the complex info', () =>
             {
@@ -876,8 +878,8 @@ describe('xtorage', () => {
 
                 expect(_x.get(_key)).toEqual(_infoInStorage);
                 expect(_x.getLast(_key)).toEqual(_expectedResult);
-            })
-        })
+            });
+        });
 
         describe('localStorage', () =>
         {
@@ -895,7 +897,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should return undefined, empty array', () =>
                 {
@@ -909,7 +911,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should return 1', () =>
                 {
@@ -923,7 +925,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should return the complex info', () =>
                 {
@@ -937,8 +939,8 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key)).toEqual(_expectedResult);
-                })
-            })
+                });
+            });
 
             describe('method param', () =>
             {
@@ -955,7 +957,7 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getLast(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
-                })
+                });
 
                 it('should return undefined, empty array', () =>
                 {
@@ -970,7 +972,7 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getLast(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
-                })
+                });
 
                 it('should return 1', () =>
                 {
@@ -985,7 +987,7 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getLast(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
-                })
+                });
 
                 it('should return the complex info', () =>
                 {
@@ -1000,9 +1002,9 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getLast(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
-                })
-            })
-        })
+                });
+            });
+        });
 
         describe('sessionStorage', () =>
         {
@@ -1020,7 +1022,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should return undefined, empty array', () =>
                 {
@@ -1034,7 +1036,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should return 1', () =>
                 {
@@ -1048,7 +1050,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should return the complex info', () =>
                 {
@@ -1062,8 +1064,8 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key)).toEqual(_expectedResult);
-                })
-            })
+                });
+            });
 
             describe('method param', () =>
             {
@@ -1080,7 +1082,7 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getLast(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
-                })
+                });
 
                 it('should return undefined, empty array', () =>
                 {
@@ -1095,7 +1097,7 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getLast(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
-                })
+                });
 
                 it('should return 1', () =>
                 {
@@ -1110,7 +1112,7 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getLast(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
-                })
+                });
 
                 it('should return the complex info', () =>
                 {
@@ -1125,10 +1127,10 @@ describe('xtorage', () => {
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_infoInStorage);
                     expect(_x.getLast(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
                     expect(_x.getLast(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
-                })
-            })
-        })
-    })
+                });
+            });
+        });
+    });
 
     describe('remove', () => {
         describe('default', () =>
@@ -1146,7 +1148,7 @@ describe('xtorage', () => {
                 _x.remove(_key + 'something');
 
                 expect(_x.get(_key)).toBe(_info);
-            })
+            });
 
             it('should remove the info in the storage', () =>
             {
@@ -1161,7 +1163,7 @@ describe('xtorage', () => {
                 _x.remove(_key);
 
                 expect(_x.get(_key)).not.toBe(_info);
-            })
+            });
 
             it('should remove the info in the storage - complex array', () =>
             {
@@ -1176,8 +1178,8 @@ describe('xtorage', () => {
                 _x.remove(_key);
 
                 expect(_x.get(_key)).not.toEqual(_info);
-            })
-        })
+            });
+        });
 
         describe('localStorage', () =>
         {
@@ -1196,7 +1198,7 @@ describe('xtorage', () => {
                     _x.remove(_key + 'something');
 
                     expect(_x.get(_key)).toBe(_info);
-                })
+                });
 
                 it('should remove the info in the storage', () =>
                 {
@@ -1211,7 +1213,7 @@ describe('xtorage', () => {
                     _x.remove(_key);
 
                     expect(_x.get(_key)).not.toBe(_info);
-                })
+                });
 
                 it('should remove the info in the storage - complex array', () =>
                 {
@@ -1226,8 +1228,8 @@ describe('xtorage', () => {
                     _x.remove(_key);
 
                     expect(_x.get(_key)).not.toEqual(_info);
-                })
-            })
+                });
+            });
 
             describe('method param', () =>
             {
@@ -1244,7 +1246,7 @@ describe('xtorage', () => {
                     _x.remove(_key + 'something', OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBe(_info);
-                })
+                });
 
                 it('should remove the info in the storage', () =>
                 {
@@ -1259,7 +1261,7 @@ describe('xtorage', () => {
                     _x.remove(_key, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).not.toBe(_info);
-                })
+                });
 
                 it('should remove the info in the storage - complex array', () =>
                 {
@@ -1274,9 +1276,9 @@ describe('xtorage', () => {
                     _x.remove(_key, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).not.toEqual(_info);
-                })
-            })
-        })
+                });
+            });
+        });
 
         describe('sessionStorage', () =>
         {
@@ -1295,7 +1297,7 @@ describe('xtorage', () => {
                     _x.remove(_key + 'something');
 
                     expect(_x.get(_key)).toBe(_info);
-                })
+                });
 
                 it('should remove the info in the storage', () =>
                 {
@@ -1310,7 +1312,7 @@ describe('xtorage', () => {
                     _x.remove(_key, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).not.toBe(_info);
-                })
+                });
 
                 it('should remove the info in the storage - complex array', () =>
                 {
@@ -1325,8 +1327,8 @@ describe('xtorage', () => {
                     _x.remove(_key, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).not.toEqual(_info);
-                })
-            })
+                });
+            });
 
             describe('method param', () =>
             {
@@ -1343,7 +1345,7 @@ describe('xtorage', () => {
                     _x.remove(_key + 'something', OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBe(_info);
-                })
+                });
 
                 it('should remove the info in the storage', () =>
                 {
@@ -1358,7 +1360,7 @@ describe('xtorage', () => {
                     _x.remove(_key, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).not.toBe(_info);
-                })
+                });
 
                 it('should remove the info in the storage - complex array', () =>
                 {
@@ -1373,10 +1375,10 @@ describe('xtorage', () => {
                     _x.remove(_key, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).not.toEqual(_info);
-                })
-            })
-        })
-    })
+                });
+            });
+        });
+    });
 
     describe('removeFirst', () => {
         describe('default', () =>
@@ -1394,7 +1396,7 @@ describe('xtorage', () => {
                 _x.removeFirst(_key + 'something');
 
                 expect(_x.get(_key)).toBe(_info);
-            })
+            });
 
             it('should remove the info from the storage - single info in array', () =>
             {
@@ -1410,7 +1412,7 @@ describe('xtorage', () => {
                 _x.removeFirst(_key);
 
                 expect(_x.get(_key)).toEqual(_expectedResult);
-            })
+            });
 
             it('should remove the info in the storage - complex array', () =>
             {
@@ -1426,7 +1428,7 @@ describe('xtorage', () => {
                 _x.removeFirst(_key);
 
                 expect(_x.get(_key)).toEqual(_expectedResult);
-            })
+            });
 
             it('should remove the info in the storage - multiple items in array', () =>
             {
@@ -1442,8 +1444,8 @@ describe('xtorage', () => {
                 _x.removeFirst(_key);
 
                 expect(_x.get(_key)).toEqual(_expectedResult);
-            })
-        })
+            });
+        });
 
         describe('localStorage', () =>
         {
@@ -1462,7 +1464,7 @@ describe('xtorage', () => {
                     _x.removeFirst(_key + 'something');
 
                     expect(_x.get(_key)).toBe(_info);
-                })
+                });
 
                 it('should remove the info from the storage - single info in array', () =>
                 {
@@ -1478,7 +1480,7 @@ describe('xtorage', () => {
                     _x.removeFirst(_key);
 
                     expect(_x.get(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - multiple items in array', () =>
                 {
@@ -1494,7 +1496,7 @@ describe('xtorage', () => {
                     _x.removeFirst(_key);
 
                     expect(_x.get(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - complex array', () =>
                 {
@@ -1510,8 +1512,8 @@ describe('xtorage', () => {
                     _x.removeFirst(_key);
 
                     expect(_x.get(_key)).toEqual(_expectedResult);
-                })
-            })
+                });
+            });
 
             describe('method params', () =>
             {
@@ -1528,7 +1530,7 @@ describe('xtorage', () => {
                     _x.removeFirst(_key + 'something', OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBe(_info);
-                })
+                });
 
                 it('should remove the info from the storage - single info in array', () =>
                 {
@@ -1544,7 +1546,7 @@ describe('xtorage', () => {
                     _x.removeFirst(_key, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - multiple items in array', () =>
                 {
@@ -1560,7 +1562,7 @@ describe('xtorage', () => {
                     _x.removeFirst(_key, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - complex array', () =>
                 {
@@ -1576,9 +1578,9 @@ describe('xtorage', () => {
                     _x.removeFirst(_key, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                })
-            })
-        })
+                });
+            });
+        });
 
         describe('sessionStorage', () =>
         {
@@ -1597,7 +1599,7 @@ describe('xtorage', () => {
                     _x.removeFirst(_key + 'something');
 
                     expect(_x.get(_key)).toBe(_info);
-                })
+                });
 
                 it('should remove the info from the storage - single item in array', () =>
                 {
@@ -1613,7 +1615,7 @@ describe('xtorage', () => {
                     _x.removeFirst(_key);
 
                     expect(_x.get(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - multiple items in array', () =>
                 {
@@ -1629,7 +1631,7 @@ describe('xtorage', () => {
                     _x.removeFirst(_key);
 
                     expect(_x.get(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - complex array', () =>
                 {
@@ -1645,8 +1647,8 @@ describe('xtorage', () => {
                     _x.removeFirst(_key);
 
                     expect(_x.get(_key)).toEqual(_expectedResult);
-                })
-            })
+                });
+            });
 
             describe('method params', () =>
             {
@@ -1663,7 +1665,7 @@ describe('xtorage', () => {
                     _x.removeFirst(_key + 'something', OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBe(_info);
-                })
+                });
 
                 it('should remove the info from the storage - single info in array', () =>
                 {
@@ -1679,7 +1681,7 @@ describe('xtorage', () => {
                     _x.removeFirst(_key, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - multiple items in array', () =>
                 {
@@ -1695,7 +1697,7 @@ describe('xtorage', () => {
                     _x.removeFirst(_key, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - complex array', () =>
                 {
@@ -1711,10 +1713,10 @@ describe('xtorage', () => {
                     _x.removeFirst(_key, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                })
-            })
-        })
-    })
+                });
+            });
+        });
+    });
 
     describe('removeLast', () => {
         describe('default', () =>
@@ -1732,7 +1734,7 @@ describe('xtorage', () => {
                 _x.removeLast(_key + 'something');
 
                 expect(_x.get(_key)).toBe(_info);
-            })
+            });
 
             it('should remove the info from the storage - single info in array', () =>
             {
@@ -1748,7 +1750,7 @@ describe('xtorage', () => {
                 _x.removeLast(_key);
 
                 expect(_x.get(_key)).toEqual(_expectedResult);
-            })
+            });
 
             it('should remove the info in the storage - complex array', () =>
             {
@@ -1764,7 +1766,7 @@ describe('xtorage', () => {
                 _x.removeLast(_key);
 
                 expect(_x.get(_key)).toEqual(_expectedResult);
-            })
+            });
 
             it('should remove the info in the storage - multiple items in array', () =>
             {
@@ -1780,8 +1782,8 @@ describe('xtorage', () => {
                 _x.removeLast(_key);
 
                 expect(_x.get(_key)).toEqual(_expectedResult);
-            })
-        })
+            });
+        });
 
         describe('localStorage', () =>
         {
@@ -1800,7 +1802,7 @@ describe('xtorage', () => {
                     _x.removeLast(_key + 'something');
 
                     expect(_x.get(_key)).toBe(_info);
-                })
+                });
 
                 it('should remove the info from the storage - single info in array', () =>
                 {
@@ -1816,7 +1818,7 @@ describe('xtorage', () => {
                     _x.removeLast(_key);
 
                     expect(_x.get(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - multiple items in array', () =>
                 {
@@ -1832,7 +1834,7 @@ describe('xtorage', () => {
                     _x.removeLast(_key);
 
                     expect(_x.get(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - complex array', () =>
                 {
@@ -1848,8 +1850,8 @@ describe('xtorage', () => {
                     _x.removeLast(_key);
 
                     expect(_x.get(_key)).toEqual(_expectedResult);
-                })
-            })
+                });
+            });
 
             describe('method params', () =>
             {
@@ -1866,7 +1868,7 @@ describe('xtorage', () => {
                     _x.removeLast(_key + 'something', OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBe(_info);
-                })
+                });
 
                 it('should remove the info from the storage - single info in array', () =>
                 {
@@ -1882,7 +1884,7 @@ describe('xtorage', () => {
                     _x.removeLast(_key, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - multiple items in array', () =>
                 {
@@ -1898,7 +1900,7 @@ describe('xtorage', () => {
                     _x.removeLast(_key, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - complex array', () =>
                 {
@@ -1914,9 +1916,9 @@ describe('xtorage', () => {
                     _x.removeLast(_key, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                })
-            })
-        })
+                });
+            });
+        });
 
         describe('sessionStorage', () =>
         {
@@ -1935,7 +1937,7 @@ describe('xtorage', () => {
                     _x.removeLast(_key + 'something');
 
                     expect(_x.get(_key)).toBe(_info);
-                })
+                });
 
                 it('should remove the info from the storage - single item in array', () =>
                 {
@@ -1951,7 +1953,7 @@ describe('xtorage', () => {
                     _x.removeLast(_key);
 
                     expect(_x.get(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - multiple items in array', () =>
                 {
@@ -1967,7 +1969,7 @@ describe('xtorage', () => {
                     _x.removeLast(_key);
 
                     expect(_x.get(_key)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - complex array', () =>
                 {
@@ -1983,8 +1985,8 @@ describe('xtorage', () => {
                     _x.removeLast(_key);
 
                     expect(_x.get(_key)).toEqual(_expectedResult);
-                })
-            })
+                });
+            });
 
             describe('method params', () =>
             {
@@ -2001,7 +2003,7 @@ describe('xtorage', () => {
                     _x.removeLast(_key + 'something', OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBe(_info);
-                })
+                });
 
                 it('should remove the info from the storage - single info in array', () =>
                 {
@@ -2017,7 +2019,7 @@ describe('xtorage', () => {
                     _x.removeLast(_key, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - multiple items in array', () =>
                 {
@@ -2033,7 +2035,7 @@ describe('xtorage', () => {
                     _x.removeLast(_key, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                })
+                });
 
                 it('should remove the info in the storage - complex array', () =>
                 {
@@ -2049,10 +2051,10 @@ describe('xtorage', () => {
                     _x.removeLast(_key, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                })
-            })
-        })
-    })
+                });
+            });
+        });
+    });
 
     describe('removeAll', () => {
         describe('default', () =>
@@ -2075,7 +2077,7 @@ describe('xtorage', () => {
 
                 expect(_x.get(_key0)).not.toEqual(_info0);
                 expect(_x.get(_key1)).not.toEqual(_info1);
-            })
+            });
 
             it('should remove all the info from the storage - complex', () => {
                 var _key0 = 'k0';
@@ -2095,8 +2097,8 @@ describe('xtorage', () => {
 
                 expect(_x.get(_key0)).not.toEqual(_info0);
                 expect(_x.get(_key1)).not.toEqual(_info1);
-            })
-        })
+            });
+        });
 
         describe('localStorage', () =>
         {
@@ -2120,7 +2122,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key0)).not.toEqual(_info0);
                     expect(_x.get(_key1)).not.toEqual(_info1);
-                })
+                });
 
                 it('should remove all the info from the storage - complex', () => {
                     var _key0 = 'k0';
@@ -2140,8 +2142,8 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key0)).not.toEqual(_info0);
                     expect(_x.get(_key1)).not.toEqual(_info1);
-                })
-            })
+                });
+            });
 
             describe('method param', () =>
             {
@@ -2163,7 +2165,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key0, OBJECT_LOCAL_STORAGE)).not.toEqual(_info0);
                     expect(_x.get(_key1, OBJECT_LOCAL_STORAGE)).not.toEqual(_info1);
-                })
+                });
 
                 it('should remove all the info from the storage - complex', () => {
                     var _key0 = 'k0';
@@ -2183,9 +2185,9 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key0, OBJECT_LOCAL_STORAGE)).not.toEqual(_info0);
                     expect(_x.get(_key1, OBJECT_LOCAL_STORAGE)).not.toEqual(_info1);
-                })
-            })
-        })
+                });
+            });
+        });
 
         describe('sessionStorage', () =>
         {
@@ -2209,7 +2211,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key0)).not.toEqual(_info0);
                     expect(_x.get(_key1)).not.toEqual(_info1);
-                })
+                });
 
                 it('should remove all the info from the storage - complex', () => {
                     var _key0 = 'k0';
@@ -2229,8 +2231,8 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key0)).not.toEqual(_info0);
                     expect(_x.get(_key1)).not.toEqual(_info1);
-                })
-            })
+                });
+            });
 
             describe('method param', () =>
             {
@@ -2252,7 +2254,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key0, OBJECT_SESSION_STORAGE)).not.toEqual(_info0);
                     expect(_x.get(_key1, OBJECT_SESSION_STORAGE)).not.toEqual(_info1);
-                })
+                });
 
                 it('should remove all the info from the storage - complex', () => {
                     var _key0 = 'k0';
@@ -2272,10 +2274,10 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key0, OBJECT_SESSION_STORAGE)).not.toEqual(_info0);
                     expect(_x.get(_key1, OBJECT_SESSION_STORAGE)).not.toEqual(_info1);
-                })
-            })
-        })
-    })
+                });
+            });
+        });
+    });
 
     describe('save', () =>
     {
@@ -2291,7 +2293,7 @@ describe('xtorage', () => {
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
-            })
+            });
 
             it('should save to the storage - number', () =>
             {
@@ -2303,7 +2305,7 @@ describe('xtorage', () => {
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
-            })
+            });
 
             it('should save to the storage - boolean', () =>
             {
@@ -2315,7 +2317,7 @@ describe('xtorage', () => {
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
-            })
+            });
 
             it('should save to the storage - complex object', () =>
             {
@@ -2327,7 +2329,7 @@ describe('xtorage', () => {
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
-            })
+            });
 
             it('should save to the storage - complex array', () =>
             {
@@ -2339,8 +2341,8 @@ describe('xtorage', () => {
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
-            })
-        })
+            });
+        });
 
         describe('localStorage', () =>
         {
@@ -2356,7 +2358,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should save to the storage - number', () =>
                 {
@@ -2368,7 +2370,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should save to the storage - boolean', () =>
                 {
@@ -2380,7 +2382,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should save to the storage - complex object', () =>
                 {
@@ -2392,7 +2394,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should save to the storage - complex array', () =>
                 {
@@ -2404,8 +2406,8 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
-            })
+                });
+            });
 
             describe('method param', () =>
             {
@@ -2420,7 +2422,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should save to the storage - number', () =>
                 {
@@ -2433,7 +2435,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should save to the storage - boolean', () =>
                 {
@@ -2446,7 +2448,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should save to the storage - complex object', () =>
                 {
@@ -2459,7 +2461,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should save to the storage - complex array', () =>
                 {
@@ -2472,9 +2474,9 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
-                })
-            })
-        })
+                });
+            });
+        });
 
         describe('sessionStorage', () =>
         {
@@ -2490,7 +2492,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should save to the storage - number', () =>
                 {
@@ -2502,7 +2504,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should save to the storage - boolean', () =>
                 {
@@ -2514,7 +2516,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should save to the storage - complex object', () =>
                 {
@@ -2526,7 +2528,7 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
+                });
 
                 it('should save to the storage - complex array', () =>
                 {
@@ -2538,8 +2540,8 @@ describe('xtorage', () => {
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
-                })
-            })
+                });
+            });
 
             describe('method param', () => {
                 it('should save to the storage - string', function () {
@@ -2552,7 +2554,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should save to the storage - number', function () {
                     var _key = 'k';
@@ -2564,7 +2566,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should save to the storage - boolean', function () {
                     var _key = 'k';
@@ -2576,7 +2578,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should save to the storage - complex object', function () {
                     var _key = 'k';
@@ -2588,7 +2590,7 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
-                })
+                });
 
                 it('should save to the storage - complex array', function () {
                     var _key = 'k';
@@ -2600,10 +2602,10 @@ describe('xtorage', () => {
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
-                })
-            })
-        })
-    })
+                });
+            });
+        });
+    });
 
     describe('saveInLastPosition', () => {
          describe('default', () =>
@@ -2624,7 +2626,7 @@ describe('xtorage', () => {
                  _x.saveInLastPosition(_key, _newInfo);
 
                  expect(_x.get(_key)).toEqual(_expectedResult);
-             })
+             });
 
              it('should save correctly - empty array', () =>
              {
@@ -2642,7 +2644,7 @@ describe('xtorage', () => {
                  _x.saveInLastPosition(_key, _newInfo);
 
                  expect(_x.get(_key)).toEqual(_expectedResult);
-             })
+             });
 
              it('should save correctly - simple array', () =>
              {
@@ -2660,7 +2662,7 @@ describe('xtorage', () => {
                  _x.saveInLastPosition(_key, _newInfo);
 
                  expect(_x.get(_key)).toEqual(_expectedResult);
-             })
+             });
 
              it('should save correctly - complex array in the storage', () =>
              {
@@ -2678,7 +2680,7 @@ describe('xtorage', () => {
                  _x.saveInLastPosition(_key, _newInfo);
 
                  expect(_x.get(_key)).toEqual(_expectedResult);
-             })
+             });
 
              it('should save correctly - complex array in the storage and complex array being added', () =>
              {
@@ -2696,8 +2698,8 @@ describe('xtorage', () => {
                  _x.saveInLastPosition(_key, _newInfo);
 
                  expect(_x.get(_key)).toEqual(_expectedResult);
-             })
-         })
+             });
+         });
 
          describe('localStorage', () =>
          {
@@ -2719,7 +2721,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - empty array', () =>
                  {
@@ -2737,7 +2739,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - simple array', () =>
                  {
@@ -2755,7 +2757,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage', () =>
                  {
@@ -2773,7 +2775,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage and complex array being added', () =>
                  {
@@ -2791,8 +2793,8 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
-             })
+                 });
+             });
 
              describe('method param', () =>
              {
@@ -2812,7 +2814,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
 
                      expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - empty array', () =>
                  {
@@ -2830,7 +2832,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
 
                      expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - simple array', () =>
                  {
@@ -2848,7 +2850,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
 
                      expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage', () =>
                  {
@@ -2866,7 +2868,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
 
                      expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage and complex array being added', () =>
                  {
@@ -2884,9 +2886,9 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
 
                      expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                 })
-             })
-         })
+                 });
+             });
+         });
 
          describe('sessionStorage', () =>
          {
@@ -2908,7 +2910,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - empty array', () =>
                  {
@@ -2926,7 +2928,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - simple array', () =>
                  {
@@ -2944,7 +2946,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage', () =>
                  {
@@ -2962,7 +2964,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage and complex array being added', () =>
                  {
@@ -2980,8 +2982,8 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
-             })
+                 });
+             });
 
              describe('method param', () =>
              {
@@ -3001,7 +3003,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo, OBJECT_SESSION_STORAGE);
 
                      expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - empty array', () =>
                  {
@@ -3019,7 +3021,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo, OBJECT_SESSION_STORAGE);
 
                      expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - simple array', () =>
                  {
@@ -3037,7 +3039,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo, OBJECT_SESSION_STORAGE);
 
                      expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage', () =>
                  {
@@ -3055,7 +3057,7 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo, OBJECT_SESSION_STORAGE);
 
                      expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage and complex array being added', () =>
                  {
@@ -3073,10 +3075,10 @@ describe('xtorage', () => {
                      _x.saveInLastPosition(_key, _newInfo, OBJECT_SESSION_STORAGE);
 
                      expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                 })
-             })
-         })
-    })
+                 });
+             });
+         });
+    });
 
     describe('saveInFirstPosition', () => {
          describe('default', () =>
@@ -3097,7 +3099,7 @@ describe('xtorage', () => {
                  _x.saveInFirstPosition(_key, _newInfo);
 
                  expect(_x.get(_key)).toEqual(_expectedResult);
-             })
+             });
 
              it('should save correctly - empty array', () =>
              {
@@ -3115,7 +3117,7 @@ describe('xtorage', () => {
                  _x.saveInFirstPosition(_key, _newInfo);
 
                  expect(_x.get(_key)).toEqual(_expectedResult);
-             })
+             });
 
              it('should save correctly - simple array', () =>
              {
@@ -3133,7 +3135,7 @@ describe('xtorage', () => {
                  _x.saveInFirstPosition(_key, _newInfo);
 
                  expect(_x.get(_key)).toEqual(_expectedResult);
-             })
+             });
 
              it('should save correctly - complex array in the storage', () =>
              {
@@ -3151,7 +3153,7 @@ describe('xtorage', () => {
                  _x.saveInFirstPosition(_key, _newInfo);
 
                  expect(_x.get(_key)).toEqual(_expectedResult);
-             })
+             });
 
              it('should save correctly - complex array in the storage and complex array being added', () =>
              {
@@ -3169,8 +3171,8 @@ describe('xtorage', () => {
                  _x.saveInFirstPosition(_key, _newInfo);
 
                  expect(_x.get(_key)).toEqual(_expectedResult);
-             })
-         })
+             });
+         });
 
          describe('localStorage', () =>
          {
@@ -3192,7 +3194,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - empty array', () =>
                  {
@@ -3210,7 +3212,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - simple array', () =>
                  {
@@ -3228,7 +3230,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage', () =>
                  {
@@ -3246,7 +3248,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage and complex array being added', () =>
                  {
@@ -3264,8 +3266,8 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
-             })
+                 });
+             });
 
              describe('constructor', () =>
              {
@@ -3285,7 +3287,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
 
                      expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - empty array', () =>
                  {
@@ -3303,7 +3305,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
 
                      expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - simple array', () =>
                  {
@@ -3321,7 +3323,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
 
                      expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage', () =>
                  {
@@ -3339,7 +3341,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
 
                      expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage and complex array being added', () =>
                  {
@@ -3357,9 +3359,9 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
 
                      expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-                 })
-             })
-         })
+                 });
+             });
+         });
 
          describe('sessionStorage', () =>
          {
@@ -3381,7 +3383,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - empty array', () =>
                  {
@@ -3399,7 +3401,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - simple array', () =>
                  {
@@ -3417,7 +3419,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage', () =>
                  {
@@ -3435,7 +3437,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage and complex array being added', () =>
                  {
@@ -3453,8 +3455,8 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo);
 
                      expect(_x.get(_key)).toEqual(_expectedResult);
-                 })
-             })
+                 });
+             });
 
              describe('method param', () =>
              {
@@ -3474,7 +3476,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo, OBJECT_SESSION_STORAGE);
 
                      expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - empty array', () =>
                  {
@@ -3492,7 +3494,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo, OBJECT_SESSION_STORAGE);
 
                      expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - simple array', () =>
                  {
@@ -3510,7 +3512,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo, OBJECT_SESSION_STORAGE);
 
                      expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage', () =>
                  {
@@ -3528,7 +3530,7 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo, OBJECT_SESSION_STORAGE);
 
                      expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                 })
+                 });
 
                  it('should save correctly - complex array in the storage and complex array being added', () =>
                  {
@@ -3546,8 +3548,8 @@ describe('xtorage', () => {
                      _x.saveInFirstPosition(_key, _newInfo, OBJECT_SESSION_STORAGE);
 
                      expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
-                 })
-             })
-         })
-    })
-})
+                 });
+             });
+         });
+    });
+});

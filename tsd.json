@@ -4,5 +4,9 @@
   "ref": "master",
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
-  "installed": {}
+  "installed": {
+    "jasmine/jasmine.d.ts": {
+      "commit": "c50b111ded0a3a18b87b5abffea3150d6aca94da"
+    }
+  }
 }

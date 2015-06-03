@@ -1,3 +1,4 @@
+/// <reference path="../typings/tsd.d.ts"/>
 "use strict";
 describe('xtorage', function () {
     var LOCAL_STORAGE = 'localStorage';
