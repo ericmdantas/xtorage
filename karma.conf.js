@@ -16,7 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'src/xtorage.js',
-      'test/*_test.js'
+      'test/xtorage_test.js'
     ],
 
 

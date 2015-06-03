@@ -1,18 +1,18 @@
 "use strict";
 
-const gulp = require('gulp');
-const tsc = require('gulp-typescript');
-const coveralls = require('gulp-coveralls');
-const karma = require('karma').server;
-const assign = Object.assign;
+var gulp = require('gulp');
+var tsc = require('gulp-typescript');
+var coveralls = require('gulp-coveralls');
+var karma = require('karma').server;
+var assign = Object.assign || require('object-assign');
 
-const PATH_TS = 'src/xtorage.ts';
-const PATH_ES5_DIST_FOLDER = 'dist/es5/';
-const PATH_ES6_DIST_FOLDER = 'dist/es6/';
-const PATH_COMMONJS_DIST_FOLDER = 'dist/commonjs/';
-const PATH_AMD_DIST_FOLDER = 'dist/amd/';
-const PATH_SYSTEM_DIST_FOLDER = 'dist/system/';
-const FILE_COVERAGE = 'coverage/**/*.lcov';
+var PATH_TS = 'src/xtorage.ts';
+var PATH_ES5_DIST_FOLDER = 'dist/es5/';
+var PATH_ES6_DIST_FOLDER = 'dist/es6/';
+var PATH_COMMONJS_DIST_FOLDER = 'dist/commonjs/';
+var PATH_AMD_DIST_FOLDER = 'dist/amd/';
+var PATH_SYSTEM_DIST_FOLDER = 'dist/system/';
+var FILE_COVERAGE = 'coverage/**/*.lcov';
 
 var _buildTsc = function(opts) {
 
