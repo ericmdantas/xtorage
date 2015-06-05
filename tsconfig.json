@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "target": "es5",
-    "removeComments": true,
-    "watch": true
+    "module": "amd",
+    "removeComments": true
   },
   "files": [
     "./src/xtorage.ts",

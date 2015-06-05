@@ -2,9 +2,7 @@
 
 module xtorage {
 
-    export interface StorageOptions {
-        storage: string;
-    }
+    export type StorageOptions = {storage: string;}
 
     export interface IParseStorage {
         _toStringifiedJSON(info:any):any

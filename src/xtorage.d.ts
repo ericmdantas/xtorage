@@ -1,7 +1,7 @@
 declare module xtorage {
-    interface StorageOptions {
+    type StorageOptions = {
         storage: string;
-    }
+    };
     interface IParseStorage {
         _toStringifiedJSON(info: any): any;
         _fromStringifiedJSON(info: any): any;

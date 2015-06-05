@@ -19,13 +19,18 @@ var FILE_COVERAGE = 'coverage/**/*.lcov';
 
 var _buildTsc = function(opts, path) {
 
-    var _opts = assign({typescrit: require('typescript')}, opts);
+    var _dest = opts.dest;
+    var _opts = assign({
+        typescrit: require('typescript'),
+        declaration: true,
+        target: "es5"
+    }, opts.tsc);
 
     return gulp
         .src(path || PATH_TS)
         .pipe(tsc(_opts))
         .js
-        .pipe(gulp.dest(_opts.dest));
+        .pipe(gulp.dest(_dest));
 }
 
 gulp.task('transpile-local-src', function() {
@@ -33,52 +38,42 @@ gulp.task('transpile-local-src', function() {
         tsc: {
             declarationFiles: true,
             declaration: true,
-            target: "es5"
+            target: "es5",
+            module: "amd"
         },
         dest: SRC_FOLDER});
 });
 
 gulp.task('transpile-local-test', function() {
     return _buildTsc({
-        tsc: {
-            declarationFiles: true,
-            target: "es5"
-        },
+        tsc: {module: "amd"},
         dest: TEST_FOLDER}, PATH_TS_TEST);
 });
 
 gulp.task('build', ['transpile-local-src', 'test'], function() {
     _buildTsc({
-        tsc: {
-            declarationFiles: true,
-            module: "commonjs",
-            target: "es6"
-        },
+        tsc: {target: "es6"},
         dest: PATH_ES6_DIST_FOLDER});
 
     _buildTsc({
-        tsc: {
-            declarationFiles: true,
-            module: "commonjs",
-            target: "es5"
-        },
+        tsc: {module: "amd"},
         dest: PATH_ES5_DIST_FOLDER});
 
     _buildTsc({
-        tsc: {
-            declarationFiles: true,
-            target: "es5",
-            module: "amd"
-        },
+        tsc: {module: "amd"},
         dest: PATH_AMD_DIST_FOLDER});
 
     _buildTsc({
-        tsc: {
-            declarationFiles: true,
-            target: "es5",
-            module: "commonjs"
-        },
+        tsc: {module: "commonjs"},
         dest: PATH_COMMONJS_DIST_FOLDER});
+});
+
+gulp.task('test', ['transpile-local-src', 'transpile-local-test'], function(done) {
+    return karma.start({
+            configFile: __dirname + '/karma.conf.js',
+            browsers: ['PhantomJS'],
+            singleRun: true
+    }, done);
 });
 
 gulp.task('test', ['transpile-local-src', 'transpile-local-test'], function(done) {
