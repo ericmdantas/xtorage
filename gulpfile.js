@@ -76,14 +76,6 @@ gulp.task('test', ['transpile-local-src', 'transpile-local-test'], function(done
     }, done);
 });
 
-gulp.task('test', ['transpile-local-src', 'transpile-local-test'], function(done) {
-    return karma.start({
-            configFile: __dirname + '/karma.conf.js',
-            browsers: ['PhantomJS'],
-            singleRun: true
-    }, done);
-});
-
 gulp.task('coveralls', ['test'], function() {
     return gulp
             .src(FILE_COVERAGE)
