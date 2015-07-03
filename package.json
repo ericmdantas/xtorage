@@ -5,6 +5,7 @@
   "main": "dist/es5/xtorage.min.js",
   "scripts": {
     "test": "gulp test",
+    "tw": "gulp test-watch",
     "build": "gulp build"
   },
   "directories": {
@@ -51,6 +52,7 @@
     "object-assign": "^2.0.0",
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0",
+    "systemjs-builder": "^0.12.2",
     "typescript": "^1.5.0-beta"
   }
 }

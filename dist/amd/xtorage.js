@@ -1,6 +1,5 @@
 "use strict";
-var xtorage;
-(function (xtorage) {
+define(["require", "exports"], function (require, exports) {
     var Xtorage = (function () {
         function Xtorage(st, unique) {
             if (st === void 0) { st = 'localStorage'; }
@@ -84,5 +83,5 @@ var xtorage;
         };
         return Xtorage;
     })();
-    xtorage.Xtorage = Xtorage;
-})(xtorage || (xtorage = {}));
+    exports.Xtorage = Xtorage;
+});

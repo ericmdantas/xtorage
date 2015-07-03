@@ -6,6 +6,7 @@ var coveralls = require('gulp-coveralls');
 var karma = require('karma').server;
 var assign = Object.assign || require('object-assign');
 
+var MAIN_FILE_NAME = 'xtorage.js';
 var SRC_FOLDER = './src/';
 var TEST_FOLDER = './test/';
 var PATH_TS = 'src/xtorage.ts';
@@ -18,7 +19,6 @@ var PATH_SYSTEM_DIST_FOLDER = 'dist/system/';
 var FILE_COVERAGE = 'coverage/**/*.lcov';
 
 var _buildTsc = function(opts, path) {
-
     var _dest = opts.dest;
     var _opts = assign({
         typescrit: require('typescript'),
@@ -31,6 +31,27 @@ var _buildTsc = function(opts, path) {
         .pipe(tsc(_opts))
         .js
         .pipe(gulp.dest(_dest));
+}
+
+var _buildSystemJS = function() {
+    var Builder = require('systemjs-builder');
+
+    var buildConfig = {
+        defaultJSExtensions: true,
+        baseUrl: PATH_COMMONJS_DIST_FOLDER
+    };
+
+    var builder = new Builder(buildConfig);
+
+    return builder
+            .build(PATH_COMMONJS_DIST_FOLDER + MAIN_FILE_NAME, PATH_SYSTEM_DIST_FOLDER + MAIN_FILE_NAME)
+            .then(function() {
+                console.log('success')
+            })
+            .catch(function(error) {
+                console.log('error');
+                console.log(error);
+            })
 }
 
 gulp.task('transpile-local-src', function() {
@@ -50,9 +71,11 @@ gulp.task('transpile-local-test', function() {
         dest: TEST_FOLDER}, PATH_TS_TEST);
 });
 
-gulp.task('build', ['transpile-local-src', 'test'], function() {
+//gulp.task('build', ['transpile-local-src', 'test'], function() {
+//TODO: remove comment above when karma is running just find with karma
+gulp.task('build', ['transpile-local-src'], function() {
     _buildTsc({
-        tsc: {target: "es6"},
+        tsc: {target: "es6", module: "commonjs"},
         dest: PATH_ES6_DIST_FOLDER});
 
     _buildTsc({
@@ -65,7 +88,11 @@ gulp.task('build', ['transpile-local-src', 'test'], function() {
 
     _buildTsc({
         tsc: {module: "commonjs"},
-        dest: PATH_COMMONJS_DIST_FOLDER});
+        dest: PATH_COMMONJS_DIST_FOLDER})
+        .on('end', function() {
+            return _buildSystemJS();
+        });
+
 });
 
 gulp.task('test', ['transpile-local-src', 'transpile-local-test'], function(done) {
@@ -73,6 +100,14 @@ gulp.task('test', ['transpile-local-src', 'transpile-local-test'], function(done
             configFile: __dirname + '/karma.conf.js',
             browsers: ['PhantomJS'],
             singleRun: true
+    }, done);
+});
+
+gulp.task('test-watch', ['transpile-local-src', 'transpile-local-test'], function(done) {
+    return karma.start({
+            configFile: __dirname + '/karma.conf.js',
+            browsers: ['PhantomJS'],
+            singleRun: false
     }, done);
 });
 

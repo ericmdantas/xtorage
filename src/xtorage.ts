@@ -1,6 +1,8 @@
 "use strict";
 
-module xtorage {
+//TODO: make it work (including tests) without the 'module something {' wrapper
+
+//module xtorage {
 
     export type StorageOptions = {storage: string;}
 
@@ -140,4 +142,4 @@ module xtorage {
             window[_opt.storage].clear();
         }
     }
-}
+//}
