@@ -10,12 +10,18 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['systemjs', 'jasmine'],
+
+
+    systemjs: {
+      files: ['dist/system/xtorage.js'],
+
+      configFile: './system.config.js'
+    },
 
 
     // list of files / patterns to load in the browser
     files: [
-      'src/xtorage.js',
       'test/xtorage_test.js'
     ],
 

@@ -71,9 +71,7 @@ gulp.task('transpile-local-test', function() {
         dest: TEST_FOLDER}, PATH_TS_TEST);
 });
 
-//gulp.task('build', ['transpile-local-src', 'test'], function() {
-//TODO: remove comment above when karma is running just find with karma
-gulp.task('build', ['transpile-local-src'], function() {
+gulp.task('build', ['transpile-local-src', 'test'], function() {
     _buildTsc({
         tsc: {target: "es6", module: "commonjs"},
         dest: PATH_ES6_DIST_FOLDER});
