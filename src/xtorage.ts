@@ -67,7 +67,7 @@
             window[_opt.storage].setItem(key, this._toStringifiedJSON(info));
         }
 
-        _saveInArray(key:string, info:any, method:string, opt?:StorageOptions):void {
+        private _saveInArray(key:string, info:any, method:string, opt?:StorageOptions):void {
             var _info = this.get(key, opt);
 
             if (!(_info instanceof Array)) return;
@@ -93,7 +93,7 @@
             return this._fromStringifiedJSON(_info);
         }
 
-        _getFromArray(key, position:number|string, opt?:StorageOptions):void {
+        private _getFromArray(key, position:number|string, opt?:StorageOptions):void {
             var _info = this.get(key, opt);
             var _position;
 
@@ -118,7 +118,7 @@
             window[_opt.storage].removeItem(key);
         }
 
-        _removeFromArray(key:string, method:string,opt?:StorageOptions):void {
+        private _removeFromArray(key:string, method:string,opt?:StorageOptions):void {
             var _info = this.get(key, opt);
 
             if (!(_info instanceof Array)) return;
