@@ -2,11 +2,11 @@
   "compilerOptions": {
     "declaration": true,
     "target": "es5",
-    "module": "amd",
+    "module": "system",
     "removeComments": true
   },
   "files": [
     "./src/xtorage.ts",
-    "./test/xtorage_test.ts"
+    "./src/xtorage_test.ts"
   ]
 }

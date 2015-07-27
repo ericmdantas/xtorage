@@ -57,7 +57,9 @@
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0",
     "systemjs": "^0.18.4",
-    "systemjs-builder": "^0.12.2",
-    "typescript": "^1.5.0-beta"
+    "systemjs-builder": "^0.12.2"
+  },
+  "dependencies": {
+    "typescript": "^1.5.3"
   }
 }

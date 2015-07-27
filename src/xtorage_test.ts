@@ -1,7 +1,7 @@
 /// <reference path="../typings/tsd.d.ts"/>
-/// <reference path="../src/xtorage.d.ts"/>
+/// <reference path="./xtorage.d.ts"/>
 
-"use strict";
+import {Xtorage} from 'xtorage';
 
 describe('xtorage', () => {
 
@@ -19,21 +19,21 @@ describe('xtorage', () => {
     {
         it('should return the object with the storage as localStorage', () =>
         {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._parseOptions()).toEqual({storage: 'localStorage'});
         });
 
         it('should return the object with the storage as sessionStorage', () =>
         {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._parseOptions({storage: 'localStorage'})).toEqual({storage: 'localStorage'});
         });
 
         it('should return the object with the storage as sessionStorage', () =>
         {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._parseOptions({storage: 'sessionStorage'})).toEqual({storage: 'sessionStorage'});
         });
@@ -42,37 +42,37 @@ describe('xtorage', () => {
     describe('_toStringifiedJSON', () =>
     {
         it('should return a string', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._toStringifiedJSON("a")).toEqual("a");
         });
 
         it('should return a number', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._toStringifiedJSON(1)).toEqual(1);
         });
 
         it('should return a boolean', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._toStringifiedJSON(true)).toEqual(true);
         });
 
         it('should return a stringified object', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._toStringifiedJSON({})).toEqual("{}");
         });
 
         it('should return a stringified object', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._toStringifiedJSON({a: true})).toEqual('{"a":true}');
         });
 
         it('should return a stringified array', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._toStringifiedJSON([{a: true}])).toEqual('[{"a":true}]');
         });
@@ -81,43 +81,43 @@ describe('xtorage', () => {
     describe('_fromStringifiedJSON', () =>
     {
         it('should return the same string', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._fromStringifiedJSON('a')).toEqual('a');
         });
 
         it('should return the same number', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._fromStringifiedJSON(1)).toEqual(1);
         });
 
         it('should return the same boolean', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._fromStringifiedJSON(true)).toEqual(true);
         });
 
         it('should return an empty object', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._fromStringifiedJSON('{}')).toEqual({});
         });
 
         it('should return an empty array', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._fromStringifiedJSON('[]')).toEqual([]);
         });
 
         it('should return an empty with an empty object', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._fromStringifiedJSON('[{}]')).toEqual([{}]);
         });
 
         it('should return the array with the objects in it', () => {
-            var _x = new xtorage.Xtorage();
+            var _x = new Xtorage();
 
             expect(_x._fromStringifiedJSON('[{"a":1, "b": true, "c": "d"}]')).toEqual([{a: 1, b: true, c: "d"}]);
         });
@@ -128,7 +128,7 @@ describe('xtorage', () => {
         describe('default', () =>
         {
             it('should return an empty string from the storage', () => {
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 var _key = 'k';
                 var _info = '';
 
@@ -138,7 +138,7 @@ describe('xtorage', () => {
             });
 
             it('should return a simple string from the storage', () => {
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 var _key = 'k';
                 var _info = 'a';
 
@@ -148,7 +148,7 @@ describe('xtorage', () => {
             });
 
             it('should return a number from the storage', () => {
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 var _key = 'k';
                 var _info = 1;
 
@@ -158,7 +158,7 @@ describe('xtorage', () => {
             });
 
             it('should return a boolean', () => {
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 var _key = 'k';
                 var _info = false;
 
@@ -168,7 +168,7 @@ describe('xtorage', () => {
             });
 
             it('should return an object from the storage', () => {
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 var _key = 'k';
                 var _info = {};
 
@@ -178,7 +178,7 @@ describe('xtorage', () => {
             });
 
             it('should return an array from the storage', () => {
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 var _key = 'k';
                 var _info = [];
 
@@ -188,7 +188,7 @@ describe('xtorage', () => {
             });
 
             it('should return an array with an object from the storage', () => {
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 var _key = 'k';
                 var _info = [{a: true}];
 
@@ -203,7 +203,7 @@ describe('xtorage', () => {
             describe('constructor', () =>
             {
                 it('should return an empty string from the storage', () => {
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     var _key = 'k';
                     var _info = '';
 
@@ -213,7 +213,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return a simple string from the storage', () => {
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     var _key = 'k';
                     var _info = 'a';
 
@@ -223,7 +223,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return a number from the storage', () => {
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     var _key = 'k';
                     var _info = 1;
 
@@ -233,7 +233,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return a boolean', () => {
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     var _key = 'k';
                     var _info = false;
 
@@ -243,7 +243,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return an object from the storage', () => {
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     var _key = 'k';
                     var _info = {};
 
@@ -253,7 +253,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return an array from the storage', () => {
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     var _key = 'k';
                     var _info = [];
 
@@ -263,7 +263,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return an array with an object from the storage', () => {
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     var _key = 'k';
                     var _info = [{a: true}];
 
@@ -276,7 +276,7 @@ describe('xtorage', () => {
             describe('method param', () =>
             {
                 it('should return an empty string from the storage', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = '';
 
@@ -287,7 +287,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return a simple string from the storage', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = 'a';
 
@@ -298,7 +298,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return a number from the storage', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = 1;
 
@@ -309,7 +309,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return a boolean', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = false;
 
@@ -320,7 +320,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return an object from the storage', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = {};
 
@@ -331,7 +331,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return an array from the storage', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = [];
 
@@ -342,7 +342,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return an array with an object from the storage', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = [{a: true}];
 
@@ -359,7 +359,7 @@ describe('xtorage', () => {
             describe('constructor', () =>
             {
                 it('should return an empty string from the storage', () => {
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     var _key = 'k';
                     var _info = '';
 
@@ -369,7 +369,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return a simple string from the storage', () => {
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     var _key = 'k';
                     var _info = 'a';
 
@@ -379,7 +379,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return a number from the storage', () => {
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     var _key = 'k';
                     var _info = 1;
 
@@ -389,7 +389,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return a boolean', () => {
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     var _key = 'k';
                     var _info = false;
 
@@ -399,7 +399,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return an object from the storage', () => {
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     var _key = 'k';
                     var _info = {};
 
@@ -409,7 +409,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return an array from the storage', () => {
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     var _key = 'k';
                     var _info = [];
 
@@ -419,7 +419,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return an array with an object from the storage', () => {
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     var _key = 'k';
                     var _info = [{a: true}];
 
@@ -432,7 +432,7 @@ describe('xtorage', () => {
             describe('method param', () =>
             {
                 it('should return an empty string from the storage', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = '';
 
@@ -443,7 +443,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return a simple string from the storage', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = 'a';
 
@@ -454,7 +454,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return a number from the storage', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = 1;
 
@@ -465,7 +465,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return a boolean', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = false;
 
@@ -476,7 +476,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return an object from the storage', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = {};
 
@@ -487,7 +487,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return an array from the storage', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = [];
 
@@ -498,7 +498,7 @@ describe('xtorage', () => {
                 });
 
                 it('should return an array with an object from the storage', () => {
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     var _key = 'k';
                     var _info = [{a: true}];
 
@@ -520,7 +520,7 @@ describe('xtorage', () => {
                 var _infoInStorage = 'x';
                 var _expectedResult = undefined;
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _infoInStorage);
 
@@ -534,7 +534,7 @@ describe('xtorage', () => {
                 var _infoInStorage = [];
                 var _expectedResult = undefined;
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _infoInStorage);
 
@@ -548,7 +548,7 @@ describe('xtorage', () => {
                 var _infoInStorage = [1];
                 var _expectedResult = 1;
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _infoInStorage);
 
@@ -562,7 +562,7 @@ describe('xtorage', () => {
                 var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
                 var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _infoInStorage);
 
@@ -581,7 +581,7 @@ describe('xtorage', () => {
                     var _infoInStorage = 'x';
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -595,7 +595,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [];
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -609,7 +609,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [1];
                     var _expectedResult = 1;
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -623,7 +623,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
                     var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -640,7 +640,7 @@ describe('xtorage', () => {
                     var _infoInStorage = 'x';
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage);
 
@@ -655,7 +655,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [];
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage);
 
@@ -670,7 +670,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [1];
                     var _expectedResult = 1;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage);
 
@@ -685,7 +685,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
                     var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage);
 
@@ -706,7 +706,7 @@ describe('xtorage', () => {
                     var _infoInStorage = 'x';
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -720,7 +720,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [];
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -734,7 +734,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [1];
                     var _expectedResult = 1;
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -748,7 +748,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
                     var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -765,7 +765,7 @@ describe('xtorage', () => {
                     var _infoInStorage = 'x';
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -780,7 +780,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [];
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -795,7 +795,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [1];
                     var _expectedResult = 1;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -810,7 +810,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
                     var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -831,7 +831,7 @@ describe('xtorage', () => {
                 var _infoInStorage = 'x';
                 var _expectedResult = undefined;
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _infoInStorage);
 
@@ -845,7 +845,7 @@ describe('xtorage', () => {
                 var _infoInStorage = [];
                 var _expectedResult = undefined;
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _infoInStorage);
 
@@ -859,7 +859,7 @@ describe('xtorage', () => {
                 var _infoInStorage = [1];
                 var _expectedResult = 1;
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _infoInStorage);
 
@@ -873,7 +873,7 @@ describe('xtorage', () => {
                 var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
                 var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _infoInStorage);
 
@@ -892,7 +892,7 @@ describe('xtorage', () => {
                     var _infoInStorage = 'x';
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -906,7 +906,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [];
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -920,7 +920,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [1];
                     var _expectedResult = 1;
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -934,7 +934,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
                     var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -951,7 +951,7 @@ describe('xtorage', () => {
                     var _infoInStorage = 'x';
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage);
 
@@ -966,7 +966,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [];
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage);
 
@@ -981,7 +981,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [1];
                     var _expectedResult = 1;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage);
 
@@ -996,7 +996,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
                     var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage);
 
@@ -1017,7 +1017,7 @@ describe('xtorage', () => {
                     var _infoInStorage = 'x';
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -1031,7 +1031,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [];
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -1045,7 +1045,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [1];
                     var _expectedResult = 1;
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -1059,7 +1059,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
                     var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _infoInStorage);
 
@@ -1076,7 +1076,7 @@ describe('xtorage', () => {
                     var _infoInStorage = 'x';
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -1091,7 +1091,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [];
                     var _expectedResult = undefined;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -1106,7 +1106,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [1];
                     var _expectedResult = 1;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -1121,7 +1121,7 @@ describe('xtorage', () => {
                     var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
                     var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -1141,7 +1141,7 @@ describe('xtorage', () => {
                 var _key = 'k';
                 var _info = 'x';
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toBe(_info);
@@ -1156,7 +1156,7 @@ describe('xtorage', () => {
                 var _key = 'k';
                 var _info = true;
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toBe(_info);
@@ -1171,7 +1171,7 @@ describe('xtorage', () => {
                 var _key = 'k';
                 var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
@@ -1191,7 +1191,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'x';
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toBe(_info);
@@ -1206,7 +1206,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = true;
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toBe(_info);
@@ -1221,7 +1221,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1239,7 +1239,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'x';
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBe(_info);
@@ -1254,7 +1254,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = true;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBe(_info);
@@ -1269,7 +1269,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
@@ -1290,7 +1290,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'x';
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toBe(_info);
@@ -1305,7 +1305,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = true;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBe(_info);
@@ -1320,7 +1320,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
@@ -1338,7 +1338,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'x';
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBe(_info);
@@ -1353,7 +1353,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = true;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBe(_info);
@@ -1368,7 +1368,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
@@ -1389,7 +1389,7 @@ describe('xtorage', () => {
                 var _key = 'k';
                 var _info = 'x';
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toBe(_info);
@@ -1405,7 +1405,7 @@ describe('xtorage', () => {
                 var _info = [true];
                 var _expectedResult = [];
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
@@ -1421,7 +1421,7 @@ describe('xtorage', () => {
                 var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
                 var _expectedResult = [1];
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
@@ -1437,7 +1437,7 @@ describe('xtorage', () => {
                 var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 3, true, false];
                 var _expectedResult = [1, 3, true, false];
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
@@ -1457,7 +1457,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'x';
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toBe(_info);
@@ -1473,7 +1473,7 @@ describe('xtorage', () => {
                     var _info = [true];
                     var _expectedResult = [];
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1489,7 +1489,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
                     var _expectedResult = [1, 2, false, true];
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1505,7 +1505,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
                     var _expectedResult = [1];
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1523,7 +1523,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'x';
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBe(_info);
@@ -1539,7 +1539,7 @@ describe('xtorage', () => {
                     var _info = [true];
                     var _expectedResult = [];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
@@ -1555,7 +1555,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
                     var _expectedResult = [1, 2, false, true];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
@@ -1571,7 +1571,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
                     var _expectedResult = [1];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
@@ -1592,7 +1592,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'x';
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toBe(_info);
@@ -1608,7 +1608,7 @@ describe('xtorage', () => {
                     var _info = [true];
                     var _expectedResult = [];
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1624,7 +1624,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
                     var _expectedResult = [1, 2, false, true];
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1640,7 +1640,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
                     var _expectedResult = [1];
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1658,7 +1658,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'x';
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBe(_info);
@@ -1674,7 +1674,7 @@ describe('xtorage', () => {
                     var _info = [true];
                     var _expectedResult = [];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
@@ -1690,7 +1690,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
                     var _expectedResult = [1, 2, false, true];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
@@ -1706,7 +1706,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
                     var _expectedResult = [1];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
@@ -1727,7 +1727,7 @@ describe('xtorage', () => {
                 var _key = 'k';
                 var _info = 'x';
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toBe(_info);
@@ -1743,7 +1743,7 @@ describe('xtorage', () => {
                 var _info = [true];
                 var _expectedResult = [];
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
@@ -1759,7 +1759,7 @@ describe('xtorage', () => {
                 var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
                 var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
@@ -1775,7 +1775,7 @@ describe('xtorage', () => {
                 var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 3, true, false];
                 var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 3, true];
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
                 _x.save(_key, _info);
 
                 expect(_x.get(_key)).toEqual(_info);
@@ -1795,7 +1795,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'x';
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toBe(_info);
@@ -1811,7 +1811,7 @@ describe('xtorage', () => {
                     var _info = [true];
                     var _expectedResult = [];
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1827,7 +1827,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
                     var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false];
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1843,7 +1843,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
                     var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1861,7 +1861,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'x';
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBe(_info);
@@ -1877,7 +1877,7 @@ describe('xtorage', () => {
                     var _info = [true];
                     var _expectedResult = [];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
@@ -1893,7 +1893,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
                     var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
@@ -1909,7 +1909,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
                     var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
                     expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_info);
@@ -1930,7 +1930,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'x';
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toBe(_info);
@@ -1946,7 +1946,7 @@ describe('xtorage', () => {
                     var _info = [true];
                     var _expectedResult = [];
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1962,7 +1962,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
                     var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false];
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1978,7 +1978,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
                     var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
                     _x.save(_key, _info);
 
                     expect(_x.get(_key)).toEqual(_info);
@@ -1996,7 +1996,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'x';
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBe(_info);
@@ -2012,7 +2012,7 @@ describe('xtorage', () => {
                     var _info = [true];
                     var _expectedResult = [];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
@@ -2028,7 +2028,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
                     var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
@@ -2044,7 +2044,7 @@ describe('xtorage', () => {
                     var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
                     var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
                     expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
@@ -2066,7 +2066,7 @@ describe('xtorage', () => {
                 var _info0 = 'i0';
                 var _info1 = 'i1';
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key0, _info0);
                 _x.save(_key1, _info1);
@@ -2086,7 +2086,7 @@ describe('xtorage', () => {
                 var _info0 = [{a: 1, b: true, c: {d: 1, e: [{f: false}]}}];
                 var _info1 = [{a: 1, b: true, c: {d: 1, e: [{f: true}]}}];
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key0, _info0);
                 _x.save(_key1, _info1);
@@ -2111,7 +2111,7 @@ describe('xtorage', () => {
                     var _info0 = 'i0';
                     var _info1 = 'i1';
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key0, _info0);
                     _x.save(_key1, _info1);
@@ -2131,7 +2131,7 @@ describe('xtorage', () => {
                     var _info0 = [{a: 1, b: true, c: {d: 1, e: [{f: false}]}}];
                     var _info1 = [{a: 1, b: true, c: {d: 1, e: [{f: true}]}}];
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key0, _info0);
                     _x.save(_key1, _info1);
@@ -2154,7 +2154,7 @@ describe('xtorage', () => {
                     var _info0 = 'i0';
                     var _info1 = 'i1';
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key0, _info0, OBJECT_LOCAL_STORAGE);
                     _x.save(_key1, _info1, OBJECT_LOCAL_STORAGE);
@@ -2174,7 +2174,7 @@ describe('xtorage', () => {
                     var _info0 = [{a: 1, b: true, c: {d: 1, e: [{f: false}]}}];
                     var _info1 = [{a: 1, b: true, c: {d: 1, e: [{f: true}]}}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key0, _info0, OBJECT_LOCAL_STORAGE);
                     _x.save(_key1, _info1, OBJECT_LOCAL_STORAGE);
@@ -2200,7 +2200,7 @@ describe('xtorage', () => {
                     var _info0 = 'i0';
                     var _info1 = 'i1';
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key0, _info0);
                     _x.save(_key1, _info1);
@@ -2220,7 +2220,7 @@ describe('xtorage', () => {
                     var _info0 = [{a: 1, b: true, c: {d: 1, e: [{f: false}]}}];
                     var _info1 = [{a: 1, b: true, c: {d: 1, e: [{f: true}]}}];
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key0, _info0);
                     _x.save(_key1, _info1);
@@ -2243,7 +2243,7 @@ describe('xtorage', () => {
                     var _info0 = 'i0';
                     var _info1 = 'i1';
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key0, _info0, OBJECT_SESSION_STORAGE);
                     _x.save(_key1, _info1, OBJECT_SESSION_STORAGE);
@@ -2263,7 +2263,7 @@ describe('xtorage', () => {
                     var _info0 = [{a: 1, b: true, c: {d: 1, e: [{f: false}]}}];
                     var _info1 = [{a: 1, b: true, c: {d: 1, e: [{f: true}]}}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key0, _info0, OBJECT_SESSION_STORAGE);
                     _x.save(_key1, _info1, OBJECT_SESSION_STORAGE);
@@ -2289,7 +2289,7 @@ describe('xtorage', () => {
                 var _key = 'k';
                 var _info = 'a';
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _info);
 
@@ -2301,7 +2301,7 @@ describe('xtorage', () => {
                 var _key = 'k';
                 var _info = 1;
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _info);
 
@@ -2313,7 +2313,7 @@ describe('xtorage', () => {
                 var _key = 'k';
                 var _info = true;
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _info);
 
@@ -2325,7 +2325,7 @@ describe('xtorage', () => {
                 var _key = 'k';
                 var _info = {a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}};
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _info);
 
@@ -2337,7 +2337,7 @@ describe('xtorage', () => {
                 var _key = 'k';
                 var _info = [{a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}}];
 
-                var _x = new xtorage.Xtorage();
+                var _x = new Xtorage();
 
                 _x.save(_key, _info);
 
@@ -2354,7 +2354,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'a';
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _info);
 
@@ -2366,7 +2366,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 1;
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _info);
 
@@ -2378,7 +2378,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = true;
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _info);
 
@@ -2390,7 +2390,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = {a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}};
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _info);
 
@@ -2402,7 +2402,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = [{a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}}];
 
-                    var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                    var _x = new Xtorage(LOCAL_STORAGE);
 
                     _x.save(_key, _info);
 
@@ -2417,7 +2417,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'a';
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
@@ -2430,7 +2430,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 1;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
@@ -2443,7 +2443,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = true;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
@@ -2456,7 +2456,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = {a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}};
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
@@ -2469,7 +2469,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = [{a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _info, OBJECT_LOCAL_STORAGE);
 
@@ -2488,7 +2488,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'a';
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _info);
 
@@ -2500,7 +2500,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 1;
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _info);
 
@@ -2512,7 +2512,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = true;
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _info);
 
@@ -2524,7 +2524,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = {a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}};
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _info);
 
@@ -2536,7 +2536,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = [{a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}}];
 
-                    var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                    var _x = new Xtorage(SESSION_STORAGE);
 
                     _x.save(_key, _info);
 
@@ -2549,7 +2549,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 'a';
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
@@ -2561,7 +2561,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = 1;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
@@ -2573,7 +2573,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = true;
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
@@ -2585,7 +2585,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = {a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}};
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
@@ -2597,7 +2597,7 @@ describe('xtorage', () => {
                     var _key = 'k';
                     var _info = [{a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}}];
 
-                    var _x = new xtorage.Xtorage();
+                    var _x = new Xtorage();
 
                     _x.save(_key, _info, OBJECT_SESSION_STORAGE);
 
@@ -2618,7 +2618,7 @@ describe('xtorage', () => {
                  var _newInfo = 'b';
                  var _expectedResult = 'a';
 
-                 var _x = new xtorage.Xtorage();
+                 var _x = new Xtorage();
 
                  _x.save(_key, _infoInStorage);
 
@@ -2636,7 +2636,7 @@ describe('xtorage', () => {
                  var _newInfo = 0;
                  var _expectedResult = [_newInfo];
 
-                 var _x = new xtorage.Xtorage();
+                 var _x = new Xtorage();
 
                  _x.save(_key, _infoInStorage);
 
@@ -2654,7 +2654,7 @@ describe('xtorage', () => {
                  var _newInfo = 0;
                  var _expectedResult = [1, 2, _newInfo];
 
-                 var _x = new xtorage.Xtorage();
+                 var _x = new Xtorage();
 
                  _x.save(_key, _infoInStorage);
 
@@ -2672,7 +2672,7 @@ describe('xtorage', () => {
                  var _newInfo = 0;
                  var _expectedResult = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}, _newInfo];
 
-                 var _x = new xtorage.Xtorage();
+                 var _x = new Xtorage();
 
                  _x.save(_key, _infoInStorage);
 
@@ -2690,7 +2690,7 @@ describe('xtorage', () => {
                  var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
                  var _expectedResult = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}, _newInfo];
 
-                 var _x = new xtorage.Xtorage();
+                 var _x = new Xtorage();
 
                  _x.save(_key, _infoInStorage);
 
@@ -2713,7 +2713,7 @@ describe('xtorage', () => {
                      var _newInfo = 'b';
                      var _expectedResult = 'a';
 
-                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                     var _x = new Xtorage(LOCAL_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -2731,7 +2731,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage);
 
@@ -2749,7 +2749,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [1, 2, _newInfo];
 
-                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                     var _x = new Xtorage(LOCAL_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -2767,7 +2767,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}, _newInfo];
 
-                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                     var _x = new Xtorage(LOCAL_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -2785,7 +2785,7 @@ describe('xtorage', () => {
                      var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
                      var _expectedResult = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}, _newInfo];
 
-                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                     var _x = new Xtorage(LOCAL_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -2806,7 +2806,7 @@ describe('xtorage', () => {
                      var _newInfo = 'b';
                      var _expectedResult = 'a';
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
 
@@ -2824,7 +2824,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
 
@@ -2842,7 +2842,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [1, 2, _newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
 
@@ -2860,7 +2860,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}, _newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
 
@@ -2878,7 +2878,7 @@ describe('xtorage', () => {
                      var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
                      var _expectedResult = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}, _newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
 
@@ -2902,7 +2902,7 @@ describe('xtorage', () => {
                      var _newInfo = 'b';
                      var _expectedResult = 'a';
 
-                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                     var _x = new Xtorage(SESSION_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -2920,7 +2920,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage);
 
@@ -2938,7 +2938,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [1, 2, _newInfo];
 
-                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                     var _x = new Xtorage(SESSION_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -2956,7 +2956,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}, _newInfo];
 
-                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                     var _x = new Xtorage(SESSION_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -2974,7 +2974,7 @@ describe('xtorage', () => {
                      var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
                      var _expectedResult = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}, _newInfo];
 
-                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                     var _x = new Xtorage(SESSION_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -2995,7 +2995,7 @@ describe('xtorage', () => {
                      var _newInfo = 'b';
                      var _expectedResult = 'a';
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -3013,7 +3013,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -3031,7 +3031,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [1, 2, _newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -3049,7 +3049,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}, _newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -3067,7 +3067,7 @@ describe('xtorage', () => {
                      var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
                      var _expectedResult = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}, _newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -3091,7 +3091,7 @@ describe('xtorage', () => {
                  var _newInfo = 'b';
                  var _expectedResult = 'a';
 
-                 var _x = new xtorage.Xtorage();
+                 var _x = new Xtorage();
 
                  _x.save(_key, _infoInStorage);
 
@@ -3109,7 +3109,7 @@ describe('xtorage', () => {
                  var _newInfo = 0;
                  var _expectedResult = [_newInfo];
 
-                 var _x = new xtorage.Xtorage();
+                 var _x = new Xtorage();
 
                  _x.save(_key, _infoInStorage);
 
@@ -3127,7 +3127,7 @@ describe('xtorage', () => {
                  var _newInfo = 0;
                  var _expectedResult = [_newInfo, 1, 2];
 
-                 var _x = new xtorage.Xtorage();
+                 var _x = new Xtorage();
 
                  _x.save(_key, _infoInStorage);
 
@@ -3145,7 +3145,7 @@ describe('xtorage', () => {
                  var _newInfo = 0;
                  var _expectedResult = [_newInfo, 1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
 
-                 var _x = new xtorage.Xtorage();
+                 var _x = new Xtorage();
 
                  _x.save(_key, _infoInStorage);
 
@@ -3163,7 +3163,7 @@ describe('xtorage', () => {
                  var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
                  var _expectedResult = [_newInfo, 1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
 
-                 var _x = new xtorage.Xtorage();
+                 var _x = new Xtorage();
 
                  _x.save(_key, _infoInStorage);
 
@@ -3186,7 +3186,7 @@ describe('xtorage', () => {
                      var _newInfo = 'b';
                      var _expectedResult = 'a';
 
-                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                     var _x = new Xtorage(LOCAL_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -3204,7 +3204,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage);
 
@@ -3222,7 +3222,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo, 1, 2];
 
-                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                     var _x = new Xtorage(LOCAL_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -3240,7 +3240,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo, 1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
 
-                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                     var _x = new Xtorage(LOCAL_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -3258,7 +3258,7 @@ describe('xtorage', () => {
                      var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
                      var _expectedResult = [_newInfo, 1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
 
-                     var _x = new xtorage.Xtorage(LOCAL_STORAGE);
+                     var _x = new Xtorage(LOCAL_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -3279,7 +3279,7 @@ describe('xtorage', () => {
                      var _newInfo = 'b';
                      var _expectedResult = 'a';
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
 
@@ -3297,7 +3297,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
 
@@ -3315,7 +3315,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo, 1, 2];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
 
@@ -3333,7 +3333,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo, 1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
 
@@ -3351,7 +3351,7 @@ describe('xtorage', () => {
                      var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
                      var _expectedResult = [_newInfo, 1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
 
@@ -3375,7 +3375,7 @@ describe('xtorage', () => {
                      var _newInfo = 'b';
                      var _expectedResult = 'a';
 
-                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                     var _x = new Xtorage(SESSION_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -3393,7 +3393,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage);
 
@@ -3411,7 +3411,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo, 1, 2];
 
-                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                     var _x = new Xtorage(SESSION_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -3429,7 +3429,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo, 1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
 
-                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                     var _x = new Xtorage(SESSION_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -3447,7 +3447,7 @@ describe('xtorage', () => {
                      var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
                      var _expectedResult = [_newInfo, 1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
 
-                     var _x = new xtorage.Xtorage(SESSION_STORAGE);
+                     var _x = new Xtorage(SESSION_STORAGE);
 
                      _x.save(_key, _infoInStorage);
 
@@ -3468,7 +3468,7 @@ describe('xtorage', () => {
                      var _newInfo = 'b';
                      var _expectedResult = 'a';
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -3486,7 +3486,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -3504,7 +3504,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo, 1, 2];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -3522,7 +3522,7 @@ describe('xtorage', () => {
                      var _newInfo = 0;
                      var _expectedResult = [_newInfo, 1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
@@ -3540,7 +3540,7 @@ describe('xtorage', () => {
                      var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
                      var _expectedResult = [_newInfo, 1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
 
-                     var _x = new xtorage.Xtorage();
+                     var _x = new Xtorage();
 
                      _x.save(_key, _infoInStorage, OBJECT_SESSION_STORAGE);
 
