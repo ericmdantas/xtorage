@@ -30,6 +30,7 @@ export declare class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage
     _fromStringifiedJSON(info: any): any;
     _parseOptions(opt?: StorageOptions): StorageOptions;
     save(key: string, info: any, opt?: StorageOptions): void;
+<<<<<<< HEAD
     _saveInArray(key: string, info: any, method: string, opt?: StorageOptions): void;
     saveInFirstPosition(key: string, info: any, opt?: StorageOptions): void;
     saveInLastPosition(key: string, info: any, opt?: StorageOptions): void;
@@ -39,6 +40,17 @@ export declare class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage
     getLast(key: string, opt?: StorageOptions): any;
     remove(key: string, opt?: StorageOptions): void;
     _removeFromArray(key: string, method: string, opt?: StorageOptions): void;
+=======
+    private _saveInArray(key, info, method, opt?);
+    saveInFirstPosition(key: string, info: any, opt?: StorageOptions): void;
+    saveInLastPosition(key: string, info: any, opt?: StorageOptions): void;
+    get(key: string, opt?: StorageOptions): any;
+    private _getFromArray(key, position, opt?);
+    getFirst(key: string, opt?: StorageOptions): any;
+    getLast(key: string, opt?: StorageOptions): any;
+    remove(key: string, opt?: StorageOptions): void;
+    private _removeFromArray(key, method, opt?);
+>>>>>>> ac20ad4fcd5ed76a50354aed69d4f17fbb00f74a
     removeFirst(key: string, opt?: StorageOptions): void;
     removeLast(key: string, opt?: StorageOptions): void;
     removeAll(opt?: StorageOptions): void;
