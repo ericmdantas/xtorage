@@ -1,7 +1,7 @@
 /// <reference path="../typings/tsd.d.ts"/>
-/// <reference path="./xtorage.d.ts"/>
+/// <reference path="xtorage.d.ts"/>
 
-import {Xtorage} from 'xtorage';
+import {Xtorage} from './xtorage.js';
 
 describe('xtorage', () => {
 

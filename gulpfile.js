@@ -1,4 +1,4 @@
-"use strict";
+    "use strict";
 
 var gulp = require('gulp');
 var tsc = require('gulp-typescript');
@@ -11,11 +11,7 @@ var SRC_FOLDER = './src/';
 var TEST_FOLDER = './test/';
 var PATH_TS = 'src/xtorage.ts';
 var PATH_TS_TEST = 'src/xtorage_test.ts';
-var PATH_ES5_DIST_FOLDER = 'dist/es5/';
-var PATH_ES6_DIST_FOLDER = 'dist/es6/';
 var PATH_COMMONJS_DIST_FOLDER = 'dist/commonjs/';
-var PATH_AMD_DIST_FOLDER = 'dist/amd/';
-var PATH_SYSTEM_DIST_FOLDER = 'dist/system/';
 var FILE_COVERAGE = 'coverage/**/*.lcov';
 
 var _buildTsc = function(opts, path) {
@@ -33,27 +29,6 @@ var _buildTsc = function(opts, path) {
         .pipe(gulp.dest(_dest));
 }
 
-var _buildSystemJS = function() {
-    var Builder = require('systemjs-builder');
-
-    var buildConfig = {
-        defaultJSExtensions: true,
-        baseUrl: PATH_COMMONJS_DIST_FOLDER
-    };
-
-    var builder = new Builder(buildConfig);
-
-    return builder
-            .build(PATH_COMMONJS_DIST_FOLDER + MAIN_FILE_NAME, PATH_SYSTEM_DIST_FOLDER + MAIN_FILE_NAME)
-            .then(function() {
-                console.log('success')
-            })
-            .catch(function(error) {
-                console.log('error');
-                console.log(error);
-            })
-}
-
 gulp.task('transpile-local-src', function() {
     return _buildTsc({
         tsc: {
@@ -67,30 +42,15 @@ gulp.task('transpile-local-src', function() {
 
 gulp.task('transpile-local-test', function() {
     return _buildTsc({
-        tsc: {module: "amd"},
+        tsc: {module: "commonjs"},
         dest: TEST_FOLDER}, PATH_TS_TEST);
 });
 
 gulp.task('build', ['transpile-local-src', 'test'], function() {
-    _buildTsc({
-        tsc: {target: "es6", module: "commonjs"},
-        dest: PATH_ES6_DIST_FOLDER});
 
-    _buildTsc({
-        tsc: {module: "amd"},
-        dest: PATH_ES5_DIST_FOLDER});
-
-    _buildTsc({
-        tsc: {module: "amd"},
-        dest: PATH_AMD_DIST_FOLDER});
-
-    _buildTsc({
+    return _buildTsc({
         tsc: {module: "commonjs"},
-        dest: PATH_COMMONJS_DIST_FOLDER})
-        .on('end', function() {
-            return _buildSystemJS();
-        });
-
+        dest: PATH_COMMONJS_DIST_FOLDER});
 });
 
 gulp.task('test', ['transpile-local-src', 'transpile-local-test'], function(done) {

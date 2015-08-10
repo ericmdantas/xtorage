@@ -14,7 +14,7 @@ module.exports = function(config) {
 
 
     systemjs: {
-      files: ['dist/system/xtorage.js'],
+      files: ['dist/commonjs/xtorage.js'],
 
       configFile: './system.config.js'
     },
