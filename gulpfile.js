@@ -29,6 +29,8 @@ var _buildTsc = function(opts, path) {
         .pipe(gulp.dest(_dest));
 }
 
+gulp.task('transpile', ['transpile-local-src', 'transpile-local-test']);
+
 gulp.task('transpile-local-src', function() {
     return _buildTsc({
         tsc: {

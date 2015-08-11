@@ -14,11 +14,12 @@ module.exports = function(config) {
 
 
     systemjs: {
-      files: ['dist/commonjs/xtorage.js'],
+      files: [
+        'src/xtorage.js'
+      ],
 
       configFile: './system.config.js'
     },
-
 
     // list of files / patterns to load in the browser
     files: [
