@@ -15,22 +15,12 @@ module.exports = function(config) {
 
     systemjs: {
       files: [
-        'src/xtorage.js'
+        'src/xtorage.js',
+        'src/xtorage_test.js'
       ],
 
-      configFile: './system.config.js'
+      configFile: 'system.config.js'
     },
-
-    // list of files / patterns to load in the browser
-    files: [
-      'src/xtorage_test.js'
-    ],
-
-
-    // list of files to exclude
-    exclude: [
-    ],
-
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor

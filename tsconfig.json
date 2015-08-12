@@ -6,7 +6,6 @@
     "removeComments": true
   },
   "files": [
-    "./src/xtorage.ts",
-    "./src/xtorage_test.ts"
+    "./src/"
   ]
 }

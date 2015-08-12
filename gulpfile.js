@@ -37,7 +37,7 @@ gulp.task('transpile-local-src', function() {
             declarationFiles: true,
             declaration: true,
             target: "es5",
-            module: "amd"
+            module: "commonjs"
         },
         dest: SRC_FOLDER});
 });

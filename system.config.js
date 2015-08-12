@@ -1,6 +1,6 @@
 // Configure module loader
 System.config({
-    baseURL: '/',
+    baseURL: '',
 
     // Set paths for third-party libraries as modules
     paths: {
