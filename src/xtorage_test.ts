@@ -3567,7 +3567,7 @@ describe('xtorage', () => {
               var _arrayInStorage = [];
               var _key = 'k';
 
-              var _x = new Xtorage(undefined, false);
+              var _x = new Xtorage({unique: false});
 
               _x.save(_key, _arrayInStorage);
 
@@ -3587,7 +3587,7 @@ describe('xtorage', () => {
               var _arrayInStorage = [];
               var _key = 'k';
 
-              var _x = new Xtorage(undefined, true);
+              var _x = new Xtorage({unique: true});
 
               _x.save(_key, _arrayInStorage);
 
@@ -3675,7 +3675,7 @@ describe('xtorage', () => {
               var _arrayInStorage = [];
               var _key = 'k';
 
-              var _x = new Xtorage(undefined, false);
+              var _x = new Xtorage({unique: false});
 
               _x.save(_key, _arrayInStorage);
 
@@ -3695,7 +3695,7 @@ describe('xtorage', () => {
               var _arrayInStorage = [];
               var _key = 'k';
 
-              var _x = new Xtorage(undefined, true);
+              var _x = new Xtorage({unique: true});
 
               _x.save(_key, _arrayInStorage);
 
@@ -3750,5 +3750,45 @@ describe('xtorage', () => {
               expect(_x.get(_key).length).toBe(1);
             });
         });
-    })
+    });
+
+    describe('push/unshift proxies', () => {
+      describe('saveInFirstPosition', () => {
+          it('should be able to push to the storage, even though there was nothing there', () => {
+              var _key = 'k';
+              var _info1 = 'a';
+              var _info2 = 'b';
+
+              var _x = new Xtorage();
+
+              _x.saveInFirstPosition(_key, _info1);
+
+              expect(_x.get(_key)[0]).toEqual(_info1)
+
+              _x.saveInFirstPosition(_key, _info2);
+
+              expect(_x.get(_key)[0]).toEqual(_info2);
+              expect(_x.get(_key)[1]).toEqual(_info1);
+          });
+      });
+
+      describe('saveInLastPosition', () => {
+        it('should be able to push to the storage, even though there was nothing there', () => {
+              var _key = 'k';
+              var _info1 = 'a';
+              var _info2 = 'b';
+
+              var _x = new Xtorage();
+
+              _x.saveInLastPosition(_key, _info1);
+
+              expect(_x.get(_key)[0]).toEqual(_info1)
+
+              _x.saveInLastPosition(_key, _info2);
+
+              expect(_x.get(_key)[0]).toEqual(_info1);
+              expect(_x.get(_key)[1]).toEqual(_info2);
+          });
+      });
+    });
 });

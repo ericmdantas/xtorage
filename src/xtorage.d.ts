@@ -1,5 +1,6 @@
 export declare type StorageOptions = {
     storage: string;
+    unique: boolean;
 };
 export interface IParseStorage {
     _toStringifiedJSON(info: any): any;
@@ -23,9 +24,14 @@ export interface IRemoveStorage {
     removeAll(opts?: StorageOptions): void;
 }
 export declare class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParseStorage {
+    private _storage;
+    private _unique;
+    constructor({st, unique}?: {
+        st?: string;
+        unique?: boolean;
+    });
     storage: string;
     unique: boolean;
-    constructor(st?: string, unique?: boolean);
     _toStringifiedJSON(info: any): any;
     _fromStringifiedJSON(info: any): any;
     _parseOptions(opt?: StorageOptions): StorageOptions;

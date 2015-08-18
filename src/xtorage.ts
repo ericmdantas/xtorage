@@ -1,4 +1,7 @@
-export type StorageOptions = {storage: string;}
+export type StorageOptions = {
+  storage: string;
+  unique: boolean
+}
 
 export interface IParseStorage {
   _toStringifiedJSON(info:any):any
@@ -26,12 +29,28 @@ export interface IRemoveStorage {
 }
 
 export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParseStorage {
-  storage:string;
-  unique:boolean;
+  private _storage:string;
+  private _unique:boolean;
 
-  constructor(st:string = 'localStorage', unique:boolean = false) {
-    this.storage = st;
-    this.unique = unique;
+  constructor({st, unique}: {st?: string, unique?: boolean} = {st: 'localStorage', unique: false}) {
+    this._storage = st;
+    this._unique = unique;
+  }
+
+  set storage(storage: string) {
+    this._storage = storage;
+  }
+
+  get storage():string {
+    return this._storage
+  }
+
+  set unique(unique: boolean) {
+    this._unique = unique;
+  }
+
+  get unique():boolean {
+    return this._unique;
   }
 
   _toStringifiedJSON(info:any):any {
@@ -50,7 +69,7 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
     }
   }
 
-  _parseOptions(opt:StorageOptions = {storage: 'localStorage'}):StorageOptions {
+  _parseOptions(opt:StorageOptions = {storage: 'localStorage', unique: false}):StorageOptions {
     return opt;
   }
 
@@ -61,7 +80,7 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
   }
 
   private _saveInArray(key:string, info:any, method:string, opt?:StorageOptions):void {
-    var _info = this.get(key, opt);
+    var _info = this.get(key, opt) || [];
 
     if (!(_info instanceof Array)) return;
 
