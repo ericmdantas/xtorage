@@ -78,7 +78,6 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
     this._saveInArray(key, info, "push", opt);
   }
 
-
   get(key:string, opt?:StorageOptions):any {
     var _opt = this._parseOptions(opt);
     var _info = window[_opt.storage].getItem(key);
