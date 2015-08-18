@@ -1,4 +1,3 @@
-"use strict";
 var Xtorage = (function () {
     function Xtorage(st, unique) {
         if (st === void 0) { st = 'localStorage'; }

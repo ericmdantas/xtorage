@@ -6,6 +6,8 @@
   "scripts": {
     "test": "gulp test",
     "tw": "gulp test-watch",
+    "trs": "gulp transpile-local-src",
+    "trt": "gulp transpile-local-test",
     "build": "gulp build"
   },
   "directories": {
@@ -57,9 +59,8 @@
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0",
     "systemjs": "^0.18.4",
-    "systemjs-builder": "^0.12.2"
-  },
-  "dependencies": {
+    "systemjs-builder": "^0.12.2",
     "typescript": "^1.5.3"
-  }
+  },
+  "dependencies": {}
 }

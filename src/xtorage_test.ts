@@ -1,7 +1,7 @@
 /// <reference path="../typings/tsd.d.ts"/>
 /// <reference path="xtorage.d.ts"/>
 
-import {Xtorage} from './xtorage';
+import {Xtorage} from './xtorage.js';
 
 describe('xtorage', () => {
 
@@ -15,32 +15,27 @@ describe('xtorage', () => {
         window.sessionStorage.clear();
     });
 
-    describe('_parseOptions', () =>
-    {
-        it('should return the object with the storage as localStorage', () =>
-        {
+    describe('_parseOptions', () => {
+        it('should return the object with the storage as localStorage', () => {
             var _x = new Xtorage();
 
             expect(_x._parseOptions()).toEqual({storage: 'localStorage'});
         });
 
-        it('should return the object with the storage as sessionStorage', () =>
-        {
+        it('should return the object with the storage as sessionStorage', () => {
             var _x = new Xtorage();
 
             expect(_x._parseOptions({storage: 'localStorage'})).toEqual({storage: 'localStorage'});
         });
 
-        it('should return the object with the storage as sessionStorage', () =>
-        {
+        it('should return the object with the storage as sessionStorage', () => {
             var _x = new Xtorage();
 
             expect(_x._parseOptions({storage: 'sessionStorage'})).toEqual({storage: 'sessionStorage'});
         });
     });
 
-    describe('_toStringifiedJSON', () =>
-    {
+    describe('_toStringifiedJSON', () => {
         it('should return a string', () => {
             var _x = new Xtorage();
 
@@ -78,8 +73,7 @@ describe('xtorage', () => {
         });
     });
 
-    describe('_fromStringifiedJSON', () =>
-    {
+    describe('_fromStringifiedJSON', () => {
         it('should return the same string', () => {
             var _x = new Xtorage();
 
@@ -123,10 +117,8 @@ describe('xtorage', () => {
         });
     });
 
-    describe('get', () =>
-    {
-        describe('default', () =>
-        {
+    describe('get', () => {
+        describe('default', () => {
             it('should return an empty string from the storage', () => {
                 var _x = new Xtorage();
                 var _key = 'k';
@@ -198,10 +190,8 @@ describe('xtorage', () => {
             });
         });
 
-        describe('localStorage', () =>
-        {
-            describe('constructor', () =>
-            {
+        describe('localStorage', () => {
+            describe('constructor', () => {
                 it('should return an empty string from the storage', () => {
                     var _x = new Xtorage(LOCAL_STORAGE);
                     var _key = 'k';
@@ -273,8 +263,7 @@ describe('xtorage', () => {
                 });
             });
 
-            describe('method param', () =>
-            {
+            describe('method param', () => {
                 it('should return an empty string from the storage', () => {
                     var _x = new Xtorage();
                     var _key = 'k';
@@ -354,10 +343,8 @@ describe('xtorage', () => {
             });
         });
 
-        describe('sessionStorage', () =>
-        {
-            describe('constructor', () =>
-            {
+        describe('sessionStorage', () => {
+            describe('constructor', () => {
                 it('should return an empty string from the storage', () => {
                     var _x = new Xtorage(SESSION_STORAGE);
                     var _key = 'k';
@@ -429,8 +416,7 @@ describe('xtorage', () => {
                 });
             });
 
-            describe('method param', () =>
-            {
+            describe('method param', () => {
                 it('should return an empty string from the storage', () => {
                     var _x = new Xtorage();
                     var _key = 'k';
@@ -512,10 +498,8 @@ describe('xtorage', () => {
     });
 
     describe('getFirst', () => {
-        describe('default', () =>
-        {
-            it('should return undefined, value from storage is not an array', () =>
-            {
+        describe('default', () => {
+            it('should return undefined, value from storage is not an array', () => {
                 var _key = 'k';
                 var _infoInStorage = 'x';
                 var _expectedResult = undefined;
@@ -528,8 +512,7 @@ describe('xtorage', () => {
                 expect(_x.getFirst(_key)).toEqual(_expectedResult);
             });
 
-            it('should return undefined, empty array', () =>
-            {
+            it('should return undefined, empty array', () => {
                 var _key = 'k';
                 var _infoInStorage = [];
                 var _expectedResult = undefined;
@@ -542,8 +525,7 @@ describe('xtorage', () => {
                 expect(_x.getFirst(_key)).toEqual(_expectedResult);
             });
 
-            it('should return 1', () =>
-            {
+            it('should return 1', () => {
                 var _key = 'k';
                 var _infoInStorage = [1];
                 var _expectedResult = 1;
