@@ -32,7 +32,7 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
   private _storage:string;
   private _unique:boolean;
 
-  constructor({st, unique}: {st?: string, unique?: boolean} = {st: 'localStorage', unique: false}) {
+  constructor(st:string = 'localStorage', unique:boolean = false) {
     this._storage = st;
     this._unique = unique;
   }
@@ -70,7 +70,8 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
   }
 
   _parseOptions(opt:StorageOptions = {storage: 'localStorage', unique: false}):StorageOptions {
-    return opt;
+    let _opt = {storage: opt.storage || this.storage, unique: opt.unique || this.unique};
+    return _opt;
   }
 
   save(key:string, info: any, opt?:StorageOptions):void {
@@ -80,11 +81,21 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
   }
 
   private _saveInArray(key:string, info:any, method:string, opt?:StorageOptions):void {
+    var _opt = this._parseOptions(opt);
     var _info = this.get(key, opt) || [];
 
     if (!(_info instanceof Array)) return;
 
-    _info[method](info);
+    if (_opt.unique) {
+      <any[]>_info.forEach((information) => {
+          if (JSON.stringify(info) === JSON.stringify(information)) {
+            return;
+          }
+        })
+    }
+    else {
+      _info[method](info);
+    }
 
     this.save(key, _info, opt);
   }

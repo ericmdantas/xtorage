@@ -26,10 +26,7 @@ export interface IRemoveStorage {
 export declare class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParseStorage {
     private _storage;
     private _unique;
-    constructor({st, unique}?: {
-        st?: string;
-        unique?: boolean;
-    });
+    constructor(st?: string, unique?: boolean);
     storage: string;
     unique: boolean;
     _toStringifiedJSON(info: any): any;
