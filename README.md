@@ -11,7 +11,7 @@ This is a **tiny**, yet **powerful** framework-agnostic wrapper for the web stor
 
 Because you shouldn't keep parsing strings/arrays/numbers/objects left and right to save/retrieve stuff into and from the storage.
 
-Just call ```save()```, ```saveInFirst()```, ```remove()```, ```removeLast()``` and so on. Focus on your business logic.
+Just call ```save()```, ```saveInFirstPosition()```, ```remove()```, ```removeLast()``` and so on. Focus on your business logic.
 
 # how?
 
