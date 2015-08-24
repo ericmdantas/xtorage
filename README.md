@@ -5,13 +5,15 @@
 
 # what?
 
-This is a **tiny**, yet **powerful** framework-agnostic wrapper for the web storage. 
+This is a **tiny**, yet **powerful** framework-agnostic wrapper for the web storage.
 
 # why?
 
 Because you shouldn't keep parsing strings/arrays/numbers/objects left and right to save/retrieve stuff into and from the storage.
 
-Just call ```save()```, ```saveInFirstPosition()```, ```remove()```, ```removeLast()``` and so on. Focus on your business logic.
+Just call ```save()```, ```saveInFirstPosition()```, ```remove()```, ```removeLast()``` and so on.
+
+Focus on your business logic.
 
 # how?
 
@@ -19,9 +21,9 @@ This module will do all the parsing needed to save stuff in the storage and retr
 
 # is there anything else?
 
-Yeah! This module also extends the Web Storage API. 
+Yeah! This module also extends the Web Storage API.
 
-For example, if you have an array in the storage and you want to save something to its last position, just call: 
+For example, if you have an array in the storage and you want to save something to its last position, just call:
 
 ```saveInLastPosition(key, info)``` and there you go. The array now will have the info in its last position.
 
