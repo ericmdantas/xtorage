@@ -39,6 +39,24 @@ describe('xtorage', () => {
 
       expect(_x._parseOptions({storage: 'sessionStorage', unique: true})).toEqual({storage: 'sessionStorage', unique: true});
     });
+
+    it('should return the object with the storage as sessionStorage and unique as true - passed by constructor', () => {
+      var _x = new Xtorage('sessionStorage', true);
+
+      expect(_x._parseOptions()).toEqual({storage: 'sessionStorage', unique: true});
+    });
+
+    it('should return the object with the storage as localStorage and unique as true - passed by constructor', () => {
+      var _x = new Xtorage(undefined, true);
+
+      expect(_x._parseOptions()).toEqual({storage: 'localStorage', unique: true});
+    });
+
+    it('should return the object with the storage as sessionStorage and unique as false - passed by constructor', () => {
+      var _x = new Xtorage('sessionStorage', false);
+
+      expect(_x._parseOptions()).toEqual({storage: 'sessionStorage', unique: false});
+    });
   });
 
   describe('_toStringifiedJSON', () => {

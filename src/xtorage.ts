@@ -69,8 +69,12 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
     }
   }
 
-  _parseOptions(opt:StorageOptions = {storage: 'localStorage', unique: false}):StorageOptions {
-    let _opt = {storage: opt.storage || this.storage, unique: opt.unique || this.unique};
+  _parseOptions(opt:StorageOptions):StorageOptions {
+    let _opt = {
+                  storage: opt && opt.storage ? opt.storage : this.storage,
+                  unique: opt && opt.unique ? opt.unique : this.unique
+               };
+
     return _opt;
   }
 
