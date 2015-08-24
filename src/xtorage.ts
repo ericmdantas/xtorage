@@ -42,7 +42,7 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
   }
 
   get storage():string {
-    return this._storage
+    return this._storage;
   }
 
   set unique(unique: boolean) {

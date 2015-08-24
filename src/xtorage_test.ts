@@ -544,8 +544,7 @@ describe('xtorage', () => {
         expect(_x.getFirst(_key)).toEqual(_expectedResult);
       });
 
-      it('should return the complex info', () =>
-      {
+      it('should return the complex info', () => {
         var _key = 'k';
         var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
         var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
@@ -559,12 +558,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('localStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should return undefined, value from storage is not an array', () =>
-        {
+    describe('localStorage', () => {
+      describe('constructor', () => {
+        it('should return undefined, value from storage is not an array', () => {
           var _key = 'k';
           var _infoInStorage = 'x';
           var _expectedResult = undefined;
@@ -577,8 +573,7 @@ describe('xtorage', () => {
           expect(_x.getFirst(_key)).toEqual(_expectedResult);
         });
 
-        it('should return undefined, empty array', () =>
-        {
+        it('should return undefined, empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _expectedResult = undefined;
@@ -591,8 +586,7 @@ describe('xtorage', () => {
           expect(_x.getFirst(_key)).toEqual(_expectedResult);
         });
 
-        it('should return 1', () =>
-        {
+        it('should return 1', () => {
           var _key = 'k';
           var _infoInStorage = [1];
           var _expectedResult = 1;
@@ -605,8 +599,7 @@ describe('xtorage', () => {
           expect(_x.getFirst(_key)).toEqual(_expectedResult);
         });
 
-        it('should return the complex info', () =>
-        {
+        it('should return the complex info', () => {
           var _key = 'k';
           var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
           var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
@@ -620,10 +613,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method param', () =>
-      {
-        it('should return undefined, value from storage is not an array', () =>
-        {
+      describe('method param', () => {
+        it('should return undefined, value from storage is not an array', () => {
           var _key = 'k';
           var _infoInStorage = 'x';
           var _expectedResult = undefined;
@@ -637,8 +628,7 @@ describe('xtorage', () => {
           expect(_x.getFirst(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
         });
 
-        it('should return undefined, empty array', () =>
-        {
+        it('should return undefined, empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _expectedResult = undefined;
@@ -652,8 +642,7 @@ describe('xtorage', () => {
           expect(_x.getFirst(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
         });
 
-        it('should return 1', () =>
-        {
+        it('should return 1', () => {
           var _key = 'k';
           var _infoInStorage = [1];
           var _expectedResult = 1;
@@ -667,8 +656,7 @@ describe('xtorage', () => {
           expect(_x.getFirst(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
         });
 
-        it('should return the complex info', () =>
-        {
+        it('should return the complex info', () => {
           var _key = 'k';
           var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
           var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
@@ -684,12 +672,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('sessionStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should return undefined, value from storage is not an array', () =>
-        {
+    describe('sessionStorage', () => {
+      describe('constructor', () => {
+        it('should return undefined, value from storage is not an array', () => {
           var _key = 'k';
           var _infoInStorage = 'x';
           var _expectedResult = undefined;
@@ -702,8 +687,7 @@ describe('xtorage', () => {
           expect(_x.getFirst(_key)).toEqual(_expectedResult);
         });
 
-        it('should return undefined, empty array', () =>
-        {
+        it('should return undefined, empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _expectedResult = undefined;
@@ -716,8 +700,7 @@ describe('xtorage', () => {
           expect(_x.getFirst(_key)).toEqual(_expectedResult);
         });
 
-        it('should return 1', () =>
-        {
+        it('should return 1', () => {
           var _key = 'k';
           var _infoInStorage = [1];
           var _expectedResult = 1;
@@ -730,8 +713,7 @@ describe('xtorage', () => {
           expect(_x.getFirst(_key)).toEqual(_expectedResult);
         });
 
-        it('should return the complex info', () =>
-        {
+        it('should return the complex info', () => {
           var _key = 'k';
           var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
           var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
@@ -745,10 +727,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method param', () =>
-      {
-        it('should return undefined, value from storage is not an array', () =>
-        {
+      describe('method param', () => {
+        it('should return undefined, value from storage is not an array', () => {
           var _key = 'k';
           var _infoInStorage = 'x';
           var _expectedResult = undefined;
@@ -762,8 +742,7 @@ describe('xtorage', () => {
           expect(_x.getFirst(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
         });
 
-        it('should return undefined, empty array', () =>
-        {
+        it('should return undefined, empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _expectedResult = undefined;
@@ -777,8 +756,7 @@ describe('xtorage', () => {
           expect(_x.getFirst(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
         });
 
-        it('should return 1', () =>
-        {
+        it('should return 1', () => {
           var _key = 'k';
           var _infoInStorage = [1];
           var _expectedResult = 1;
@@ -792,8 +770,7 @@ describe('xtorage', () => {
           expect(_x.getFirst(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
         });
 
-        it('should return the complex info', () =>
-        {
+        it('should return the complex info', () => {
           var _key = 'k';
           var _infoInStorage = [[{a:true, b: false, c: [1,2,{d: "e"}]}], 2];
           var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
@@ -827,8 +804,7 @@ describe('xtorage', () => {
         expect(_x.getLast(_key)).toEqual(_expectedResult);
       });
 
-      it('should return undefined, empty array', () =>
-      {
+      it('should return undefined, empty array', () => {
         var _key = 'k';
         var _infoInStorage = [];
         var _expectedResult = undefined;
@@ -841,8 +817,7 @@ describe('xtorage', () => {
         expect(_x.getLast(_key)).toEqual(_expectedResult);
       });
 
-      it('should return 1', () =>
-      {
+      it('should return 1', () => {
         var _key = 'k';
         var _infoInStorage = [1];
         var _expectedResult = 1;
@@ -855,8 +830,7 @@ describe('xtorage', () => {
         expect(_x.getLast(_key)).toEqual(_expectedResult);
       });
 
-      it('should return the complex info', () =>
-      {
+      it('should return the complex info', () => {
         var _key = 'k';
         var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
         var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
@@ -870,12 +844,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('localStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should return undefined, value from storage is not an array', () =>
-        {
+    describe('localStorage', () => {
+      describe('constructor', () => {
+        it('should return undefined, value from storage is not an array', () => {
           var _key = 'k';
           var _infoInStorage = 'x';
           var _expectedResult = undefined;
@@ -888,8 +859,7 @@ describe('xtorage', () => {
           expect(_x.getLast(_key)).toEqual(_expectedResult);
         });
 
-        it('should return undefined, empty array', () =>
-        {
+        it('should return undefined, empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _expectedResult = undefined;
@@ -902,8 +872,7 @@ describe('xtorage', () => {
           expect(_x.getLast(_key)).toEqual(_expectedResult);
         });
 
-        it('should return 1', () =>
-        {
+        it('should return 1', () => {
           var _key = 'k';
           var _infoInStorage = [1];
           var _expectedResult = 1;
@@ -916,8 +885,7 @@ describe('xtorage', () => {
           expect(_x.getLast(_key)).toEqual(_expectedResult);
         });
 
-        it('should return the complex info', () =>
-        {
+        it('should return the complex info', () => {
           var _key = 'k';
           var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
           var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
@@ -931,10 +899,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method param', () =>
-      {
-        it('should return undefined, value from storage is not an array', () =>
-        {
+      describe('method param', () => {
+        it('should return undefined, value from storage is not an array', () => {
           var _key = 'k';
           var _infoInStorage = 'x';
           var _expectedResult = undefined;
@@ -948,8 +914,7 @@ describe('xtorage', () => {
           expect(_x.getLast(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
         });
 
-        it('should return undefined, empty array', () =>
-        {
+        it('should return undefined, empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _expectedResult = undefined;
@@ -963,8 +928,7 @@ describe('xtorage', () => {
           expect(_x.getLast(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
         });
 
-        it('should return 1', () =>
-        {
+        it('should return 1', () => {
           var _key = 'k';
           var _infoInStorage = [1];
           var _expectedResult = 1;
@@ -978,8 +942,7 @@ describe('xtorage', () => {
           expect(_x.getLast(_key, OBJECT_SESSION_STORAGE)).toBeUndefined();
         });
 
-        it('should return the complex info', () =>
-        {
+        it('should return the complex info', () => {
           var _key = 'k';
           var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
           var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
@@ -995,12 +958,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('sessionStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should return undefined, value from storage is not an array', () =>
-        {
+    describe('sessionStorage', () => {
+      describe('constructor', () => {
+        it('should return undefined, value from storage is not an array', () => {
           var _key = 'k';
           var _infoInStorage = 'x';
           var _expectedResult = undefined;
@@ -1013,8 +973,7 @@ describe('xtorage', () => {
           expect(_x.getLast(_key)).toEqual(_expectedResult);
         });
 
-        it('should return undefined, empty array', () =>
-        {
+        it('should return undefined, empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _expectedResult = undefined;
@@ -1027,8 +986,7 @@ describe('xtorage', () => {
           expect(_x.getLast(_key)).toEqual(_expectedResult);
         });
 
-        it('should return 1', () =>
-        {
+        it('should return 1', () => {
           var _key = 'k';
           var _infoInStorage = [1];
           var _expectedResult = 1;
@@ -1041,8 +999,7 @@ describe('xtorage', () => {
           expect(_x.getLast(_key)).toEqual(_expectedResult);
         });
 
-        it('should return the complex info', () =>
-        {
+        it('should return the complex info', () => {
           var _key = 'k';
           var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
           var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
@@ -1056,8 +1013,7 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method param', () =>
-      {
+      describe('method param', () => {
         it('should return undefined, value from storage is not an array', () =>
         {
           var _key = 'k';
@@ -1073,8 +1029,7 @@ describe('xtorage', () => {
           expect(_x.getLast(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
         });
 
-        it('should return undefined, empty array', () =>
-        {
+        it('should return undefined, empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _expectedResult = undefined;
@@ -1088,8 +1043,7 @@ describe('xtorage', () => {
           expect(_x.getLast(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
         });
 
-        it('should return 1', () =>
-        {
+        it('should return 1', () => {
           var _key = 'k';
           var _infoInStorage = [1];
           var _expectedResult = 1;
@@ -1103,8 +1057,7 @@ describe('xtorage', () => {
           expect(_x.getLast(_key, OBJECT_LOCAL_STORAGE)).toBeUndefined();
         });
 
-        it('should return the complex info', () =>
-        {
+        it('should return the complex info', () => {
           var _key = 'k';
           var _infoInStorage = [2, [{a:true, b: false, c: [1,2,{d: "e"}]}]];
           var _expectedResult = [{a:true, b: false, c: [1,2,{d: "e"}]}];
@@ -1122,10 +1075,8 @@ describe('xtorage', () => {
   });
 
   describe('remove', () => {
-    describe('default', () =>
-    {
-      it('should not remove the info in the storage', () =>
-      {
+    describe('default', () => {
+      it('should not remove the info in the storage', () => {
         var _key = 'k';
         var _info = 'x';
 
@@ -1139,8 +1090,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toBe(_info);
       });
 
-      it('should remove the info in the storage', () =>
-      {
+      it('should remove the info in the storage', () => {
         var _key = 'k';
         var _info = true;
 
@@ -1154,8 +1104,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).not.toBe(_info);
       });
 
-      it('should remove the info in the storage - complex array', () =>
-      {
+      it('should remove the info in the storage - complex array', () => {
         var _key = 'k';
         var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
@@ -1170,12 +1119,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('localStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should not remove the info in the storage', () =>
-        {
+    describe('localStorage', () => {
+      describe('constructor', () => {
+        it('should not remove the info in the storage', () => {
           var _key = 'k';
           var _info = 'x';
 
@@ -1189,8 +1135,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toBe(_info);
         });
 
-        it('should remove the info in the storage', () =>
-        {
+        it('should remove the info in the storage', () => {
           var _key = 'k';
           var _info = true;
 
@@ -1204,8 +1149,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).not.toBe(_info);
         });
 
-        it('should remove the info in the storage - complex array', () =>
-        {
+        it('should remove the info in the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
@@ -1220,10 +1164,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method param', () =>
-      {
-        it('should not remove the info in the storage', () =>
-        {
+      describe('method param', () => {
+        it('should not remove the info in the storage', () => {
           var _key = 'k';
           var _info = 'x';
 
@@ -1237,8 +1179,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBe(_info);
         });
 
-        it('should remove the info in the storage', () =>
-        {
+        it('should remove the info in the storage', () => {
           var _key = 'k';
           var _info = true;
 
@@ -1252,8 +1193,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).not.toBe(_info);
         });
 
-        it('should remove the info in the storage - complex array', () =>
-        {
+        it('should remove the info in the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
@@ -1269,12 +1209,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('sessionStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should not remove the info in the storage', () =>
-        {
+    describe('sessionStorage', () => {
+      describe('constructor', () => {
+        it('should not remove the info in the storage', () => {
           var _key = 'k';
           var _info = 'x';
 
@@ -1288,8 +1225,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toBe(_info);
         });
 
-        it('should remove the info in the storage', () =>
-        {
+        it('should remove the info in the storage', () => {
           var _key = 'k';
           var _info = true;
 
@@ -1303,8 +1239,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).not.toBe(_info);
         });
 
-        it('should remove the info in the storage - complex array', () =>
-        {
+        it('should remove the info in the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
@@ -1319,10 +1254,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method param', () =>
-      {
-        it('should not remove the info in the storage', () =>
-        {
+      describe('method param', () =>  {
+        it('should not remove the info in the storage', () => {
           var _key = 'k';
           var _info = 'x';
 
@@ -1336,8 +1269,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBe(_info);
         });
 
-        it('should remove the info in the storage', () =>
-        {
+        it('should remove the info in the storage', () => {
           var _key = 'k';
           var _info = true;
 
@@ -1351,8 +1283,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).not.toBe(_info);
         });
 
-        it('should remove the info in the storage - complex array', () =>
-        {
+        it('should remove the info in the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
 
@@ -1370,10 +1301,8 @@ describe('xtorage', () => {
   });
 
   describe('removeFirst', () => {
-    describe('default', () =>
-    {
-      it('should not remove the info in the storage - it\'s not an array', () =>
-      {
+    describe('default', () => {
+      it('should not remove the info in the storage - it\'s not an array', () => {
         var _key = 'k';
         var _info = 'x';
 
@@ -1387,8 +1316,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toBe(_info);
       });
 
-      it('should remove the info from the storage - single info in array', () =>
-      {
+      it('should remove the info from the storage - single info in array', () => {
         var _key = 'k';
         var _info = [true];
         var _expectedResult = [];
@@ -1403,8 +1331,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_expectedResult);
       });
 
-      it('should remove the info in the storage - complex array', () =>
-      {
+      it('should remove the info in the storage - complex array', () => {
         var _key = 'k';
         var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
         var _expectedResult = [1];
@@ -1419,8 +1346,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_expectedResult);
       });
 
-      it('should remove the info in the storage - multiple items in array', () =>
-      {
+      it('should remove the info in the storage - multiple items in array', () => {
         var _key = 'k';
         var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 3, true, false];
         var _expectedResult = [1, 3, true, false];
@@ -1436,12 +1362,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('localStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should not remove the info in the storage', () =>
-        {
+    describe('localStorage', () => {
+      describe('constructor', () => {
+        it('should not remove the info in the storage', () => {
           var _key = 'k';
           var _info = 'x';
 
@@ -1455,8 +1378,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toBe(_info);
         });
 
-        it('should remove the info from the storage - single info in array', () =>
-        {
+        it('should remove the info from the storage - single info in array', () => {
           var _key = 'k';
           var _info = [true];
           var _expectedResult = [];
@@ -1471,8 +1393,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - multiple items in array', () =>
-        {
+        it('should remove the info in the storage - multiple items in array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
           var _expectedResult = [1, 2, false, true];
@@ -1487,8 +1408,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - complex array', () =>
-        {
+        it('should remove the info in the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
           var _expectedResult = [1];
@@ -1504,10 +1424,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method params', () =>
-      {
-        it('should not remove the info in the storage', () =>
-        {
+      describe('method params', () => {
+        it('should not remove the info in the storage', () => {
           var _key = 'k';
           var _info = 'x';
 
@@ -1521,8 +1439,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBe(_info);
         });
 
-        it('should remove the info from the storage - single info in array', () =>
-        {
+        it('should remove the info from the storage - single info in array', () => {
           var _key = 'k';
           var _info = [true];
           var _expectedResult = [];
@@ -1537,8 +1454,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - multiple items in array', () =>
-        {
+        it('should remove the info in the storage - multiple items in array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
           var _expectedResult = [1, 2, false, true];
@@ -1553,8 +1469,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - complex array', () =>
-        {
+        it('should remove the info in the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
           var _expectedResult = [1];
@@ -1571,12 +1486,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('sessionStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should not remove the info in the storage', () =>
-        {
+    describe('sessionStorage', () => {
+      describe('constructor', () => {
+        it('should not remove the info in the storage', () => {
           var _key = 'k';
           var _info = 'x';
 
@@ -1590,8 +1502,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toBe(_info);
         });
 
-        it('should remove the info from the storage - single item in array', () =>
-        {
+        it('should remove the info from the storage - single item in array', () => {
           var _key = 'k';
           var _info = [true];
           var _expectedResult = [];
@@ -1606,8 +1517,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - multiple items in array', () =>
-        {
+        it('should remove the info in the storage - multiple items in array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
           var _expectedResult = [1, 2, false, true];
@@ -1622,8 +1532,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - complex array', () =>
-        {
+        it('should remove the info in the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
           var _expectedResult = [1];
@@ -1639,10 +1548,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method params', () =>
-      {
-        it('should not remove the info in the storage', () =>
-        {
+      describe('method params', () => {
+        it('should not remove the info in the storage', () => {
           var _key = 'k';
           var _info = 'x';
 
@@ -1656,8 +1563,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBe(_info);
         });
 
-        it('should remove the info from the storage - single info in array', () =>
-        {
+        it('should remove the info from the storage - single info in array', () => {
           var _key = 'k';
           var _info = [true];
           var _expectedResult = [];
@@ -1672,8 +1578,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - multiple items in array', () =>
-        {
+        it('should remove the info in the storage - multiple items in array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
           var _expectedResult = [1, 2, false, true];
@@ -1688,8 +1593,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - complex array', () =>
-        {
+        it('should remove the info in the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
           var _expectedResult = [1];
@@ -1708,10 +1612,8 @@ describe('xtorage', () => {
   });
 
   describe('removeLast', () => {
-    describe('default', () =>
-    {
-      it('should not remove the info in the storage - it\'s not an array', () =>
-      {
+    describe('default', () => {
+      it('should not remove the info in the storage - it\'s not an array', () => {
         var _key = 'k';
         var _info = 'x';
 
@@ -1725,8 +1627,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toBe(_info);
       });
 
-      it('should remove the info from the storage - single info in array', () =>
-      {
+      it('should remove the info from the storage - single info in array', () => {
         var _key = 'k';
         var _info = [true];
         var _expectedResult = [];
@@ -1741,8 +1642,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_expectedResult);
       });
 
-      it('should remove the info in the storage - complex array', () =>
-      {
+      it('should remove the info in the storage - complex array', () => {
         var _key = 'k';
         var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
         var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
@@ -1757,8 +1657,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_expectedResult);
       });
 
-      it('should remove the info in the storage - multiple items in array', () =>
-      {
+      it('should remove the info in the storage - multiple items in array', () => {
         var _key = 'k';
         var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 3, true, false];
         var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 3, true];
@@ -1774,12 +1673,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('localStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should not remove the info in the storage', () =>
-        {
+    describe('localStorage', () => {
+      describe('constructor', () => {
+        it('should not remove the info in the storage', () => {
           var _key = 'k';
           var _info = 'x';
 
@@ -1793,8 +1689,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toBe(_info);
         });
 
-        it('should remove the info from the storage - single info in array', () =>
-        {
+        it('should remove the info from the storage - single info in array', () => {
           var _key = 'k';
           var _info = [true];
           var _expectedResult = [];
@@ -1809,8 +1704,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - multiple items in array', () =>
-        {
+        it('should remove the info in the storage - multiple items in array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
           var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false];
@@ -1825,8 +1719,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - complex array', () =>
-        {
+        it('should remove the info in the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
           var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
@@ -1842,10 +1735,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method params', () =>
-      {
-        it('should not remove the info in the storage', () =>
-        {
+      describe('method params', () => {
+        it('should not remove the info in the storage', () => {
           var _key = 'k';
           var _info = 'x';
 
@@ -1859,8 +1750,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBe(_info);
         });
 
-        it('should remove the info from the storage - single info in array', () =>
-        {
+        it('should remove the info from the storage - single info in array', () => {
           var _key = 'k';
           var _info = [true];
           var _expectedResult = [];
@@ -1875,8 +1765,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - multiple items in array', () =>
-        {
+        it('should remove the info in the storage - multiple items in array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
           var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false];
@@ -1891,8 +1780,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - complex array', () =>
-        {
+        it('should remove the info in the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
           var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
@@ -1909,12 +1797,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('sessionStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should not remove the info in the storage', () =>
-        {
+    describe('sessionStorage', () => {
+      describe('constructor', () => {
+        it('should not remove the info in the storage', () => {
           var _key = 'k';
           var _info = 'x';
 
@@ -1928,8 +1813,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toBe(_info);
         });
 
-        it('should remove the info from the storage - single item in array', () =>
-        {
+        it('should remove the info from the storage - single item in array', () => {
           var _key = 'k';
           var _info = [true];
           var _expectedResult = [];
@@ -1944,8 +1828,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - multiple items in array', () =>
-        {
+        it('should remove the info in the storage - multiple items in array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
           var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false];
@@ -1960,8 +1843,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - complex array', () =>
-        {
+        it('should remove the info in the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
           var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
@@ -1977,10 +1859,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method params', () =>
-      {
-        it('should not remove the info in the storage', () =>
-        {
+      describe('method params', () => {
+        it('should not remove the info in the storage', () => {
           var _key = 'k';
           var _info = 'x';
 
@@ -1994,8 +1874,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBe(_info);
         });
 
-        it('should remove the info from the storage - single info in array', () =>
-        {
+        it('should remove the info from the storage - single info in array', () => {
           var _key = 'k';
           var _info = [true];
           var _expectedResult = [];
@@ -2010,8 +1889,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - multiple items in array', () =>
-        {
+        it('should remove the info in the storage - multiple items in array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false, true];
           var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1, 2, false];
@@ -2026,8 +1904,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should remove the info in the storage - complex array', () =>
-        {
+        it('should remove the info in the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}, 1];
           var _expectedResult = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
@@ -2046,8 +1923,7 @@ describe('xtorage', () => {
   });
 
   describe('removeAll', () => {
-    describe('default', () =>
-    {
+    describe('default', () => {
       it('should remove all the info from the storage', () => {
         var _key0 = 'k0';
         var _key1 = 'k1';
@@ -2089,10 +1965,8 @@ describe('xtorage', () => {
       });
     });
 
-    describe('localStorage', () =>
-    {
-      describe('constructor', () =>
-      {
+    describe('localStorage', () => {
+      describe('constructor', () => {
         it('should remove all the info from the storage', () => {
           var _key0 = 'k0';
           var _key1 = 'k1';
@@ -2134,8 +2008,7 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method param', () =>
-      {
+      describe('method param', () => {
         it('should remove all the info from the storage', () => {
           var _key0 = 'k0';
           var _key1 = 'k1';
@@ -2178,10 +2051,8 @@ describe('xtorage', () => {
       });
     });
 
-    describe('sessionStorage', () =>
-    {
-      describe('constructor', () =>
-      {
+    describe('sessionStorage', () => {
+      describe('constructor', () => {
         it('should remove all the info from the storage', () => {
           var _key0 = 'k0';
           var _key1 = 'k1';
@@ -2223,8 +2094,7 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method param', () =>
-      {
+      describe('method param', () => {
         it('should remove all the info from the storage', () => {
           var _key0 = 'k0';
           var _key1 = 'k1';
@@ -2268,12 +2138,9 @@ describe('xtorage', () => {
     });
   });
 
-  describe('save', () =>
-  {
-    describe('default', () =>
-    {
-      it('should save to the storage - string', () =>
-      {
+  describe('save', () => {
+    describe('default', () => {
+      it('should save to the storage - string', () => {
         var _key = 'k';
         var _info = 'a';
 
@@ -2284,8 +2151,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_info);
       });
 
-      it('should save to the storage - number', () =>
-      {
+      it('should save to the storage - number', () => {
         var _key = 'k';
         var _info = 1;
 
@@ -2296,8 +2162,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_info);
       });
 
-      it('should save to the storage - boolean', () =>
-      {
+      it('should save to the storage - boolean', () => {
         var _key = 'k';
         var _info = true;
 
@@ -2308,8 +2173,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_info);
       });
 
-      it('should save to the storage - complex object', () =>
-      {
+      it('should save to the storage - complex object', () => {
         var _key = 'k';
         var _info = {a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}};
 
@@ -2320,8 +2184,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_info);
       });
 
-      it('should save to the storage - complex array', () =>
-      {
+      it('should save to the storage - complex array', () => {
         var _key = 'k';
         var _info = [{a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}}];
 
@@ -2333,12 +2196,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('localStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should save to the storage - string', () =>
-        {
+    describe('localStorage', () => {
+      describe('constructor', () => {
+        it('should save to the storage - string', () => {
           var _key = 'k';
           var _info = 'a';
 
@@ -2349,8 +2209,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_info);
         });
 
-        it('should save to the storage - number', () =>
-        {
+        it('should save to the storage - number', () => {
           var _key = 'k';
           var _info = 1;
 
@@ -2361,8 +2220,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_info);
         });
 
-        it('should save to the storage - boolean', () =>
-        {
+        it('should save to the storage - boolean', () => {
           var _key = 'k';
           var _info = true;
 
@@ -2373,8 +2231,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_info);
         });
 
-        it('should save to the storage - complex object', () =>
-        {
+        it('should save to the storage - complex object', () => {
           var _key = 'k';
           var _info = {a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}};
 
@@ -2385,8 +2242,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_info);
         });
 
-        it('should save to the storage - complex array', () =>
-        {
+        it('should save to the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}}];
 
@@ -2398,10 +2254,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method param', () =>
-      {
-        it('should save to the storage - string', () =>
-        {
+      describe('method param', () => {
+        it('should save to the storage - string', () => {
           var _key = 'k';
           var _info = 'a';
 
@@ -2413,8 +2267,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
         });
 
-        it('should save to the storage - number', () =>
-        {
+        it('should save to the storage - number', () => {
           var _key = 'k';
           var _info = 1;
 
@@ -2426,8 +2279,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
         });
 
-        it('should save to the storage - boolean', () =>
-        {
+        it('should save to the storage - boolean', () => {
           var _key = 'k';
           var _info = true;
 
@@ -2452,8 +2304,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBeNull();
         });
 
-        it('should save to the storage - complex array', () =>
-        {
+        it('should save to the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}}];
 
@@ -2467,12 +2318,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('sessionStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should save to the storage - string', () =>
-        {
+    describe('sessionStorage', () => {
+      describe('constructor', () => {
+        it('should save to the storage - string', () => {
           var _key = 'k';
           var _info = 'a';
 
@@ -2483,8 +2331,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_info);
         });
 
-        it('should save to the storage - number', () =>
-        {
+        it('should save to the storage - number', () => {
           var _key = 'k';
           var _info = 1;
 
@@ -2495,8 +2342,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_info);
         });
 
-        it('should save to the storage - boolean', () =>
-        {
+        it('should save to the storage - boolean', () => {
           var _key = 'k';
           var _info = true;
 
@@ -2507,8 +2353,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_info);
         });
 
-        it('should save to the storage - complex object', () =>
-        {
+        it('should save to the storage - complex object', () => {
           var _key = 'k';
           var _info = {a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}};
 
@@ -2519,8 +2364,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_info);
         });
 
-        it('should save to the storage - complex array', () =>
-        {
+        it('should save to the storage - complex array', () => {
           var _key = 'k';
           var _info = [{a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}}];
 
@@ -2533,7 +2377,7 @@ describe('xtorage', () => {
       });
 
       describe('method param', () => {
-        it('should save to the storage - string', function () {
+        it('should save to the storage - string', () =>  {
           var _key = 'k';
           var _info = 'a';
 
@@ -2545,7 +2389,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
         });
 
-        it('should save to the storage - number', function () {
+        it('should save to the storage - number', () =>  {
           var _key = 'k';
           var _info = 1;
 
@@ -2557,7 +2401,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
         });
 
-        it('should save to the storage - boolean', function () {
+        it('should save to the storage - boolean', () =>  {
           var _key = 'k';
           var _info = true;
 
@@ -2569,7 +2413,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
         });
 
-        it('should save to the storage - complex object', function () {
+        it('should save to the storage - complex object', () =>  {
           var _key = 'k';
           var _info = {a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}};
 
@@ -2581,7 +2425,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toBeNull();
         });
 
-        it('should save to the storage - complex array', function () {
+        it('should save to the storage - complex array', () =>  {
           var _key = 'k';
           var _info = [{a: true, b: {c: false, d: [1, {e: {f: [123.3]}}]}}];
 
@@ -2597,10 +2441,8 @@ describe('xtorage', () => {
   });
 
   describe('saveInLastPosition', () => {
-    describe('default', () =>
-    {
-      it('should not save, info in the storage is not array', () =>
-      {
+    describe('default', () => {
+      it('should not save, info in the storage is not array', () => {
         var _key = 'k';
         var _infoInStorage = 'a';
         var _newInfo = 'b';
@@ -2617,8 +2459,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_expectedResult);
       });
 
-      it('should save correctly - empty array', () =>
-      {
+      it('should save correctly - empty array', () => {
         var _key = 'k';
         var _infoInStorage = [];
         var _newInfo = 0;
@@ -2635,8 +2476,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_expectedResult);
       });
 
-      it('should save correctly - simple array', () =>
-      {
+      it('should save correctly - simple array', () => {
         var _key = 'k';
         var _infoInStorage = [1, 2];
         var _newInfo = 0;
@@ -2653,8 +2493,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_expectedResult);
       });
 
-      it('should save correctly - complex array in the storage', () =>
-      {
+      it('should save correctly - complex array in the storage', () => {
         var _key = 'k';
         var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
         var _newInfo = 0;
@@ -2671,8 +2510,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_expectedResult);
       });
 
-      it('should save correctly - complex array in the storage and complex array being added', () =>
-      {
+      it('should save correctly - complex array in the storage and complex array being added', () => {
         var _key = 'k';
         var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
         var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
@@ -2690,12 +2528,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('localStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should not save, info in the storage is not array', () =>
-        {
+    describe('localStorage', () => {
+      describe('constructor', () => {
+        it('should not save, info in the storage is not array', () => {
           var _key = 'k';
           var _infoInStorage = 'a';
           var _newInfo = 'b';
@@ -2712,8 +2547,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - empty array', () =>
-        {
+        it('should save correctly - empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _newInfo = 0;
@@ -2730,8 +2564,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - simple array', () =>
-        {
+        it('should save correctly - simple array', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2];
           var _newInfo = 0;
@@ -2748,8 +2581,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage', () =>
-        {
+        it('should save correctly - complex array in the storage', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = 0;
@@ -2766,8 +2598,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage and complex array being added', () =>
-        {
+        it('should save correctly - complex array in the storage and complex array being added', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
@@ -2785,10 +2616,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method param', () =>
-      {
-        it('should not save, info in the storage is not array', () =>
-        {
+      describe('method param', () => {
+        it('should not save, info in the storage is not array', () => {
           var _key = 'k';
           var _infoInStorage = 'a';
           var _newInfo = 'b';
@@ -2805,8 +2634,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - empty array', () =>
-        {
+        it('should save correctly - empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _newInfo = 0;
@@ -2823,8 +2651,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - simple array', () =>
-        {
+        it('should save correctly - simple array', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2];
           var _newInfo = 0;
@@ -2841,8 +2668,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage', () =>
-        {
+        it('should save correctly - complex array in the storage', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = 0;
@@ -2859,8 +2685,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage and complex array being added', () =>
-        {
+        it('should save correctly - complex array in the storage and complex array being added', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
@@ -2879,12 +2704,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('sessionStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should not save, info in the storage is not array', () =>
-        {
+    describe('sessionStorage', () => {
+      describe('constructor', () => {
+        it('should not save, info in the storage is not array', () => {
           var _key = 'k';
           var _infoInStorage = 'a';
           var _newInfo = 'b';
@@ -2901,8 +2723,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - empty array', () =>
-        {
+        it('should save correctly - empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _newInfo = 0;
@@ -2919,8 +2740,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - simple array', () =>
-        {
+        it('should save correctly - simple array', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2];
           var _newInfo = 0;
@@ -2937,8 +2757,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage', () =>
-        {
+        it('should save correctly - complex array in the storage', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = 0;
@@ -2955,8 +2774,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage and complex array being added', () =>
-        {
+        it('should save correctly - complex array in the storage and complex array being added', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
@@ -2974,10 +2792,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method param', () =>
-      {
-        it('should not save, info in the storage is not array', () =>
-        {
+      describe('method param', () => {
+        it('should not save, info in the storage is not array', () => {
           var _key = 'k';
           var _infoInStorage = 'a';
           var _newInfo = 'b';
@@ -2994,8 +2810,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - empty array', () =>
-        {
+        it('should save correctly - empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _newInfo = 0;
@@ -3012,8 +2827,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - simple array', () =>
-        {
+        it('should save correctly - simple array', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2];
           var _newInfo = 0;
@@ -3030,8 +2844,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage', () =>
-        {
+        it('should save correctly - complex array in the storage', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = 0;
@@ -3048,8 +2861,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage and complex array being added', () =>
-        {
+        it('should save correctly - complex array in the storage and complex array being added', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
@@ -3070,10 +2882,8 @@ describe('xtorage', () => {
   });
 
   describe('saveInFirstPosition', () => {
-    describe('default', () =>
-    {
-      it('should not save, info in the storage is not array', () =>
-      {
+    describe('default', () => {
+      it('should not save, info in the storage is not array', () => {
         var _key = 'k';
         var _infoInStorage = 'a';
         var _newInfo = 'b';
@@ -3090,8 +2900,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_expectedResult);
       });
 
-      it('should save correctly - empty array', () =>
-      {
+      it('should save correctly - empty array', () => {
         var _key = 'k';
         var _infoInStorage = [];
         var _newInfo = 0;
@@ -3108,8 +2917,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_expectedResult);
       });
 
-      it('should save correctly - simple array', () =>
-      {
+      it('should save correctly - simple array', () => {
         var _key = 'k';
         var _infoInStorage = [1, 2];
         var _newInfo = 0;
@@ -3126,8 +2934,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_expectedResult);
       });
 
-      it('should save correctly - complex array in the storage', () =>
-      {
+      it('should save correctly - complex array in the storage', () => {
         var _key = 'k';
         var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
         var _newInfo = 0;
@@ -3144,8 +2951,7 @@ describe('xtorage', () => {
         expect(_x.get(_key)).toEqual(_expectedResult);
       });
 
-      it('should save correctly - complex array in the storage and complex array being added', () =>
-      {
+      it('should save correctly - complex array in the storage and complex array being added', () => {
         var _key = 'k';
         var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
         var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
@@ -3163,12 +2969,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('localStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should not save, info in the storage is not array', () =>
-        {
+    describe('localStorage', () => {
+      describe('constructor', () => {
+        it('should not save, info in the storage is not array', () => {
           var _key = 'k';
           var _infoInStorage = 'a';
           var _newInfo = 'b';
@@ -3185,8 +2988,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - empty array', () =>
-        {
+        it('should save correctly - empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _newInfo = 0;
@@ -3203,8 +3005,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - simple array', () =>
-        {
+        it('should save correctly - simple array', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2];
           var _newInfo = 0;
@@ -3221,8 +3022,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage', () =>
-        {
+        it('should save correctly - complex array in the storage', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = 0;
@@ -3239,8 +3039,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage and complex array being added', () =>
-        {
+        it('should save correctly - complex array in the storage and complex array being added', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
@@ -3258,10 +3057,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('constructor', () =>
-      {
-        it('should not save, info in the storage is not array', () =>
-        {
+      describe('constructor', () => {
+        it('should not save, info in the storage is not array', () => {
           var _key = 'k';
           var _infoInStorage = 'a';
           var _newInfo = 'b';
@@ -3278,8 +3075,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - empty array', () =>
-        {
+        it('should save correctly - empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _newInfo = 0;
@@ -3296,8 +3092,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - simple array', () =>
-        {
+        it('should save correctly - simple array', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2];
           var _newInfo = 0;
@@ -3314,8 +3109,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage', () =>
-        {
+        it('should save correctly - complex array in the storage', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = 0;
@@ -3332,8 +3126,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage and complex array being added', () =>
-        {
+        it('should save correctly - complex array in the storage and complex array being added', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
@@ -3352,12 +3145,9 @@ describe('xtorage', () => {
       });
     });
 
-    describe('sessionStorage', () =>
-    {
-      describe('constructor', () =>
-      {
-        it('should not save, info in the storage is not array', () =>
-        {
+    describe('sessionStorage', () => {
+      describe('constructor', () => {
+        it('should not save, info in the storage is not array', () => {
           var _key = 'k';
           var _infoInStorage = 'a';
           var _newInfo = 'b';
@@ -3374,8 +3164,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - empty array', () =>
-        {
+        it('should save correctly - empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _newInfo = 0;
@@ -3392,8 +3181,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - simple array', () =>
-        {
+        it('should save correctly - simple array', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2];
           var _newInfo = 0;
@@ -3410,8 +3198,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage', () =>
-        {
+        it('should save correctly - complex array in the storage', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = 0;
@@ -3428,8 +3215,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage and complex array being added', () =>
-        {
+        it('should save correctly - complex array in the storage and complex array being added', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
@@ -3447,10 +3233,8 @@ describe('xtorage', () => {
         });
       });
 
-      describe('method param', () =>
-      {
-        it('should not save, info in the storage is not array', () =>
-        {
+      describe('method param', () => {
+        it('should not save, info in the storage is not array', () => {
           var _key = 'k';
           var _infoInStorage = 'a';
           var _newInfo = 'b';
@@ -3467,8 +3251,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - empty array', () =>
-        {
+        it('should save correctly - empty array', () => {
           var _key = 'k';
           var _infoInStorage = [];
           var _newInfo = 0;
@@ -3485,8 +3268,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - simple array', () =>
-        {
+        it('should save correctly - simple array', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2];
           var _newInfo = 0;
@@ -3503,8 +3285,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage', () =>
-        {
+        it('should save correctly - complex array in the storage', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = 0;
@@ -3521,8 +3302,7 @@ describe('xtorage', () => {
           expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_expectedResult);
         });
 
-        it('should save correctly - complex array in the storage and complex array being added', () =>
-        {
+        it('should save correctly - complex array in the storage and complex array being added', () => {
           var _key = 'k';
           var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
           var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
