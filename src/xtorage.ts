@@ -82,24 +82,24 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
     window[_opt.storage].setItem(key, this._toStringifiedJSON(info));
   }
 
-  private _saveInArray(key:string, info:any, method:string, opt?:StorageOptions):void {
+  private _saveInArray(key:string, newInfo:any, method:string, opt?:StorageOptions):void {
     var _opt = this._parseOptions(opt);
-    var _info = this.get(key, _opt) || [];
+    var _infoStorage = this.get(key, _opt) || [];
 
-    if (!(_info instanceof Array)) return;
+    if (!(_infoStorage instanceof Array)) return;
 
-    if (_opt.unique && !!_info.length) {
-      <any[]>_info.forEach((information) => {
-          if (JSON.stringify(info) === JSON.stringify(information)) {
+    if (_opt.unique && !!_infoStorage.length) {
+      <any[]>_infoStorage.forEach((informationStorage) => {
+          if (JSON.stringify(newInfo) === JSON.stringify(informationStorage)) {
             return;
           }
         })
     }
     else {
-      _info[method](info);
+      _infoStorage[method](newInfo);
     }
 
-    this.save(key, _info, _opt);
+    this.save(key, _infoStorage, _opt);
   }
 
   saveInFirstPosition(key:string, info: any, opt?:StorageOptions):void {

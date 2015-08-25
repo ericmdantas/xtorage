@@ -3494,6 +3494,8 @@ describe('xtorage', () => {
           var _info1 = {a: 1};
           var _info2 = {a: 1};
           var _info3 = {a: 1};
+          var _info4 = {a: 1};
+          var _info5 = {a: 1};
           var _key = 'k';
 
           var _x = new Xtorage();
@@ -3501,6 +3503,8 @@ describe('xtorage', () => {
           _x.saveInFirstPosition(_key, _info1, {unique: true});
           _x.saveInFirstPosition(_key, _info2, {unique: true});
           _x.saveInFirstPosition(_key, _info3, {unique: true});
+          _x.saveInFirstPosition(_key, _info4, {unique: true});
+          _x.saveInFirstPosition(_key, _info5, {unique: true});
 
           expect(_x.get(_key).length).toBe(1);
         });
@@ -3519,7 +3523,7 @@ describe('xtorage', () => {
 
           _x.saveInFirstPosition(_key, _info1);
 
-          expect(_x.get(_key)[0]).toEqual(_info1)
+          expect(_x.get(_key)[0]).toEqual(_info1);
 
           _x.saveInFirstPosition(_key, _info2);
 
@@ -3531,6 +3535,7 @@ describe('xtorage', () => {
           var _key = 'k';
           var _info1 = 'a';
           var _info2 = 'b';
+          var _info3 = 'c';
 
           var _x = new Xtorage(undefined, true);
 
@@ -3542,7 +3547,13 @@ describe('xtorage', () => {
 
           expect(_x.get(_key)[0]).toEqual(_info2);
           expect(_x.get(_key)[1]).toEqual(_info1);
-        })
+
+          _x.saveInFirstPosition(_key, _info3);
+
+          expect(_x.get(_key)[0]).toEqual(_info3);
+          expect(_x.get(_key)[1]).toEqual(_info2);
+          expect(_x.get(_key)[2]).toEqual(_info1);
+        });
       });
 
       describe('saveInLastPosition', () => {
@@ -3567,18 +3578,25 @@ describe('xtorage', () => {
           var _key = 'k';
           var _info1 = 'a';
           var _info2 = 'b';
+          var _info3 = 'c';
 
           var _x = new Xtorage(undefined, true);
 
           _x.saveInLastPosition(_key, _info1);
 
-          expect(_x.get(_key)[0]).toEqual(_info1)
+          expect(_x.get(_key)[0]).toEqual(_info1);
 
           _x.saveInLastPosition(_key, _info2);
 
-          expect(_x.get(_key)[0]).toEqual(_info2);
-          expect(_x.get(_key)[1]).toEqual(_info1);
-        })
+          expect(_x.get(_key)[0]).toEqual(_info1);
+          expect(_x.get(_key)[1]).toEqual(_info2);
+
+          _x.saveInLastPosition(_key, _info3);
+
+          expect(_x.get(_key)[0]).toEqual(_info1);
+          expect(_x.get(_key)[1]).toEqual(_info2);
+          expect(_x.get(_key)[2]).toEqual(_info3);
+        });
       });
     });
 });
