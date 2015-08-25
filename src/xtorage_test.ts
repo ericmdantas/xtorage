@@ -2897,6 +2897,91 @@ describe('xtorage', () => {
         });
       });
     });
+
+    describe('unique option - saveInLastPosition', () => {
+      describe('default', () => {
+        it('should allow the storage to have repeated items in the array', () => {
+          var _info1 = {a: 1};
+          var _info2 = {a: 1};
+          var _info3 = {a: 1};
+          var _key = 'k';
+
+          var _x = new Xtorage();
+
+          _x.saveInLastPosition(_key, _info1);
+          _x.saveInLastPosition(_key, _info2);
+          _x.saveInLastPosition(_key, _info3);
+
+          expect(_x.get(_key).length).toBe(3);
+        });
+      });
+
+      describe('constructor', () => {
+        it('should not allow the storage to have repeated items - unique is false', () => {
+          var _info1 = {a: 1};
+          var _info2 = {a: 1};
+          var _info3 = {a: 1};
+          var _arrayInStorage = [];
+          var _key = 'k';
+
+          var _x = new Xtorage(undefined, false);
+
+          _x.saveInLastPosition(_key, _info1);
+          _x.saveInLastPosition(_key, _info2);
+          _x.saveInLastPosition(_key, _info3);
+
+          expect(_x.get(_key).length).toBe(3);
+        });
+
+        it('should not allow the storage to have repeated items - unique is true', () => {
+          var _info1 = {a: 1};
+          var _info2 = {a: 1};
+          var _info3 = {a: 1};
+          var _key = 'k';
+
+          var _x = new Xtorage(undefined, true);
+
+          _x.saveInLastPosition(_key, _info1);
+          _x.saveInLastPosition(_key, _info2);
+          _x.saveInLastPosition(_key, _info3);
+
+          expect(_x.get(_key).length).toBe(1);
+        });
+      });
+
+      describe('method param', () => {
+        it('should not allow the storage to have repeated items - unique is false', () => {
+          var _info1 = {a: 1};
+          var _info2 = {a: 1};
+          var _info3 = {a: 1};
+          var _key = 'k';
+
+          var _x = new Xtorage();
+
+          _x.saveInLastPosition(_key, _info1, {unique: false});
+          _x.saveInLastPosition(_key, _info2, {unique: false});
+          _x.saveInLastPosition(_key, _info3, {unique: false});
+
+          expect(_x.get(_key).length).toBe(3);
+        });
+
+        it('should not allow the storage to have repeated items - unique is true', () => {
+          var _info1 = {a: 1};
+          var _info2 = {a: 1};
+          var _info3 = {a: 1};
+          var _key = 'k';
+
+          var _x = new Xtorage();
+
+          _x.saveInLastPosition(_key, _info1, {unique: true});
+          _x.saveInLastPosition(_key, _info2, {unique: true});
+          _x.saveInLastPosition(_key, _info3, {unique: true});
+
+          expect(_x.get(_key).length).toBe(1);
+        });
+      });
+    })
+
   });
 
   describe('saveInFirstPosition', () => {
@@ -3339,90 +3424,6 @@ describe('xtorage', () => {
       });
     });
 
-    describe('unique option - saveInLastPosition', () => {
-      describe('default', () => {
-        it('should allow the storage to have repeated items in the array', () => {
-          var _info1 = {a: 1};
-          var _info2 = {a: 1};
-          var _info3 = {a: 1};
-          var _key = 'k';
-
-          var _x = new Xtorage();
-
-          _x.saveInLastPosition(_key, _info1);
-          _x.saveInLastPosition(_key, _info2);
-          _x.saveInLastPosition(_key, _info3);
-
-          expect(_x.get(_key).length).toBe(3);
-        });
-      });
-
-      describe('constructor', () => {
-        it('should not allow the storage to have repeated items - unique is false', () => {
-          var _info1 = {a: 1};
-          var _info2 = {a: 1};
-          var _info3 = {a: 1};
-          var _arrayInStorage = [];
-          var _key = 'k';
-
-          var _x = new Xtorage(undefined, false);
-
-          _x.saveInLastPosition(_key, _info1);
-          _x.saveInLastPosition(_key, _info2);
-          _x.saveInLastPosition(_key, _info3);
-
-          expect(_x.get(_key).length).toBe(3);
-        });
-
-        it('should not allow the storage to have repeated items - unique is true', () => {
-          var _info1 = {a: 1};
-          var _info2 = {a: 1};
-          var _info3 = {a: 1};
-          var _key = 'k';
-
-          var _x = new Xtorage(undefined, true);
-
-          _x.saveInLastPosition(_key, _info1);
-          _x.saveInLastPosition(_key, _info2);
-          _x.saveInLastPosition(_key, _info3);
-
-          expect(_x.get(_key).length).toBe(1);
-        });
-      });
-
-      describe('method param', () => {
-        it('should not allow the storage to have repeated items - unique is false', () => {
-          var _info1 = {a: 1};
-          var _info2 = {a: 1};
-          var _info3 = {a: 1};
-          var _key = 'k';
-
-          var _x = new Xtorage();
-
-          _x.saveInLastPosition(_key, _info1, {unique: false});
-          _x.saveInLastPosition(_key, _info2, {unique: false});
-          _x.saveInLastPosition(_key, _info3, {unique: false});
-
-          expect(_x.get(_key).length).toBe(3);
-        });
-
-        it('should not allow the storage to have repeated items - unique is true', () => {
-          var _info1 = {a: 1};
-          var _info2 = {a: 1};
-          var _info3 = {a: 1};
-          var _key = 'k';
-
-          var _x = new Xtorage();
-
-          _x.saveInLastPosition(_key, _info1, {unique: true});
-          _x.saveInLastPosition(_key, _info2), {unique: true};
-          _x.saveInLastPosition(_key, _info3, {unique: true});
-
-          expect(_x.get(_key).length).toBe(1);
-        });
-      });
-    })
-
     describe('unique option - saveInFirstPosition', () => {
       describe('default', () => {
         it('should allow the storage to have repeated items in the array', () => {
@@ -3498,15 +3499,16 @@ describe('xtorage', () => {
           var _x = new Xtorage();
 
           _x.saveInFirstPosition(_key, _info1, {unique: true});
-          _x.saveInFirstPosition(_key, _info2), {unique: true};
+          _x.saveInFirstPosition(_key, _info2, {unique: true});
           _x.saveInFirstPosition(_key, _info3, {unique: true});
 
           expect(_x.get(_key).length).toBe(1);
         });
       });
     });
+  });
 
-    describe('push/unshift proxies', () => {
+  describe('push/unshift proxies', () => {
       describe('saveInFirstPosition', () => {
         it('should be able to push to the storage, even though there was nothing there', () => {
           var _key = 'k';
@@ -3524,6 +3526,23 @@ describe('xtorage', () => {
           expect(_x.get(_key)[0]).toEqual(_info2);
           expect(_x.get(_key)[1]).toEqual(_info1);
         });
+
+        it('unique - should be able to push to the storage, even though there was nothing there', () => {
+          var _key = 'k';
+          var _info1 = 'a';
+          var _info2 = 'b';
+
+          var _x = new Xtorage(undefined, true);
+
+          _x.saveInFirstPosition(_key, _info1);
+
+          expect(_x.get(_key)[0]).toEqual(_info1);
+
+          _x.saveInFirstPosition(_key, _info2);
+
+          expect(_x.get(_key)[0]).toEqual(_info2);
+          expect(_x.get(_key)[1]).toEqual(_info1);
+        })
       });
 
       describe('saveInLastPosition', () => {
@@ -3536,14 +3555,30 @@ describe('xtorage', () => {
 
           _x.saveInLastPosition(_key, _info1);
 
-          expect(_x.get(_key)[0]).toEqual(_info1)
+          expect(_x.get(_key)[0]).toEqual(_info1);
 
           _x.saveInLastPosition(_key, _info2);
 
           expect(_x.get(_key)[0]).toEqual(_info1);
           expect(_x.get(_key)[1]).toEqual(_info2);
         });
+
+        it('unique - should be able to push to the storage, even though there was nothing there', () => {
+          var _key = 'k';
+          var _info1 = 'a';
+          var _info2 = 'b';
+
+          var _x = new Xtorage(undefined, true);
+
+          _x.saveInLastPosition(_key, _info1);
+
+          expect(_x.get(_key)[0]).toEqual(_info1)
+
+          _x.saveInLastPosition(_key, _info2);
+
+          expect(_x.get(_key)[0]).toEqual(_info2);
+          expect(_x.get(_key)[1]).toEqual(_info1);
+        })
       });
     });
-  });
 });

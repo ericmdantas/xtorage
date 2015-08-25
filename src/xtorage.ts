@@ -70,10 +70,8 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
   }
 
   _parseOptions(opt:StorageOptions):StorageOptions {
-    let _opt = {
-                  storage: opt && opt.storage ? opt.storage : this.storage,
-                  unique: opt && opt.unique ? opt.unique : this.unique
-               };
+    let _opt = {storage: opt && opt.storage ? opt.storage : this.storage,
+                unique: opt && opt.unique ? opt.unique : this.unique};
 
     return _opt;
   }
@@ -86,11 +84,11 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
 
   private _saveInArray(key:string, info:any, method:string, opt?:StorageOptions):void {
     var _opt = this._parseOptions(opt);
-    var _info = this.get(key, opt) || [];
+    var _info = this.get(key, _opt) || [];
 
     if (!(_info instanceof Array)) return;
 
-    if (_opt.unique) {
+    if (_opt.unique && !!_info.length) {
       <any[]>_info.forEach((information) => {
           if (JSON.stringify(info) === JSON.stringify(information)) {
             return;
@@ -101,7 +99,7 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
       _info[method](info);
     }
 
-    this.save(key, _info, opt);
+    this.save(key, _info, _opt);
   }
 
   saveInFirstPosition(key:string, info: any, opt?:StorageOptions):void {
