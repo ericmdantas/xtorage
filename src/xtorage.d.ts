@@ -32,6 +32,7 @@ export declare class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage
     _toStringifiedJSON(info: any): any;
     _fromStringifiedJSON(info: any): any;
     _parseOptions(opt: StorageOptions): StorageOptions;
+    _equals(info1: any, info2: any): boolean;
     save(key: string, info: any, opt?: StorageOptions): void;
     private _saveInArray(key, newInfo, method, opt?);
     saveInFirstPosition(key: string, info: any, opt?: StorageOptions): void;
