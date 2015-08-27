@@ -1,0 +1,10 @@
+.idea
+.git
+.travis.yml
+node_modules
+src
+coverage
+test
+typings
+*.js
+tsd.json
