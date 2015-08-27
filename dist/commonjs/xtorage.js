@@ -2,9 +2,29 @@ var Xtorage = (function () {
     function Xtorage(st, unique) {
         if (st === void 0) { st = 'localStorage'; }
         if (unique === void 0) { unique = false; }
-        this.storage = st;
-        this.unique = unique;
+        this._storage = st;
+        this._unique = unique;
     }
+    Object.defineProperty(Xtorage.prototype, "storage", {
+        get: function () {
+            return this._storage;
+        },
+        set: function (storage) {
+            this._storage = storage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Xtorage.prototype, "unique", {
+        get: function () {
+            return this._unique;
+        },
+        set: function (unique) {
+            this._unique = unique;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Xtorage.prototype._toStringifiedJSON = function (info) {
         if (typeof info !== "object")
             return info;
@@ -19,19 +39,36 @@ var Xtorage = (function () {
         }
     };
     Xtorage.prototype._parseOptions = function (opt) {
-        if (opt === void 0) { opt = { storage: 'localStorage' }; }
-        return opt;
+        var _opt = { storage: opt && opt.storage ? opt.storage : this.storage,
+            unique: opt && opt.unique ? opt.unique : this.unique };
+        return _opt;
+    };
+    Xtorage.prototype._equals = function (info1, info2) {
+        return JSON.stringify(info1) === JSON.stringify(info2);
     };
     Xtorage.prototype.save = function (key, info, opt) {
         var _opt = this._parseOptions(opt);
         window[_opt.storage].setItem(key, this._toStringifiedJSON(info));
     };
-    Xtorage.prototype._saveInArray = function (key, info, method, opt) {
-        var _info = this.get(key, opt);
-        if (!(_info instanceof Array))
+    Xtorage.prototype._saveInArray = function (key, newInfo, method, opt) {
+        var _this = this;
+        var _opt = this._parseOptions(opt);
+        var _infoStorage = this.get(key, _opt) || [];
+        var _isRepeated = false;
+        if (!(_infoStorage instanceof Array))
             return;
-        _info[method](info);
-        this.save(key, _info, opt);
+        if (_opt.unique && !!_infoStorage.length) {
+            _infoStorage.forEach(function (informationStorage) {
+                if (_this._equals(newInfo, informationStorage)) {
+                    return _isRepeated = true;
+                }
+            });
+        }
+        if ((_opt.unique && !_isRepeated) || (!_opt.unique)) {
+            _infoStorage[method](newInfo);
+            this.save(key, _infoStorage, _opt);
+            return;
+        }
     };
     Xtorage.prototype.saveInFirstPosition = function (key, info, opt) {
         this._saveInArray(key, info, "unshift", opt);

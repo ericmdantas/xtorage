@@ -7,6 +7,7 @@ var karma = require('karma').server;
 var assign = Object.assign || require('object-assign');
 
 var MAIN_FILE_NAME = 'xtorage.js';
+var DEFINITION_FILE = 'xtorage.d.ts';
 var SRC_FOLDER = './src/';
 var TEST_FOLDER = './test/';
 var PATH_TS = 'src/xtorage.ts';
@@ -48,7 +49,12 @@ gulp.task('transpile-local-test', function() {
         dest: TEST_FOLDER}, PATH_TS_TEST);
 });
 
-gulp.task('build', ['transpile-local-src', 'test'], function() {
+gulp.task('copy-definitions', function() {
+  return gulp.src(SRC_FOLDER + DEFINITION_FILE)
+             .pipe(gulp.dest(PATH_COMMONJS_DIST_FOLDER));
+});
+
+gulp.task('build', ['transpile-local-src', 'test', 'copy-definitions'], function() {
 
     return _buildTsc({
         tsc: {module: "commonjs"},
