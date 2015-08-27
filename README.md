@@ -3,17 +3,25 @@
 [![Build Status](https://travis-ci.org/ericmdantas/xtorage.svg?branch=master)](https://travis-ci.org/ericmdantas/xtorage)
 [![Coverage Status](https://coveralls.io/repos/ericmdantas/xtorage/badge.svg?branch=master)](https://coveralls.io/r/ericmdantas/xtorage?branch=master)
 
+# install
+
+```
+
+$ npm i --save xtorage
+
+```
+
 # what?
 
-This is a **tiny**, yet **powerful** framework-agnostic wrapper for the web storage.
+This is a tiny, yet powerful *framework-agnostic* wrapper for the web storage.
+
+Focus on your business logic.
 
 # why?
 
 Because you shouldn't keep parsing strings/arrays/numbers/objects left and right to save/retrieve stuff into and from the storage.
 
 Just call ```save()```, ```saveInFirstPosition()```, ```remove()```, ```removeLast()``` and so on.
-
-Focus on your business logic.
 
 # how?
 
@@ -39,3 +47,7 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
 - You name it!
 
 > Note: If you're using Angular 1.x, you should use [ng-xtorage](https://github.com/ericmdantas/ng-xtorage) instead.
+
+# alright, let's talk about the API
+
+> insert API here
