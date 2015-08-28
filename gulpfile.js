@@ -47,7 +47,7 @@ gulp.task('transpile-local-src', function() {
 
 gulp.task('transpile-local-test', function() {
     return _buildTsc({
-        tsc: {module: "commonjs"},
+        tsc: {module: "commonjs", declaration: false},
         dest: TEST_FOLDER}, PATH_TS_TEST);
 });
 
