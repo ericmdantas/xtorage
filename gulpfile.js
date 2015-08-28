@@ -13,6 +13,7 @@ var TEST_FOLDER = './test/';
 var PATH_TS = 'src/xtorage.ts';
 var PATH_TS_TEST = 'src/xtorage_test.ts';
 var PATH_COMMONJS_DIST_FOLDER = 'dist/commonjs/';
+var PATH_SYSTEMJS_DIST_FOLDER = 'dist/system/';
 var FILE_COVERAGE = 'coverage/**/*.lcov';
 
 var _buildTsc = function(opts, path) {
@@ -51,14 +52,21 @@ gulp.task('transpile-local-test', function() {
 
 gulp.task('copy-definitions', function() {
   return gulp.src(SRC_FOLDER + DEFINITION_FILE)
-             .pipe(gulp.dest(PATH_COMMONJS_DIST_FOLDER));
+             .pipe(gulp.dest(PATH_COMMONJS_DIST_FOLDER))
+             .pipe(gulp.dest(PATH_SYSTEMJS_DIST_FOLDER));
 });
 
 gulp.task('build', ['transpile-local-src', 'test', 'copy-definitions'], function() {
 
-    return _buildTsc({
+    _buildTsc({
         tsc: {module: "commonjs"},
-        dest: PATH_COMMONJS_DIST_FOLDER});
+        dest: PATH_COMMONJS_DIST_FOLDER
+    });
+
+    return _buildTsc({
+      tsc: {module: "system"},
+      dest: PATH_SYSTEMJS_DIST_FOLDER
+    });
 });
 
 gulp.task('test', ['transpile-local-src', 'transpile-local-test'], function(done) {
