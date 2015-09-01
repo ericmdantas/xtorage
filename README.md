@@ -50,11 +50,15 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
 
 # alright, let's talk about the API
 
-## constructor(storage: {storage: 'localStorage' | 'sessionStorage'}, unique: boolean)
+## constructor
 
-### usage
+### contract
 
-#### storage
+```js
+new Xtorage(storage: 'localStorage' | 'sessionStorage', unique: boolean)
+```
+
+### usage - storage
 
 ```js
   var _x = new Xtorage('localStorage');
@@ -74,7 +78,7 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
   _x.save('k', 1); // saves 1, with the key 'k' in the localStorage - which is the default
 ```
 
-#### unique
+### usage - unique
 
 ```js
   var _x = new Xtorage(undefined, true);
@@ -97,7 +101,13 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
   _x.saveInFirstPosition('k', 1); // array length is 2, unique, by default, is false
 ```
 
-## save(key:string, info:any [, options:{storage: 'localStorage' | 'sessionStorage'}])
+## save
+
+### contract
+
+```js
+save(key:string, info:any [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```
 
 ### usage
 
@@ -110,7 +120,13 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
 
 ```
 
-## saveInFirstPosition(key:string, info:any [, options:{storage: 'localStorage' | 'sessionStorage', unique: boolean}])
+## saveInFirstPosition
+
+### contract
+
+```js
+  saveInFirstPosition(key:string, info:any [, options:{storage: 'localStorage' | 'sessionStorage', unique: boolean}])
+```
 
 ### usage
 
@@ -126,7 +142,13 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
   console.log(_x.get('k')); // [{b: 2}, {a: 1}]
 ```
 
-## saveInLastPosition(key:string, info:any [, options:{storage: localStorage | sessionStorage, unique: boolean}])
+## saveInLastPosition
+
+### contract
+
+```js
+saveInLastPosition(key:string, info:any [, options:{storage: localStorage | sessionStorage, unique: boolean}])
+```
 
 ### usage
 
@@ -142,7 +164,15 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
   console.log(_x.get('k')); // [{a: 1}, {b: 2}]
 ```
 
-## get(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
+## get
+
+### contract
+
+```js
+get(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```
+
+### usage
 
 ```js
   var _x = new Xtorage();
@@ -154,7 +184,15 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
 ```
 
 
-## getFirst(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
+## getFirst
+
+### contract
+
+```js
+getFirst(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```
+
+### usage
 
 ```js
   var _x = new Xtorage();
@@ -168,7 +206,15 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
   console.log(_x.get('k')); // {a: 1}
 ```
 
-## getLast(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
+## getLast
+
+### contract
+
+```js
+getLast(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```
+
+### usage
 
 ```js
   var _x = new Xtorage();
@@ -182,7 +228,15 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
   console.log(_x.get('k')); // {b: 2}
 ```
 
-## remove (key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+## remove
+
+### contract
+
+```js
+remove(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```
+
+### usage
 
 ```js
   var _x = new Xtorage();
@@ -196,7 +250,15 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
   console.log(_x.get('k')); // undefined
 ```
 
-## removeAll([, options:{storage: 'localStorage' | 'sessionStorage'}])
+## removeAll
+
+### contract
+
+```js
+removeAll([, options:{storage: 'localStorage' | 'sessionStorage'}])
+```
+
+### usage
 
 ```js
   var _x = new Xtorage();
@@ -213,7 +275,15 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
   console.log(_x.get('y')); // undefined
 ```
 
-## removeFirst(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+## removeFirst
+
+### contract
+
+```js
+removeFirst(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```
+
+### usage
 
 ```js
   var _x = new Xtorage();
@@ -229,6 +299,14 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
 ```
 
 ## removeLast(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+
+### contract
+
+```js
+removeLast(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```
+
+### usage
 
 ```js
   var _x = new Xtorage();
