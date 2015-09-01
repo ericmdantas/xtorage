@@ -298,7 +298,7 @@ removeFirst(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}]
   console.log(_x.get('k')); // [{a: 1}]
 ```
 
-## removeLast(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+## removeLast
 
 ### contract
 
