@@ -50,4 +50,195 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
 
 # alright, let's talk about the API
 
-> insert API here
+## constructor(storage: {storage: 'localStorage' | 'sessionStorage'}, unique: boolean)
+
+### usage
+
+#### storage
+
+```js
+  var _x = new Xtorage('localStorage');
+
+  _x.save('k', 1); // saves 1, with the key 'k' in the localStorage
+```
+
+```js
+  var _x = new Xtorage('sessionStorage');  
+
+  _x.save('k', 1); // saves 1, with the key 'k' in the sessionStorage
+```
+
+```js
+  var _x = new Xtorage();
+
+  _x.save('k', 1); // saves 1, with the key 'k' in the localStorage - which is the default
+```
+
+#### unique
+
+```js
+  var _x = new Xtorage(undefined, true);
+
+  _x.saveInFirstPosition('k', 1); // array length is 1  
+  _x.saveInFirstPosition('k', 1); // array length is still 1, unique is set to true
+```
+
+```js
+  var _x = new Xtorage(undefined, false);
+
+  _x.saveInFirstPosition('k', 1); // array length is 1  
+  _x.saveInFirstPosition('k', 1); // array length is 2, unique is set to false
+```
+
+```js
+  var _x = new Xtorage();
+
+  _x.saveInFirstPosition('k', 1); // array length is 1  
+  _x.saveInFirstPosition('k', 1); // array length is 2, unique, by default, is false
+```
+
+## save(key:string, info:any [, options:{storage: 'localStorage' | 'sessionStorage'}])
+
+### usage
+
+```js
+  var _x = new Xtorage();
+
+  _x.save('k', {a: 1});
+
+  console.log(_x.get('k')); // {a: 1}
+
+```
+
+## saveInFirstPosition(key:string, info:any [, options:{storage: 'localStorage' | 'sessionStorage', unique: boolean}])
+
+### usage
+
+```js
+  var _x = new Xtorage();
+
+  _x.saveInFirstPosition('k', {a: 1});
+
+  console.log(_x.get('k')); // [{a: 1}]
+
+  _x.saveInFirstPosition('k', {b: 2});
+
+  console.log(_x.get('k')); // [{b: 2}, {a: 1}]
+```
+
+## saveInLastPosition(key:string, info:any [, options:{storage: localStorage | sessionStorage, unique: boolean}])
+
+### usage
+
+```js
+  var _x = new Xtorage();
+
+  _x.saveInLastPosition('k', {a: 1});
+
+  console.log(_x.get('k')); // [{a: 1}]
+
+  _x.saveInLastPosition('k', {b: 2});
+
+  console.log(_x.get('k')); // [{a: 1}, {b: 2}]
+```
+
+## get(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
+
+```js
+  var _x = new Xtorage();
+
+  _x.save('k', [1, true, {a: 1}, [{c: 'abc'}]);
+
+  console.log(_x.get('k')); // [1, true, {a: 1}, [{c: 'abc'}]
+
+```
+
+
+## getFirst(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
+
+```js
+  var _x = new Xtorage();
+
+  _x.saveInLastPosition('k', {a: 1});
+
+  console.log(_x.getFirst('k')); // {a: 1}
+
+  _x.saveInLastPosition('k', {b: 2});
+
+  console.log(_x.get('k')); // {a: 1}
+```
+
+## getLast(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
+
+```js
+  var _x = new Xtorage();
+
+  _x.saveInLastPosition('k', {a: 1});
+
+  console.log(_x.getFirst('k')); // {a: 1}
+
+  _x.saveInLastPosition('k', {b: 2});
+
+  console.log(_x.get('k')); // {b: 2}
+```
+
+## remove (key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+
+```js
+  var _x = new Xtorage();
+
+  _x.save('k', {a: 1});
+
+  console.log(_x.getFirst('k')); // {a: 1}
+
+  _x.remove('k');
+
+  console.log(_x.get('k')); // undefined
+```
+
+## removeAll([, options:{storage: 'localStorage' | 'sessionStorage'}])
+
+```js
+  var _x = new Xtorage();
+
+  _x.save('k', {a: 1});
+  _x.save('y', [{somethingElse: true}]);
+
+  console.log(_x.get('k')); // {a: 1}
+  console.log(_x.get('y')); // [{somethingElse: true}]
+
+  _x.removeAll();
+
+  console.log(_x.get('k')); // undefined
+  console.log(_x.get('y')); // undefined
+```
+
+## removeFirst(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+
+```js
+  var _x = new Xtorage();
+
+  _x.saveInFirstPosition('k', {a: 1});
+  _x.saveInLastPosition('k', {b: 2});
+
+  console.log(_x.get('k')); // [{a: 1}, {b: 2}]
+
+  _x.removeFirst('k');
+
+  console.log(_x.get('k')); // [{a: 1}]
+```
+
+## removeLast(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+
+```js
+  var _x = new Xtorage();
+
+  _x.saveInFirstPosition('k', {a: 1});
+  _x.saveInLastPosition('k', {b: 2});
+
+  console.log(_x.get('k')); // [{a: 1}, {b: 2}]
+
+  _x.removeLast('k');
+
+  console.log(_x.get('k')); // [{b: 2}]
+```

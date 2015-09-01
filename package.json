@@ -8,7 +8,8 @@
     "tw": "gulp test-watch",
     "trs": "gulp transpile-local-src",
     "trt": "gulp transpile-local-test",
-    "build": "gulp build"
+    "build": "gulp build",
+    "prepublish": "npm build"
   },
   "directories": {
     "test": "test"
