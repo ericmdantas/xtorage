@@ -295,7 +295,7 @@ removeFirst(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}]
 
   _x.removeFirst('k');
 
-  console.log(_x.get('k')); // [{a: 1}]
+  console.log(_x.get('k')); // [{b: 2}]
 ```
 
 ## removeLast
@@ -318,5 +318,5 @@ removeLast(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
 
   _x.removeLast('k');
 
-  console.log(_x.get('k')); // [{b: 2}]
+  console.log(_x.get('k')); // [{a: 1}]
 ```
