@@ -29,12 +29,8 @@ export interface IRemoveStorage {
 }
 
 export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParseStorage {
-  private _storage:string;
-  private _unique:boolean;
+  constructor(private _storage:string = 'localStorage', private _unique:boolean = false) {
 
-  constructor(st:string = 'localStorage', unique:boolean = false) {
-    this._storage = st;
-    this._unique = unique;
   }
 
   set storage(storage: string) {

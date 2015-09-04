@@ -4,11 +4,11 @@ System.register([], function(exports_1) {
         setters:[],
         execute: function() {
             Xtorage = (function () {
-                function Xtorage(st, unique) {
-                    if (st === void 0) { st = 'localStorage'; }
-                    if (unique === void 0) { unique = false; }
-                    this._storage = st;
-                    this._unique = unique;
+                function Xtorage(_storage, _unique) {
+                    if (_storage === void 0) { _storage = 'localStorage'; }
+                    if (_unique === void 0) { _unique = false; }
+                    this._storage = _storage;
+                    this._unique = _unique;
                 }
                 Object.defineProperty(Xtorage.prototype, "storage", {
                     get: function () {
