@@ -5,4 +5,5 @@ test/*.d.ts
 src/*.map
 node_modules
 coverage
+src/xtorage_test.d.ts
 *.log
