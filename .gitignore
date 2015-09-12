@@ -1,7 +1,5 @@
 .idea
 src/*.js
-test/*.js
-test/*.d.ts
 src/*.map
 node_modules
 coverage

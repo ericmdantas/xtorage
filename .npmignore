@@ -6,5 +6,7 @@ src
 coverage
 test
 typings
-*.js
 tsd.json
+gulpfile.js
+karma.conf.js
+system.config.js
