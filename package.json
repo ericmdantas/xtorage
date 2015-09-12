@@ -1,6 +1,6 @@
 {
   "name": "xtorage",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Web Storage made simple and more powerful.",
   "main": "dist/commonjs/xtorage.min.js",
   "scripts": {
