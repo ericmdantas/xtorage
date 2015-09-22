@@ -4,7 +4,8 @@
   "description": "Web Storage made simple and more powerful.",
   "main": "dist/commonjs/xtorage.min.js",
   "scripts": {
-    "test": "gulp test",
+    "test": "gulp coveralls",
+    "ut": "gulp test",
     "tw": "gulp test-watch",
     "trs": "gulp transpile-local-src",
     "trt": "gulp transpile-local-test",
