@@ -1,25 +1,25 @@
 "use strict";
 
-var gulp = require('gulp');
-var tsc = require('gulp-typescript');
-var coveralls = require('gulp-coveralls');
-var karma = require('karma').server;
-var assign = Object.assign || require('object-assign');
+const gulp = require('gulp');
+const tsc = require('gulp-typescript');
+const coveralls = require('gulp-coveralls');
+const karma = require('karma').server;
+const assign = Object.assign || require('object-assign');
 
-var MAIN_FILE_NAME = 'xtorage.js';
-var DEFINITION_FILE = 'xtorage.d.ts';
-var SRC_FOLDER = './src/';
-var TEST_FOLDER = SRC_FOLDER;
-var PATH_TS = 'src/xtorage.ts';
-var PATH_TS_TEST = 'src/xtorage_test.ts';
-var PATH_COMMONJS_DIST_FOLDER = 'dist/commonjs/';
-var PATH_SYSTEM_DIST_FOLDER = 'dist/system/';
-var PATH_ES6_DIST_FOLDER = 'dist/es6/';
-var FILE_COVERAGE = 'coverage/**/*.lcov';
+const MAIN_FILE_NAME = 'xtorage.js';
+const DEFINITION_FILE = 'xtorage.d.ts';
+const SRC_FOLDER = './src/';
+const TEST_FOLDER = SRC_FOLDER;
+const PATH_TS = 'src/xtorage.ts';
+const PATH_TS_TEST = 'src/xtorage_test.ts';
+const PATH_COMMONJS_DIST_FOLDER = 'dist/commonjs/';
+const PATH_SYSTEM_DIST_FOLDER = 'dist/system/';
+const PATH_ES6_DIST_FOLDER = 'dist/es6/';
+const FILE_COVERAGE = 'coverage/**/*.lcov';
 
-var _buildTsc = function(opts, path) {
-    var _dest = opts.dest;
-    var _opts = assign({
+const _buildTsc = (opts, path) => {
+    let _dest = opts.dest;
+    let _opts = assign({
         typescrit: require('typescript'),
         declaration: true,
         target: "es5"
@@ -34,7 +34,7 @@ var _buildTsc = function(opts, path) {
 
 gulp.task('transpile', ['transpile-local-src', 'transpile-local-test']);
 
-gulp.task('transpile-local-src', function() {
+gulp.task('transpile-local-src', () => {
     return _buildTsc({
         tsc: {
             declarationFiles: true,
@@ -45,19 +45,19 @@ gulp.task('transpile-local-src', function() {
         dest: SRC_FOLDER});
 });
 
-gulp.task('transpile-local-test', function() {
+gulp.task('transpile-local-test', () => {
     return _buildTsc({
         tsc: {module: "commonjs", declaration: false},
         dest: TEST_FOLDER}, PATH_TS_TEST);
 });
 
-gulp.task('copy-definitions', function() {
+gulp.task('copy-definitions', () => {
   return gulp.src(SRC_FOLDER + DEFINITION_FILE)
              .pipe(gulp.dest(PATH_COMMONJS_DIST_FOLDER))
              .pipe(gulp.dest(PATH_SYSTEM_DIST_FOLDER));
 });
 
-gulp.task('build', ['transpile-local-src', 'test', 'copy-definitions'], function() {
+gulp.task('build', ['transpile-local-src', 'test', 'copy-definitions'], () => {
 
     _buildTsc({
         tsc: {module: "commonjs"},
@@ -70,7 +70,7 @@ gulp.task('build', ['transpile-local-src', 'test', 'copy-definitions'], function
     });
 });
 
-gulp.task('test', ['transpile-local-src', 'transpile-local-test'], function(done) {
+gulp.task('test', ['transpile-local-src', 'transpile-local-test'], (done) => {
     return karma.start({
             configFile: __dirname + '/karma.conf.js',
             browsers: ['PhantomJS'],
@@ -78,7 +78,7 @@ gulp.task('test', ['transpile-local-src', 'transpile-local-test'], function(done
     }, done);
 });
 
-gulp.task('test-watch', ['transpile-local-src', 'transpile-local-test'], function(done) {
+gulp.task('test-watch', ['transpile-local-src', 'transpile-local-test'], (done) => {
     return karma.start({
             configFile: __dirname + '/karma.conf.js',
             browsers: ['PhantomJS'],
@@ -86,7 +86,7 @@ gulp.task('test-watch', ['transpile-local-src', 'transpile-local-test'], functio
     }, done);
 });
 
-gulp.task('coveralls', ['test'], function() {
+gulp.task('coveralls', ['test'], () => {
     return gulp
             .src(FILE_COVERAGE)
             .pipe(coveralls());
