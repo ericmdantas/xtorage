@@ -32,7 +32,7 @@ const _buildTsc = (opts, path) => {
 
 gulp.task('compile', ['compile:src', 'compile:test']);
 
-gulp.task('compile:src', function() {
+gulp.task('compile:src', () => {
     return _buildTsc({
         tsc: {
             declarationFiles: true,
@@ -43,7 +43,7 @@ gulp.task('compile:src', function() {
         dest: SRC_FOLDER});
 });
 
-gulp.task('compile:test', function() {
+gulp.task('compile:test', () => {
     return _buildTsc({
         tsc: {module: "commonjs", declaration: false},
         dest: TEST_FOLDER}, PATH_TS_TEST);
@@ -55,7 +55,7 @@ gulp.task('copy-definitions', () => {
              .pipe(gulp.dest(PATH_SYSTEM_DIST_FOLDER));
 });
 
-gulp.task('build', ['compile:src', 'test', 'copy-definitions'], function() {
+gulp.task('build', ['compile:src', 'test', 'copy-definitions'], () => {
     _buildTsc({
         tsc: {module: "commonjs"},
         dest: PATH_COMMONJS_DIST_FOLDER
@@ -67,7 +67,7 @@ gulp.task('build', ['compile:src', 'test', 'copy-definitions'], function() {
     });
 });
 
-gulp.task('test', ['compile:src', 'compile:test'], function(done) {
+gulp.task('test', ['compile:src', 'compile:test'], (done) => {
   return karma.start({
             configFile: __dirname + '/karma.conf.js',
             browsers: ['PhantomJS'],
@@ -75,7 +75,7 @@ gulp.task('test', ['compile:src', 'compile:test'], function(done) {
     }, done);
 });
 
-gulp.task('test-watch', ['compile:src', 'compile:test'], function(done) {
+gulp.task('test-watch', ['compile:src', 'compile:test'], (done) => {
   return karma.start({
             configFile: __dirname + '/karma.conf.js',
             browsers: ['PhantomJS'],
