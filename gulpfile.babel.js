@@ -15,9 +15,9 @@ const PATH_SYSTEM_DIST_FOLDER = 'dist/system/';
 const PATH_ES6_DIST_FOLDER = 'dist/es6/';
 const FILE_COVERAGE = 'coverage/**/*.lcov';
 
-var _buildTsc = function(opts, path) {
-    var _dest = opts.dest;
-    var _opts = assign({
+const _buildTsc = (opts, path) => {
+    let _dest = opts.dest;
+    let _opts = assign({
         typescrit: require('typescript'),
         declaration: true,
         target: "es5"
@@ -49,14 +49,13 @@ gulp.task('compile:test', function() {
         dest: TEST_FOLDER}, PATH_TS_TEST);
 });
 
-gulp.task('copy-definitions', function() {
+gulp.task('copy-definitions', () => {
   return gulp.src(SRC_FOLDER + DEFINITION_FILE)
              .pipe(gulp.dest(PATH_COMMONJS_DIST_FOLDER))
              .pipe(gulp.dest(PATH_SYSTEM_DIST_FOLDER));
 });
 
 gulp.task('build', ['compile:src', 'test', 'copy-definitions'], function() {
-
     _buildTsc({
         tsc: {module: "commonjs"},
         dest: PATH_COMMONJS_DIST_FOLDER
@@ -69,7 +68,7 @@ gulp.task('build', ['compile:src', 'test', 'copy-definitions'], function() {
 });
 
 gulp.task('test', ['compile:src', 'compile:test'], function(done) {
-    return karma.start({
+  return karma.start({
             configFile: __dirname + '/karma.conf.js',
             browsers: ['PhantomJS'],
             singleRun: true
@@ -77,14 +76,14 @@ gulp.task('test', ['compile:src', 'compile:test'], function(done) {
 });
 
 gulp.task('test-watch', ['compile:src', 'compile:test'], function(done) {
-    return karma.start({
+  return karma.start({
             configFile: __dirname + '/karma.conf.js',
             browsers: ['PhantomJS'],
             singleRun: false
     }, done);
 });
 
-gulp.task('coveralls', ['test'], function() {
+gulp.task('coveralls', ['test'], () => {
     return gulp
             .src(FILE_COVERAGE)
             .pipe(coveralls());

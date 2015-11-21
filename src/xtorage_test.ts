@@ -3531,7 +3531,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)[1]).toEqual(_info1);
         });
 
-      xit('unique - should be able to push to the storage, even though there was nothing there', () => {
+      it('unique - should be able to push to the storage, even though there was nothing there', () => {
           var _key = 'k';
           var _info1 = 'a';
           var _info2 = 'b';
@@ -3574,7 +3574,7 @@ describe('xtorage', () => {
           expect(_x.get(_key)[1]).toEqual(_info2);
         });
 
-        xit('unique - should be able to push to the storage, even though there was nothing there', () => {
+        it('unique - should be able to push to the storage, even though there was nothing there', () => {
           var _key = 'k';
           var _info1 = 'a';
           var _info2 = 'b';
