@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
-    "declaration": true,
+    "module": "system",
+    "moduleResolution": "node",
     "target": "es5",
-    "module": "commonjs",
-    "removeComments": true
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false
   },
   "files": [
     "src/xtorage.ts",

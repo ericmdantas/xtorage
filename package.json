@@ -7,8 +7,8 @@
     "test": "gulp coveralls",
     "ut": "gulp test",
     "tw": "gulp test-watch",
-    "trs": "gulp transpile-local-src",
-    "trt": "gulp transpile-local-test",
+    "trs": "gulp compile:src",
+    "trt": "gulp compile:test",
     "build": "gulp build",
     "prepublish": "npm build"
   },
@@ -38,7 +38,10 @@
   ],
   "homepage": "https://github.com/ericmdantas/xtorage",
   "devDependencies": {
-    "babel": "^5.8.21",
+    "babel": "^6.1.18",
+    "babel-cli": "^6.2.0",
+    "babel-core": "^6.2.1",
+    "babel-preset-es2015": "^6.1.18",
     "chai": "^2.3.0",
     "es6-module-loader": "^0.17.3",
     "gulp": "^3.8.11",
