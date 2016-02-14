@@ -42,6 +42,7 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
 - Angular2;
 - Aurelia;
 - React;
+- Electron;
 - Backbone;
 - Knockout;
 - Ember;
