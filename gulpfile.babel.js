@@ -76,7 +76,7 @@ gulp.task('test', ['compile:src', 'compile:test'], (done) => {
 gulp.task('test-watch', ['compile:src', 'compile:test'], (done) => {
   return karma.start({
             configFile: __dirname + '/karma.conf.js',
-            browsers: ['PhantomJS'],
+            browsers: ['Chrome'],
             singleRun: false
     }, done);
 });
