@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import tsc from 'gulp-typescript';
 import coveralls from 'gulp-coveralls';
 import {server as karma} from 'karma'
-const assign = Object.assign || require('object-assign');
+const assign = Object.assign;
 
 const MAIN_FILE_NAME = 'xtorage.js';
 const DEFINITION_FILE = 'xtorage.d.ts';
@@ -28,9 +28,7 @@ const _buildTsc = (opts, path) => {
         .pipe(tsc(_opts))
         .js
         .pipe(gulp.dest(_dest));
-}
-
-gulp.task('compile', ['compile:src', 'compile:test']);
+};
 
 gulp.task('compile:src', () => {
     return _buildTsc({
@@ -88,3 +86,5 @@ gulp.task('coveralls', ['test'], () => {
             .src(FILE_COVERAGE)
             .pipe(coveralls());
 });
+
+gulp.task('compile', ['compile:src', 'compile:test']);

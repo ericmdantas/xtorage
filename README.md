@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ericmdantas/xtorage.svg?branch=master)](https://travis-ci.org/ericmdantas/xtorage)
 [![Coverage Status](https://coveralls.io/repos/ericmdantas/xtorage/badge.svg?branch=master)](https://coveralls.io/r/ericmdantas/xtorage?branch=master)
+[![npm version](https://badge.fury.io/js/xtorage.svg)](https://badge.fury.io/js/xtorage)
 
 # install
 
@@ -41,6 +42,7 @@ Well, pretty much everywhere that is javascript in the front-end; So, it'll work
 - Angular2;
 - Aurelia;
 - React;
+- Electron;
 - Backbone;
 - Knockout;
 - Ember;
