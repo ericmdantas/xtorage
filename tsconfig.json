@@ -1,15 +1,19 @@
 {
   "compilerOptions": {
-    "module": "system",
-    "moduleResolution": "node",
-    "target": "es5",
-    "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "module": "es2015",
+    "target": "es6",
+    "outDir": "build",
+    "sourceMap": false,
+    "declaration": false,
     "noImplicitAny": false
   },
-  "files": [
-    "src/xtorage.ts",
-    "src/xtorage_test.ts"
+  "exclude": [
+    "node_modules",
+    "!node_modules/@types",
+    "build",
+    "dist"
+  ],
+  "types": [
+    "jasmine"
   ]
 }

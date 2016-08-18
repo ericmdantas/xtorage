@@ -1,12 +1,9 @@
-.idea
-.git
-.travis.yml
 node_modules
+build
 src
-coverage
 test
-typings
-tsd.json
-gulpfile.js
+coverage
+gulpfile.babel.js
 karma.conf.js
-system.config.js
+.travis.yml
+.idea
