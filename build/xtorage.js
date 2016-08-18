@@ -3,40 +3,36 @@ export class Xtorage {
         this._storage = _storage;
         this._unique = _unique;
     }
-    save(key, info, opt) {
-        var _opt = this._parseOptions(opt);
-        window[_opt.storage].setItem(key, this._toStringifiedJSON(info));
+    save(key, info) {
+        window[this.storage].setItem(key, this._toStringifiedJSON(info));
     }
-    saveInFirstPosition(key, info, opt) {
-        this._saveInArray(key, info, "unshift", opt);
+    saveInFirstPosition(key, info) {
+        this._saveInArray(key, info, "unshift");
     }
-    saveInLastPosition(key, info, opt) {
-        this._saveInArray(key, info, "push", opt);
+    saveInLastPosition(key, info) {
+        this._saveInArray(key, info, "push");
     }
-    get(key, opt) {
-        var _opt = this._parseOptions(opt);
-        var _info = window[_opt.storage].getItem(key);
+    get(key) {
+        var _info = window[this.storage].getItem(key);
         return this._fromStringifiedJSON(_info);
     }
-    getFirst(key, opt) {
-        return this._getFromArray(key, 0, opt);
+    getFirst(key) {
+        return this._getFromArray(key, 0);
     }
-    getLast(key, opt) {
-        return this._getFromArray(key, "last", opt);
+    getLast(key) {
+        return this._getFromArray(key, "last");
     }
-    remove(key, opt) {
-        var _opt = this._parseOptions(opt);
-        window[_opt.storage].removeItem(key);
+    remove(key) {
+        window[this.storage].removeItem(key);
     }
-    removeFirst(key, opt) {
-        this._removeFromArray(key, "shift", opt);
+    removeFirst(key) {
+        this._removeFromArray(key, "shift");
     }
-    removeLast(key, opt) {
-        this._removeFromArray(key, "pop", opt);
+    removeLast(key) {
+        this._removeFromArray(key, "pop");
     }
-    removeAll(opt) {
-        var _opt = this._parseOptions(opt);
-        window[_opt.storage].clear();
+    removeAll() {
+        window[this.storage].clear();
     }
     set storage(storage) {
         this._storage = storage;
@@ -63,46 +59,40 @@ export class Xtorage {
             return info;
         }
     }
-    _parseOptions(opt) {
-        let _opt = { storage: opt && opt.storage ? opt.storage : this.storage,
-            unique: opt && opt.unique ? opt.unique : this.unique };
-        return _opt;
-    }
     _equals(info1, info2) {
         return JSON.stringify(info1) === JSON.stringify(info2);
     }
-    _saveInArray(key, newInfo, method, opt) {
-        var _opt = this._parseOptions(opt);
-        var _infoStorage = this.get(key, _opt) || [];
+    _saveInArray(key, newInfo, method) {
+        var _infoStorage = this.get(key) || [];
         var _isRepeated = false;
         if (!(_infoStorage instanceof Array))
             return;
-        if (_opt.unique && !!_infoStorage.length) {
+        if (this.unique && !!_infoStorage.length) {
             _infoStorage.forEach((informationStorage) => {
                 if (this._equals(newInfo, informationStorage)) {
                     return _isRepeated = true;
                 }
             });
         }
-        if ((_opt.unique && !_isRepeated) || (!_opt.unique)) {
+        if ((this.unique && !_isRepeated) || (!this.unique)) {
             _infoStorage[method](newInfo);
-            this.save(key, _infoStorage, _opt);
+            this.save(key, _infoStorage);
             return;
         }
     }
-    _getFromArray(key, position, opt) {
-        var _info = this.get(key, opt);
+    _getFromArray(key, position) {
+        var _info = this.get(key);
         var _position;
         if (!(_info instanceof Array) || !_info.length)
             return;
         _position = typeof position === "number" ? position : _info.length - 1;
         return _info[_position];
     }
-    _removeFromArray(key, method, opt) {
-        var _info = this.get(key, opt);
+    _removeFromArray(key, method) {
+        var _info = this.get(key);
         if (!(_info instanceof Array))
             return;
         _info[method]();
-        this.save(key, _info, opt);
+        this.save(key, _info);
     }
 }

@@ -23,7 +23,7 @@ export interface IRemoveStorage {
 }
 
 export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParseStorage {
-  constructor(private _storage: 'localStorage' | 'sessionStorage' = 'localStorage', private _unique:boolean = false) {
+  constructor(private _storage:string = 'localStorage', private _unique:boolean = false) {
 
   }
 
@@ -32,7 +32,7 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
   }
 
   saveInFirstPosition(key:string, info: any):void {
-    this._saveInArray(key, info, "unshift", opt);
+    this._saveInArray(key, info, "unshift");
   }
 
   saveInLastPosition(key:string, info: any):void {
@@ -56,7 +56,7 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
     window[this.storage].removeItem(key);
   }
 
-  removeFirst(key:string, opt?:StorageOptions):void {
+  removeFirst(key:string):void {
     this._removeFromArray(key, "shift");
   }
 
@@ -68,7 +68,7 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
     window[this.storage].clear();
   }
 
-  set storage(storage: string) {
+  set storage(storage:string) {
     this._storage = storage;
   }
 
@@ -100,13 +100,6 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
     }
   }
 
-  _parseOptions(opt:StorageOptions):StorageOptions {
-    let _opt = {storage: opt && opt.storage ? opt.storage : this.storage,
-                unique: opt && opt.unique ? opt.unique : this.unique};
-
-    return _opt;
-  }
-
   _equals(info1, info2):boolean {
     return JSON.stringify(info1) === JSON.stringify(info2);
   }
@@ -117,7 +110,7 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
 
     if (!(_infoStorage instanceof Array)) return;
 
-    if (_opt.unique && !!_infoStorage.length) {
+    if (this.unique && !!_infoStorage.length) {
       (_infoStorage as any[]).forEach((informationStorage) => {
           if (this._equals(newInfo, informationStorage)) {
             return _isRepeated = true;

@@ -7,8 +7,8 @@
     "compile": "tsc",
     "coveralls": "gulp coveralls",
     "test": "gulp unit_test",
-    "build": "gulp build",
-    "prepublish": "npm run compile && npm t && npm build"
+    "build": "npm t && gulp build",
+    "prepublish": "npm run compile && npm build"
   },
   "directories": {
     "test": "test"

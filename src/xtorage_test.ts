@@ -4,56 +4,10 @@ describe('xtorage', () => {
 
   var LOCAL_STORAGE = 'localStorage';
   var SESSION_STORAGE = 'sessionStorage';
-  var OBJECT_LOCAL_STORAGE = {storage: LOCAL_STORAGE};
-  var OBJECT_SESSION_STORAGE = {storage: SESSION_STORAGE};
 
   afterEach(() => {
     window.localStorage.clear();
     window.sessionStorage.clear();
-  });
-
-  describe('_parseOptions', () => {
-    it('should return the object with the storage as localStorage', () => {
-      var _x = new Xtorage();
-
-      expect(_x._parseOptions()).toEqual({storage: 'localStorage', unique: false});
-    });
-
-    it('should return the object with the storage as sessionStorage', () => {
-      var _x = new Xtorage();
-
-      expect(_x._parseOptions({storage: 'localStorage'})).toEqual({storage: 'localStorage', unique: false});
-    });
-
-    it('should return the object with the storage as sessionStorage and unique false', () => {
-      var _x = new Xtorage();
-
-      expect(_x._parseOptions({storage: 'sessionStorage'})).toEqual({storage: 'sessionStorage', unique: false});
-    });
-
-    it('should return the object with the storage as sessionStorage as unique as true', () => {
-      var _x = new Xtorage();
-
-      expect(_x._parseOptions({storage: 'sessionStorage', unique: true})).toEqual({storage: 'sessionStorage', unique: true});
-    });
-
-    it('should return the object with the storage as sessionStorage and unique as true - passed by constructor', () => {
-      var _x = new Xtorage('sessionStorage', true);
-
-      expect(_x._parseOptions()).toEqual({storage: 'sessionStorage', unique: true});
-    });
-
-    it('should return the object with the storage as localStorage and unique as true - passed by constructor', () => {
-      var _x = new Xtorage(undefined, true);
-
-      expect(_x._parseOptions()).toEqual({storage: 'localStorage', unique: true});
-    });
-
-    it('should return the object with the storage as sessionStorage and unique as false - passed by constructor', () => {
-      var _x = new Xtorage('sessionStorage', false);
-
-      expect(_x._parseOptions()).toEqual({storage: 'sessionStorage', unique: false});
-    });
   });
 
   describe('_toStringifiedJSON', () => {
@@ -785,52 +739,6 @@ describe('xtorage', () => {
           _x.remove(_key);
 
           expect(_x.get(_key)).not.toEqual(_info);
-        });
-      });
-    });
-
-    describe('sessionStorage', () => {
-      describe('constructor', () => {
-        it('should not remove the info in the storage', () => {
-          var _key = 'k';
-          var _info = 'x';
-
-          var _x = new Xtorage(SESSION_STORAGE);
-          _x.save(_key, _info);
-
-          expect(_x.get(_key)).toBe(_info);
-
-          _x.remove(_key + 'something');
-
-          expect(_x.get(_key)).toBe(_info);
-        });
-
-        it('should remove the info in the storage', () => {
-          var _key = 'k';
-          var _info = true;
-
-          var _x = new Xtorage();
-          _x.save(_key, _info, OBJECT_SESSION_STORAGE);
-
-          expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toBe(_info);
-
-          _x.remove(_key, OBJECT_SESSION_STORAGE);
-
-          expect(_x.get(_key, OBJECT_SESSION_STORAGE)).not.toBe(_info);
-        });
-
-        it('should remove the info in the storage - complex array', () => {
-          var _key = 'k';
-          var _info = [{a: true, b: {c: [1, 2, 3, {d: true, e: false}]}}];
-
-          var _x = new Xtorage();
-          _x.save(_key, _info, OBJECT_SESSION_STORAGE);
-
-          expect(_x.get(_key, OBJECT_SESSION_STORAGE)).toEqual(_info);
-
-          _x.remove(_key, OBJECT_SESSION_STORAGE);
-
-          expect(_x.get(_key, OBJECT_SESSION_STORAGE)).not.toEqual(_info);
         });
       });
     });
@@ -2017,94 +1925,7 @@ describe('xtorage', () => {
 
           expect(_x.get(_key)).toEqual(_expectedResult);
         });
-      });
-
-      describe('constructor', () => {
-        it('should not save, info in the storage is not array', () => {
-          var _key = 'k';
-          var _infoInStorage = 'a';
-          var _newInfo = 'b';
-          var _expectedResult = 'a';
-
-          var _x = new Xtorage();
-
-          _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
-
-          expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
-
-          _x.saveInFirstPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
-
-          expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-        });
-
-        it('should save correctly - empty array', () => {
-          var _key = 'k';
-          var _infoInStorage = [];
-          var _newInfo = 0;
-          var _expectedResult = [_newInfo];
-
-          var _x = new Xtorage();
-
-          _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
-
-          expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
-
-          _x.saveInFirstPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
-
-          expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-        });
-
-        it('should save correctly - simple array', () => {
-          var _key = 'k';
-          var _infoInStorage = [1, 2];
-          var _newInfo = 0;
-          var _expectedResult = [_newInfo, 1, 2];
-
-          var _x = new Xtorage();
-
-          _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
-
-          expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
-
-          _x.saveInFirstPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
-
-          expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-        });
-
-        it('should save correctly - complex array in the storage', () => {
-          var _key = 'k';
-          var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
-          var _newInfo = 0;
-          var _expectedResult = [_newInfo, 1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
-
-          var _x = new Xtorage();
-
-          _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
-
-          expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
-
-          _x.saveInFirstPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
-
-          expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-        });
-
-        it('should save correctly - complex array in the storage and complex array being added', () => {
-          var _key = 'k';
-          var _infoInStorage = [1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
-          var _newInfo = [{a: 0.1, b: false, c: {d: [{e: 'f', g: false, h: 1}]}}];
-          var _expectedResult = [_newInfo, 1, 2, {a: true, b: {c: 1, d: [{e:[1, {f: 'x'}]}]}}];
-
-          var _x = new Xtorage();
-
-          _x.save(_key, _infoInStorage, OBJECT_LOCAL_STORAGE);
-
-          expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_infoInStorage);
-
-          _x.saveInFirstPosition(_key, _newInfo, OBJECT_LOCAL_STORAGE);
-
-          expect(_x.get(_key, OBJECT_LOCAL_STORAGE)).toEqual(_expectedResult);
-        });
-      });
+      });      
     });
 
     describe('sessionStorage', () => {
