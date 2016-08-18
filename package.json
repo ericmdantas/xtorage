@@ -34,10 +34,10 @@
     "client-storage"
   ],
   "babel": {
-	"presets": [
-		"es2015",
-		"es2016"
-	]
+    "presets": [
+      "es2015",
+      "es2016"
+    ]
   },
   "homepage": "https://github.com/ericmdantas/xtorage",
   "devDependencies": {
@@ -57,7 +57,8 @@
     "karma": "^1.2.0",
     "karma-browserify": "^5.1.0",
     "karma-chrome-launcher": "^1.0.1",
-    "karma-jasmine": "^1.0.2"
+    "karma-jasmine": "^1.0.2",
+    "typescript": "^2.0.0"
   },
   "dependencies": {}
 }
