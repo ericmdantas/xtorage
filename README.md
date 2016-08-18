@@ -6,7 +6,7 @@
 
 # Install
 
-```
+```shell
 $ npm i --save xtorage
 ```
 
