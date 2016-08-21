@@ -3,6 +3,7 @@
 .travis.yml
 node_modules
 src
+build
 coverage
 test
 typings
