@@ -1,16 +1,14 @@
 {
   "name": "xtorage",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Web Storage made simple and more powerful.",
   "main": "dist/commonjs/xtorage.min.js",
   "scripts": {
-    "test": "gulp coveralls",
-    "ut": "gulp test",
-    "tw": "gulp test-watch",
-    "trs": "gulp compile:src",
-    "trt": "gulp compile:test",
-    "build": "gulp build",
-    "prepublish": "npm build"
+    "compile": "tsc",
+    "coveralls": "gulp coveralls",
+    "test": "gulp unit_test",
+    "build": "npm t && gulp build",
+    "prepublish": "npm run compile && npm build"
   },
   "directories": {
     "test": "test"
@@ -33,39 +31,35 @@
     "angular2-xtorage",
     "sessionStorage",
     "localStorage",
-    "angular-storage",
-    "angular2-storage"
+    "client-storage"
   ],
+  "babel": {
+    "presets": [
+      "es2015",
+      "es2016"
+    ]
+  },
   "homepage": "https://github.com/ericmdantas/xtorage",
   "devDependencies": {
-    "babel": "^6.1.18",
-    "babel-cli": "^6.2.0",
-    "babel-core": "^6.2.1",
-    "babel-preset-es2015": "^6.1.18",
-    "chai": "^2.3.0",
-    "es6-module-loader": "^0.17.3",
-    "gulp": "^3.8.11",
+    "@types/jasmine": "^2.2.31",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-es2016": "^6.11.3",
+    "babel-register": "^6.11.6",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-browserify": "^0.5.1",
     "gulp-coveralls": "^0.1.4",
-    "gulp-typescript": "^2.7.5",
-    "jasmine-core": "^2.3.4",
-    "karma": "^0.12.32",
-    "karma-chrome-launcher": "^0.1.12",
-    "karma-coverage": "^0.3.1",
-    "karma-firefox-launcher": "^0.1.6",
-    "karma-ie-launcher": "^0.1.5",
-    "karma-jasmine": "^0.3.5",
-    "karma-opera-launcher": "^0.1.0",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "karma-safari-launcher": "^0.1.1",
-    "karma-systemjs": "^0.6.0",
-    "mocha": "^2.2.5",
-    "object-assign": "^2.0.0",
-    "phantomjs-polyfill": "0.0.1",
-    "sinon": "^1.14.1",
-    "sinon-chai": "^2.7.0",
-    "systemjs": "^0.18.17",
-    "systemjs-builder": "^0.12.2",
-    "typescript": "^1.5.3"
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.2.0",
+    "karma-browserify": "^5.1.0",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.0.2",
+    "typescript": "^2.0.0"
   },
   "dependencies": {}
 }

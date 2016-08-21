@@ -1,31 +1,25 @@
-export type StorageOptions = {
-  storage: string;
-  unique: boolean
-}
-
 export interface IParseStorage {
   _toStringifiedJSON(info:any):any
   _fromStringifiedJSON(info:any):any
-  _parseOptions(opts:Object):StorageOptions
 }
 
 export interface IAddStorage {
-  save(key:string, info: any, opts?:StorageOptions):void;
-  saveInFirstPosition(key:string, info: any, opts?:StorageOptions):void;
-  saveInLastPosition(key:string, info: any, opts?:StorageOptions):void;
+  save(key:string, info: any):void;
+  saveInFirstPosition(key:string, info: any):void;
+  saveInLastPosition(key:string, info: any):void;
 }
 
 export interface IGetStorage {
-  get(key:string, opts?:StorageOptions):any
-  getFirst(key:string, opts?:StorageOptions):any
-  getLast(key:string, opts?:StorageOptions):any
+  get(key:string):any
+  getFirst(key:string):any
+  getLast(key:string):any
 }
 
 export interface IRemoveStorage {
-  remove(key:string, opts?:StorageOptions):void;
-  removeFirst(key:string, opts?:StorageOptions):void;
-  removeLast(key:string, opts?:StorageOptions):void;
-  removeAll(opts?:StorageOptions):void;
+  remove(key:string):void;
+  removeFirst(key:string):void;
+  removeLast(key:string):void;
+  removeAll():void;
 }
 
 export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParseStorage {
@@ -33,7 +27,48 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
 
   }
 
-  set storage(storage: string) {
+  save(key:string, info: any):void {
+    window[this.storage].setItem(key, this._toStringifiedJSON(info));
+  }
+
+  saveInFirstPosition(key:string, info: any):void {
+    this._saveInArray(key, info, "unshift");
+  }
+
+  saveInLastPosition(key:string, info: any):void {
+    this._saveInArray(key, info, "push");
+  }
+
+  get(key:string):any {
+    var _info = window[this.storage].getItem(key);
+    return this._fromStringifiedJSON(_info);
+  }
+
+  getFirst(key:string):any {
+    return this._getFromArray(key, 0);
+  }
+
+  getLast(key:string):any {
+    return this._getFromArray(key, "last");
+  }
+
+  remove(key:string):void {
+    window[this.storage].removeItem(key);
+  }
+
+  removeFirst(key:string):void {
+    this._removeFromArray(key, "shift");
+  }
+
+  removeLast(key:string):void {
+    this._removeFromArray(key, "pop");
+  }
+
+  removeAll():void {
+    window[this.storage].clear();
+  }
+
+  set storage(storage:string) {
     this._storage = storage;
   }
 
@@ -65,62 +100,33 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
     }
   }
 
-  _parseOptions(opt:StorageOptions):StorageOptions {
-    let _opt = {storage: opt && opt.storage ? opt.storage : this.storage,
-                unique: opt && opt.unique ? opt.unique : this.unique};
-
-    return _opt;
-  }
-
   _equals(info1, info2):boolean {
     return JSON.stringify(info1) === JSON.stringify(info2);
   }
 
-  save(key:string, info: any, opt?:StorageOptions):void {
-    var _opt = this._parseOptions(opt);
-
-    window[_opt.storage].setItem(key, this._toStringifiedJSON(info));
-  }
-
-  private _saveInArray(key:string, newInfo:any, method:string, opt?:StorageOptions):void {
-    var _opt = this._parseOptions(opt);
-    var _infoStorage = this.get(key, _opt) || [];
+  private _saveInArray(key:string, newInfo:any, method:string):void {
+    var _infoStorage = this.get(key) || [];
     var _isRepeated = false;
 
     if (!(_infoStorage instanceof Array)) return;
 
-    if (_opt.unique && !!_infoStorage.length) {
-      <any[]>_infoStorage.forEach((informationStorage) => {
+    if (this.unique && !!_infoStorage.length) {
+      (_infoStorage as any[]).forEach((informationStorage) => {
           if (this._equals(newInfo, informationStorage)) {
             return _isRepeated = true;
           }
         });
     }
 
-    if ((_opt.unique && !_isRepeated) || (!_opt.unique)) {
+    if ((this.unique && !_isRepeated) || (!this.unique)) {
       _infoStorage[method](newInfo);
-      this.save(key, _infoStorage, _opt);
+      this.save(key, _infoStorage);
       return;
     }
   }
 
-  saveInFirstPosition(key:string, info: any, opt?:StorageOptions):void {
-    this._saveInArray(key, info, "unshift", opt);
-  }
-
-  saveInLastPosition(key:string, info: any, opt?:StorageOptions):void {
-    this._saveInArray(key, info, "push", opt);
-  }
-
-  get(key:string, opt?:StorageOptions):any {
-    var _opt = this._parseOptions(opt);
-    var _info = window[_opt.storage].getItem(key);
-
-    return this._fromStringifiedJSON(_info);
-  }
-
-  private _getFromArray(key, position:number|string, opt?:StorageOptions):void {
-    var _info = this.get(key, opt);
+  private _getFromArray(key, position:number|string):void {
+    var _info = this.get(key);
     var _position;
 
     if (!(_info instanceof Array) || !_info.length) return;
@@ -130,41 +136,13 @@ export class Xtorage implements IAddStorage, IGetStorage, IRemoveStorage, IParse
     return _info[_position];
   }
 
-  getFirst(key:string, opt?:StorageOptions):any {
-    return this._getFromArray(key, 0, opt);
-  }
-
-  getLast(key:string, opt?:StorageOptions):any {
-    return this._getFromArray(key, "last", opt);
-  }
-
-  remove(key:string, opt?:StorageOptions):void {
-    var _opt = this._parseOptions(opt);
-
-    window[_opt.storage].removeItem(key);
-  }
-
-  private _removeFromArray(key:string, method:string,opt?:StorageOptions):void {
-    var _info = this.get(key, opt);
+  private _removeFromArray(key:string, method:string):void {
+    var _info = this.get(key);
 
     if (!(_info instanceof Array)) return;
 
     _info[method]();
 
-    this.save(key, _info, opt);
-  }
-
-  removeFirst(key:string, opt?:StorageOptions):void {
-    this._removeFromArray(key, "shift", opt);
-  }
-
-  removeLast(key:string, opt?:StorageOptions):void {
-    this._removeFromArray(key, "pop", opt);
-  }
-
-  removeAll(opt?:StorageOptions):void {
-    var _opt = this._parseOptions(opt);
-
-    window[_opt.storage].clear();
+    this.save(key, _info);
   }
 }

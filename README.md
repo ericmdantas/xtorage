@@ -1,120 +1,69 @@
-# xtorage
+# Xtorage
 
 [![Build Status](https://travis-ci.org/ericmdantas/xtorage.svg?branch=master)](https://travis-ci.org/ericmdantas/xtorage)
 [![Coverage Status](https://coveralls.io/repos/ericmdantas/xtorage/badge.svg?branch=master)](https://coveralls.io/r/ericmdantas/xtorage?branch=master)
 [![npm version](https://badge.fury.io/js/xtorage.svg)](https://badge.fury.io/js/xtorage)
 
-# install
+# Install
 
-```
-
+```shell
 $ npm i --save xtorage
-
 ```
 
-# what?
+# What is this?
 
 This is a tiny, yet powerful *framework-agnostic* wrapper for the web storage.
 
-Focus on your business logic.
-
-# why?
-
-Because you shouldn't keep parsing strings/arrays/numbers/objects left and right to save/retrieve stuff into and from the storage.
+You shouldn't keep parsing strings/arrays/numbers/objects left and right to save/retrieve stuff into and from the storage.
 
 Just call ```save()```, ```saveInFirstPosition()```, ```remove()```, ```removeLast()``` and so on.
 
-# how?
+You can use it pretty much everywhere that is javascript in the client; So, it'll work for: `angular`, `aurelia`, `vue`, `electron`, etc.
 
-This module will do all the parsing needed to save stuff in the storage and retrieve stuff from there.
 
-# is there anything else?
+### API
 
-Yeah! This module also extends the Web Storage API.
+#### constructor
 
-For example, if you have an array in the storage and you want to save something to its last position, just call:
-
-```saveInLastPosition(key, info)``` and there you go. The array now will have the info in its last position.
-
-# where can I use it?
-
-Well, pretty much everywhere that is javascript in the front-end; So, it'll work for:
-- Angular2;
-- Aurelia;
-- React;
-- Electron;
-- Backbone;
-- Knockout;
-- Ember;
-- You name it!
-
-> Note: If you're using Angular 1.x, you should use [ng-xtorage](https://github.com/ericmdantas/ng-xtorage) instead.
-
-# alright, let's talk about the API
-
-## constructor
-
-### contract
-
-```js
+```ts
 new Xtorage(storage: 'localStorage' | 'sessionStorage', unique: boolean)
 ```
 
-### usage - storage
-
 ```js
-  var _x = new Xtorage('localStorage');
+  let _x1 = new Xtorage('localStorage');
+  _x1.save('k', 1); // saves 1, with the key 'k' in the localStorage
 
-  _x.save('k', 1); // saves 1, with the key 'k' in the localStorage
+  let _x2 = new Xtorage('sessionStorage');  
+  _x2.save('k', 2); // saves 1, with the key 'k' in the sessionStorage
+
+  let _x3 = new Xtorage();
+  _x3.save('k', 3); // saves 1, with the key 'k' in the localStorage - which is the default
+
+
+  let _x4 = new Xtorage(undefined, true);
+
+  _x4.saveInFirstPosition('k', 1); // array length is 1  
+  _x4.saveInFirstPosition('k', 1); // array length is still 1, unique is set to true
+
+  let _x5 = new Xtorage(undefined, false);
+
+  _x5.saveInFirstPosition('k', 1); // array length is 1  
+  _x5.saveInFirstPosition('k', 1); // array length is 2, unique is set to false
+
+  let _x6 = new Xtorage();
+
+  _x6.saveInFirstPosition('k', 1); // array length is 1  
+  _x6.saveInFirstPosition('k', 1); // array length is 2, unique, by default, is false
+```
+
+#### save
+
+```ts
+save(key:string, info:any):void
 ```
 
 ```js
-  var _x = new Xtorage('sessionStorage');  
-
-  _x.save('k', 1); // saves 1, with the key 'k' in the sessionStorage
-```
-
-```js
-  var _x = new Xtorage();
-
-  _x.save('k', 1); // saves 1, with the key 'k' in the localStorage - which is the default
-```
-
-### usage - unique
-
-```js
-  var _x = new Xtorage(undefined, true);
-
-  _x.saveInFirstPosition('k', 1); // array length is 1  
-  _x.saveInFirstPosition('k', 1); // array length is still 1, unique is set to true
-```
-
-```js
-  var _x = new Xtorage(undefined, false);
-
-  _x.saveInFirstPosition('k', 1); // array length is 1  
-  _x.saveInFirstPosition('k', 1); // array length is 2, unique is set to false
-```
-
-```js
-  var _x = new Xtorage();
-
-  _x.saveInFirstPosition('k', 1); // array length is 1  
-  _x.saveInFirstPosition('k', 1); // array length is 2, unique, by default, is false
-```
-
-## save
-
-### contract
-
-```js
-save(key:string, info:any [, options:{storage: 'localStorage' | 'sessionStorage'}])
-```
-
-### usage
-
-```js
-  var _x = new Xtorage();
+  let _x = new Xtorage();
 
   _x.save('k', {a: 1});
 
@@ -122,18 +71,14 @@ save(key:string, info:any [, options:{storage: 'localStorage' | 'sessionStorage'
 
 ```
 
-## saveInFirstPosition
+#### saveInFirstPosition
 
-### contract
-
-```js
-  saveInFirstPosition(key:string, info:any [, options:{storage: 'localStorage' | 'sessionStorage', unique: boolean}])
+```ts
+  saveInFirstPosition(key:string, info:any):void
 ```
 
-### usage
-
 ```js
-  var _x = new Xtorage();
+  let _x = new Xtorage();
 
   _x.saveInFirstPosition('k', {a: 1});
 
@@ -144,18 +89,14 @@ save(key:string, info:any [, options:{storage: 'localStorage' | 'sessionStorage'
   console.log(_x.get('k')); // [{b: 2}, {a: 1}]
 ```
 
-## saveInLastPosition
+#### saveInLastPosition
 
-### contract
-
-```js
-saveInLastPosition(key:string, info:any [, options:{storage: localStorage | sessionStorage, unique: boolean}])
+```ts
+saveInLastPosition(key:string, info:any):void
 ```
 
-### usage
-
 ```js
-  var _x = new Xtorage();
+  let _x = new Xtorage();
 
   _x.saveInLastPosition('k', {a: 1});
 
@@ -166,38 +107,29 @@ saveInLastPosition(key:string, info:any [, options:{storage: localStorage | sess
   console.log(_x.get('k')); // [{a: 1}, {b: 2}]
 ```
 
-## get
+#### get
 
-### contract
-
-```js
-get(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```ts
+get(key:string):any
 ```
 
-### usage
-
 ```js
-  var _x = new Xtorage();
+  let _x = new Xtorage();
 
   _x.save('k', [1, true, {a: 1}, [{c: 'abc'}]);
 
   console.log(_x.get('k')); // [1, true, {a: 1}, [{c: 'abc'}]
-
 ```
 
 
-## getFirst
+#### getFirst
 
-### contract
-
-```js
-getFirst(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```ts
+getFirst(key:string):void
 ```
 
-### usage
-
 ```js
-  var _x = new Xtorage();
+  let _x = new Xtorage();
 
   _x.saveInLastPosition('k', {a: 1});
 
@@ -208,18 +140,14 @@ getFirst(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
   console.log(_x.get('k')); // {a: 1}
 ```
 
-## getLast
+#### getLast
 
-### contract
-
-```js
-getLast(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```ts
+getLast(key:string):void
 ```
 
-### usage
-
 ```js
-  var _x = new Xtorage();
+  let _x = new Xtorage();
 
   _x.saveInLastPosition('k', {a: 1});
 
@@ -230,18 +158,14 @@ getLast(key:string [, options:{storage: 'localStorage' | 'sessionStorage'}])
   console.log(_x.get('k')); // {b: 2}
 ```
 
-## remove
+#### remove
 
-### contract
-
-```js
-remove(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```ts
+remove(key:string):void
 ```
 
-### usage
-
 ```js
-  var _x = new Xtorage();
+  let _x = new Xtorage();
 
   _x.save('k', {a: 1});
 
@@ -252,18 +176,14 @@ remove(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
   console.log(_x.get('k')); // undefined
 ```
 
-## removeAll
+#### removeAll
 
-### contract
-
-```js
-removeAll([, options:{storage: 'localStorage' | 'sessionStorage'}])
+```ts
+removeAll():void
 ```
 
-### usage
-
 ```js
-  var _x = new Xtorage();
+  let _x = new Xtorage();
 
   _x.save('k', {a: 1});
   _x.save('y', [{somethingElse: true}]);
@@ -277,18 +197,14 @@ removeAll([, options:{storage: 'localStorage' | 'sessionStorage'}])
   console.log(_x.get('y')); // undefined
 ```
 
-## removeFirst
+#### removeFirst
 
-### contract
-
-```js
-removeFirst(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```ts
+removeFirst(key:string):void
 ```
 
-### usage
-
 ```js
-  var _x = new Xtorage();
+  let _x = new Xtorage();
 
   _x.saveInFirstPosition('k', {a: 1});
   _x.saveInLastPosition('k', {b: 2});
@@ -300,18 +216,14 @@ removeFirst(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}]
   console.log(_x.get('k')); // [{b: 2}]
 ```
 
-## removeLast
+#### removeLast
 
-### contract
-
-```js
-removeLast(key:string, [, options:{storage: 'localStorage' | 'sessionStorage'}])
+```ts
+removeLast(key:string):void
 ```
 
-### usage
-
 ```js
-  var _x = new Xtorage();
+  let _x = new Xtorage();
 
   _x.saveInFirstPosition('k', {a: 1});
   _x.saveInLastPosition('k', {b: 2});
