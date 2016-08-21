@@ -1,8 +1,8 @@
 .idea
 src/*.js
 src/*.map
-build
 node_modules
 coverage
 src/xtorage_test.d.ts
 *.log
+build
