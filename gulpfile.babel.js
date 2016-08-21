@@ -6,7 +6,13 @@ import rename from 'gulp-rename';
 import coveralls from 'gulp-coveralls';
 import {Server as Karma} from 'karma';
 
-gulp.task('build', ['build-commonjs', 'build-es2015']);
+gulp.task('build', [
+	'build-commonjs', 
+	'build-systemjs', 
+	'build-amd', 
+	'build-umd', 
+	'build-es2015'
+]);
 
 gulp.task('build-commonjs', () => {
   return gulp.src('build/xtorage.js')
@@ -18,6 +24,60 @@ gulp.task('build-commonjs', () => {
                suffix: '.min'
              }))
              .pipe(gulp.dest('dist/commonjs'));
+});
+
+gulp.task('build-amd', () => {
+  return gulp.src('build/xtorage.js')
+			 .pipe(babel({
+				presets: [
+					[
+						"es2015", {
+							 modules: "amd"
+						}
+					]
+				]
+			 }))
+			 .pipe(uglify())
+             .pipe(rename({
+               suffix: '.min'
+             }))
+             .pipe(gulp.dest('dist/amd'));
+});
+
+gulp.task('build-umd', () => {
+  return gulp.src('build/xtorage.js')
+			 .pipe(babel({
+				presets: [
+					[
+						"es2015", {
+							 modules: "umd"
+						}
+					]
+				]
+			 }))
+			 .pipe(uglify())
+             .pipe(rename({
+               suffix: '.min'
+             }))
+             .pipe(gulp.dest('dist/umd'));
+});
+
+gulp.task('build-systemjs', () => {
+  return gulp.src('build/xtorage.js')
+			 .pipe(babel({
+				presets: [
+					[
+						"es2015", {
+							 modules: "systemjs"
+						}
+					]
+				]
+			 }))
+			 .pipe(uglify())
+             .pipe(rename({
+               suffix: '.min'
+             }))
+             .pipe(gulp.dest('dist/systemjs'));
 });
 
 gulp.task('build-es2015', () => {

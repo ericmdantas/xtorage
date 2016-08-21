@@ -7,7 +7,7 @@
     "compile": "tsc",
     "coveralls": "gulp coveralls",
     "test": "gulp unit_test",
-    "build": "npm t && gulp build",
+    "build": "npm run compile && npm t && gulp build",
     "prepublish": "npm run compile && npm build"
   },
   "directories": {
@@ -35,8 +35,7 @@
   ],
   "babel": {
     "presets": [
-      "es2015",
-      "es2016"
+      "es2015"
     ]
   },
   "homepage": "https://github.com/ericmdantas/xtorage",
